@@ -1,52 +1,52 @@
-NAME 		= 	miniRT
+NAME          := miniRT
 
-CC			= 	cc
+CC            := cc
+CFLAGS        := -Wall -Wextra -Werror
+CPPFLAGS      := -I . -I include -I libft -I libmlx
+LDFLAGS       :=                 -L libft -L libmlx
+LDLIBS        :=                 -l ft    -l mlx
 
-RM 			= 	rm -f
+SRCS_PATH     := src
+OBJS_PATH     := obj
+SRCS          := main.c
+SRCS          := $(SRCS:%=$(SRCS_PATH)/%)
+OBJS          := $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
 
-INC			=	-I include -I libft -I minilibx
+RM            := rm -f
+MAKE          := make -C
+MUTE          := 1>/dev/null
 
-CFLAGS		=	-Wall -Wextra -Werror
+all:        $(NAME)
 
-LFLAGS		=	-I./libft -lft -L./libft -I./mlx -L./mlx_linux -I./miniRT -L./miniRT
+$(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c
+	-[ ! -d $(@D) ] && mkdir -p $(@D)
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	echo "CREATED $@"
 
-SRCS		=	main.c \
+libft/libft.a:
+	$(MAKE) libft $(MUTE)
+	echo "CREATED libft"
 
-SRCS_PATH	= 	./src/
+libmlx/libmlx.a:
+	$(MAKE) libmlx $(MUTE)
+	echo "CREATED libmlx"
 
-OBJS_PATH	= 	./obj/
-
-OBJS		= 	$(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
-
-LIBFT		=	./libft/libft.a
-
-MLX			=	./mlx_linux/libmlx_Linux.a
-
-
-$(OBJS_PATH)%.o : 	$(SRCS_PATH)%.c
-			@mkdir -p $(dir $@)
-			$(CC) $(CFLAGS)$(LFLAGS) -c $< $(OUTPUT_OPTION) $(INC)
-			@echo "CREATED $@"
-$(LIBFT):
-			$(MAKE) -C $(@D) $(@F)
-			@echo "CREATED $(LIBFT)"
-$(MLX):
-			$(MAKE) -C $(@D)
-			@echo "CREATED $@"
-
-$(NAME):	$(OBJS) $(LIBFT) $(MLX) 
-			$(CC) $(OBJS) $(CFLAGS) $(LFLAGS) $(OUTPUT_OPTION) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
-
-all:		$(NAME)
+$(NAME): $(OBJS) libmlx/libmlx.a libft/libft.a
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $(NAME)
+	echo "CREATED $(NAME)"
 
 clean:
-			$(RM) $(OBJS) 
-			$(RM) ./libft/*.o ./mlx_linux/obj/*.o
-		
-fclean:		clean
-			$(RM) $(NAME) $(LIBFT) $(MLX)
+	$(RM) $(OBJS)
+	$(MAKE) libft clean $(MUTE)
+	$(MAKE) libmlx clean $(MUTE)
 
-re:			fclean all
+fclean: clean
+	$(RM) $(NAME) $(LIBFT) $(MLX)
 
-# .SILENT: 
-.PHONY:		all clean fclean re bonus
+re: fclean all
+
+info:
+	make --dry-run --always-make --no-print-directory | grep -v "echo \| mkdir"
+
+.SILENT:
+.PHONY:    all clean fclean re bonus
