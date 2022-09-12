@@ -13,11 +13,18 @@
 #include "miniRT.h"
 #include <stdio.h>
 #include "libft.h"
+
+int test()
+{
+    printf("hello\n");
+    return 0;
+}
 int main(int ac, char **av)
 {
     (void)ac;
     (void)av;
         
-    printf("%d\n", ft_strlen("plop"));
+    test();
+    // printf("%d\n", ft_strlen("plop"));
     return 0;
 }

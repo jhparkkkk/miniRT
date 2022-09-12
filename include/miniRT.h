@@ -13,4 +13,5 @@
 #ifndef MINIRT_H
  # define MINIRT_H
 
+int test();
 #endif 
