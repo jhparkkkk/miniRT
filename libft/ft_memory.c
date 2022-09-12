@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 16:57:55 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/12 18:52:23 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/12 19:28:29 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,35 +18,21 @@ void	*ft_memory(int size, int len)
 {
 	static t_list	**bin =  NULL;
 	void			*content;
-	t_list			*node = NULL;
-	t_list			*tmp;
 
 	if (!bin)
 	{
 		bin = malloc(sizeof(t_list *));
 		(*bin) = ft_lstnew(NULL);
 	}
-	
 	content = malloc(size * len);
 	if (!content || (!size && !len))
 	{
-		node = (*bin);
-		while (node->next)
-		{
-			free(node->content);
-			tmp = node;
-			free(tmp);
-			node = node->next;		
-		}
+		free(content);
+		ft_lstclear(bin, &free);
 		free(bin);
+		exit (EXIT_FAILURE);
 	}
 	else
-	{
-		node = ft_lstnew(content);
-		node->head = (*bin);
-	}
-	ft_lstadd_back(bin, node);
-	
-	return (node->content);
-	//free le gc if fsil malloc ou exit
+		ft_lstadd_back(bin, ft_lstnew(content));
+	return (content);
 }
