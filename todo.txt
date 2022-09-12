@@ -64,7 +64,7 @@ Parsing :
 		vec3 position
 		vec3 color
 		vec3 orientation (NULL if type == sphere)
-		double/float diameter (NULL if type == plane)
+		double/float rayon (NULL if type == plane)
 		double/float height (NULL if type == plane || type == sphere)
 		int (*intersection_algo) (int pixel.. autre int ?, object)
 			if type == sphere
