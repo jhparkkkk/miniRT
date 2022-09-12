@@ -3,12 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 12:05:49 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/12 12:06:02 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/12 18:10:18 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "mini_rt.h"
 

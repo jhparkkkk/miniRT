@@ -1,7 +1,7 @@
 NAME          := miniRT
 
 CC            := cc
-CFLAGS        := -Wall -Wextra -Werror
+CFLAGS        := -Wall -Wextra -Werror -g3
 CPPFLAGS      := -I . -I include -I libft -I libmlx
 LDFLAGS       :=                 -L libft -L libmlx
 LDLIBS        :=                 -l ft    -l mlx
@@ -13,6 +13,8 @@ SRCS          := main.c \
 					mlx.c \
 					utils.c \
 					destroy.c \
+					check_filename.c \
+					get_scene.c
 				
 SRCS          := $(SRCS:%=$(SRCS_PATH)/%)
 OBJS          := $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)

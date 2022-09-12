@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+         #
+#    By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/25 12:18:16 by cgosseli          #+#    #+#              #
-#    Updated: 2022/09/12 10:46:59 by jeepark          ###   ########.fr        #
+#    Updated: 2022/09/12 18:41:46 by cgosseli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 CC = cc
 RM = rm -rf
 
@@ -55,11 +55,18 @@ SRCS = 	ft_isalpha.c\
 		ft_putendl_fd.c\
 		ft_strcmp.c\
 		ft_putnbr_fd.c\
-		get_next_line.c
-SRCS_BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c\
-ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
+		get_next_line.c \
+		ft_lstnew.c \
+		ft_lstadd_front.c \
+		ft_lstsize.c \
+		ft_lstlast.c \
+		ft_lstadd_back.c\
+		ft_lstdelone.c \
+		ft_lstclear.c \
+		ft_lstiter.c \
+		ft_lstmap.c \
+		ft_memory.c
 OBJS = ${SRCS:.c=.o}
-OBJS_BONUS = ${SRCS_BONUS:.c=.o}
 
 .c.o: 
 	${CC} $(CFLAGS) -c $< -o ${<:.c=.o}
@@ -67,10 +74,8 @@ OBJS_BONUS = ${SRCS_BONUS:.c=.o}
 ${NAME} : ${OBJS}
 	ar rcs ${NAME} ${OBJS}
 all : ${NAME}
-bonus : ${OBJS_BONUS}
-	ar rcs ${NAME} ${OBJS_BONUS}
 clean : 
-	${RM} ${OBJS} ${OBJS_BONUS}
+	${RM} ${OBJS} 
 fclean : clean 
 	${RM} ${NAME}
 re : fclean all

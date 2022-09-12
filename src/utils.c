@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 10:53:50 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/12 12:04:53 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/12 18:10:18 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "miniRT.h"
+# include "mini_rt.h"
 
 /*  description : calculates nb = vector * vector
     proto       : double    dot(vec3 ray1, vec3 ray2)

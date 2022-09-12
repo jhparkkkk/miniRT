@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 23:05:03 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/12 10:47:20 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/12 18:48:51 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ static char	*ft_gnl_strjoin(char *s1, char *s2)
 	i = 0;
 	j = 0;
 	if (ft_nchr(s2) == 0)
-		new_s = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+		new_s = ft_memory(sizeof(char), (ft_strlen(s1) + ft_strlen(s2) + 1));
 	else
-		new_s = malloc(sizeof(char) * (ft_strlen(s1) + ft_nchr(s2) + 1));
+		new_s = ft_memory(sizeof(char), (ft_strlen(s1) + ft_nchr(s2) + 1));
 	if (!new_s)
 		return (NULL);
 	while (s1 && s1[i])
