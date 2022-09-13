@@ -1,20 +1,26 @@
 NAME          := miniRT
 
 CC            := cc
-CFLAGS        := -Wall -Wextra -Werror
+CFLAGS        := -Wall -Wextra -Werror -g3
 CPPFLAGS      := -I . -I include -I libft -I libmlx
 LDFLAGS       :=                 -L libft -L libmlx
 LDLIBS        :=                 -l ft    -l mlx
 
 SRCS_PATH     := src
 OBJS_PATH     := obj
-SRCS          := main.c
+SRCS          := main.c \
+					init.c \
+					mlx.c \
+					utils.c \
+					destroy.c \
+					check_filename.c \
+					get_scene.c
+				
 SRCS          := $(SRCS:%=$(SRCS_PATH)/%)
 OBJS          := $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
 
 RM            := rm -f
 MAKE          := make -C
-MUTE          := 1>/dev/null
 
 all:        $(NAME)
 
@@ -24,21 +30,21 @@ $(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c
 	echo "CREATED $@"
 
 libft/libft.a:
-	$(MAKE) libft $(MUTE)
+	$(MAKE) libft
 	echo "CREATED libft"
 
 libmlx/libmlx.a:
-	$(MAKE) libmlx $(MUTE)
+	$(MAKE) libmlx
 	echo "CREATED libmlx"
 
 $(NAME): $(OBJS) libmlx/libmlx.a libft/libft.a
-	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $(NAME)
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -MD $(OBJS) $(LDLIBS) -o $(NAME)
 	echo "CREATED $(NAME)"
 
 clean:
 	$(RM) $(OBJS)
-	$(MAKE) libft clean $(MUTE)
-	$(MAKE) libmlx clean $(MUTE)
+	$(MAKE) libft clean
+	$(MAKE) libmlx clean
 
 fclean: clean
 	$(RM) $(NAME) $(LIBFT) $(MLX)
@@ -48,5 +54,5 @@ re: fclean all
 info:
 	make --dry-run --always-make --no-print-directory | grep -v "echo \| mkdir"
 
-.SILENT:
+# .SILENT:
 .PHONY:    all clean fclean re bonus

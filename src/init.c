@@ -1,40 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/04 15:31:59 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/12 19:20:53 by cgosseli         ###   ########.fr       */
+/*   Created: 2022/09/12 10:27:35 by jeepark           #+#    #+#             */
+/*   Updated: 2022/09/12 18:10:18 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
 
-int main(int ac, char **av)
-{
-	int fd;
-	char **scene;
 
-	if (ac != 2)
-	{
-		printf("Too few argument\n");
-		exit (EXIT_FAILURE);
-	}
-	fd = check_filename(av[1]);
-	if (fd == EXIT_FAILURE)
-		exit (EXIT_FAILURE);
-	scene = get_scene(fd, av[1]);
+/*  description : if arg is valid return 0 else print "error\n"
+    proto       : int check_arg(char *s) */
 
+/*  description : open file descriptor and while parsing, before allocating any memory
+                  check if arg is correct.
+    proto       : int parse_arg(int file)
+    sub func    : open(int fd), get_next_line(int fd), strcmp(char *s1, char *s2),
+                  close(int fd) */
 
-	int i = 0;
-	while (scene[i])
-	{
-		printf("%s", scene[i]);
-		i++;
-	}
-	ft_memory(0, 0);
-    return 0;
-}
