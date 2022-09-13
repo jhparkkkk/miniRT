@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 15:31:59 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/13 15:23:58 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/13 15:44:44 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int main(int ac, char **av)
 	int fd;
 	char **scene;
 	t_cam *camera;
-
+	t_light light;
 	if (ac != 2)
 	{
 		printf("Too few argument\n");
@@ -28,15 +28,17 @@ int main(int ac, char **av)
 	if (fd == EXIT_FAILURE)
 		exit (EXIT_FAILURE);
 	scene = get_scene(fd, av[1]);
+	camera = get_camera(scene);
+	printf("x : %f, y : %f, z : %f\n", camera->position.x, camera->position.y, camera->position.z);
+	get_light(&light, scene);
+	printf("get_light x : %f, y : %f, z : %f\n", light.position.x, light.position.y, light.position.z);
 
-	
-	// int i = 0;
-	// while (scene[i])
-	// {
-	// 	printf("%s", scene[i]);
-	// 	i++;
-	// }
-	get_light(scene);
+	int i = 0;
+	while (scene[i])
+	{
+		printf("%s", scene[i]);
+		i++;
+	}
 	ft_memory(0, 0);
     return 0;
 }

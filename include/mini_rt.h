@@ -99,7 +99,7 @@ typedef struct s_mlx
 /* Parsing */
 int		check_filename(char *fd_name);
 char	**get_scene(int fd, char *filename);
-void    get_light(char **scene);
+void    get_light(t_light *light, char **scene);
 t_cam	*get_camera(char **scene);
 t_vec3	parse_position(char *line);
 

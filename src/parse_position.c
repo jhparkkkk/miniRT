@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_position.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:57:20 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/13 15:00:01 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/13 15:54:30 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
+
+
 
 static float	get_coordinates(char *data)
 {

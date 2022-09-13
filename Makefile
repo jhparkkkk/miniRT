@@ -1,3 +1,4 @@
+
 NAME          := miniRT
 
 CC            := cc
@@ -15,9 +16,8 @@ SRCS          := main.c \
 					destroy.c \
 					check_filename.c \
 					get_scene.c \
-					get_light.c \
-					get_ambient_light.c
 					get_camera.c \
+					get_light.c \
 					parse_position.c
 				
 SRCS          := $(SRCS:%=$(SRCS_PATH)/%)
