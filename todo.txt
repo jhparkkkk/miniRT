@@ -1,0 +1,78 @@
+Struct vector //line sent from cam but also line sent from light
+	x
+	y
+	z //pour un ray, cette val va bouger
+
+Struct color //color of a pixel
+	r
+	g
+	b
+
+vector et rgb c'est vec3
+
+
+Struct point //point of a sphere for example, also point of light ?
+	x
+	y
+	z
+	struct color
+
+Parsing :
+	ac < 2
+	is_dot_rt
+
+	char **scene_instructions(fd)
+		gnl
+		if not empty line => dans char **
+	
+	get_camera(char **scene_instructions)
+		while (scene_instructions[i++][0] != 'C')
+		if plus d'une cam, return -1
+		if 0 cam return -1
+		if 1 cam
+			on refait un while pour retrouver la cam ? ou on a un autre index
+			check_valid_cam(line), return -1 si pas valid
+
+	get_light et get_ambient_lightning en gros pareil que get_cam
+
+	struct my_window
+		int width //pour avoir en 0,0 => + width/2
+		int height // - height/2
+
+	struct world
+		cam
+		light
+		ambient_lightning
+		**objects
+	
+	struct cam
+		vec3 position
+		vec3 orientation
+		int fov;
+
+	struct light
+		vec3 position
+		float brightness
+		vec3 color
+
+	struct ambient_lightning
+		float brightness
+		vec3 color
+
+	struct object
+		int type
+		vec3 position
+		vec3 color
+		vec3 orientation (NULL if type == sphere)
+		double/float rayon (NULL if type == plane)
+		double/float height (NULL if type == plane || type == sphere)
+		int (*intersection_algo) (int pixel.. autre int ?, object)
+			if type == sphere
+				intersection_algo = &sphere_algo
+			else if etc pour les autres
+
+int	sphere_algo
+int	plane_algo
+int	cylinder_algo
+
+
