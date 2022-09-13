@@ -6,11 +6,22 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:09:27 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/13 18:40:13 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/13 19:45:23 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
+
+static int len_clean_space(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] && !(s[i] == 32 || (s[i] >= 9 && s[i] <= 13)))
+		i++;
+	return (i);
+}
 
 float	ft_atof(const char *s)
 {
@@ -33,7 +44,7 @@ float	ft_atof(const char *s)
 	}
 	free(tmp);
 	tmp = ft_substr(s, i, 7);
-	nb = (float)ft_atoi(tmp) / powf(10.0, (float)ft_strlen(tmp));
+	nb = (float)ft_atoi(tmp) / powf(10.0, (float)len_clean_space(tmp));
 	free(tmp);
 	if (s[0] == '-')
 		nb = -nb;

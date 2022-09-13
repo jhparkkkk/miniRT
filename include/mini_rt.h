@@ -102,6 +102,7 @@ char	**get_scene(int fd, char *filename);
 t_cam	get_camera(char **scene);
 t_vec3	parse_position(char *line, int *idx);
 t_vec3	parse_direction(char *line, int *idx);
+int		check_float(char *data);
 
 void	*ft_memory(int size, int len);
 
