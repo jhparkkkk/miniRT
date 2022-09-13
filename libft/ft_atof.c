@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:09:27 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/13 14:31:44 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/13 18:40:13 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ float	ft_atof(const char *s)
 	if (s[i] == '.')
 		i++;
 	else
+	{
+		free(tmp);
 		return ((float)dec);
+	}
 	free(tmp);
 	tmp = ft_substr(s, i, 7);
 	nb = (float)ft_atoi(tmp) / powf(10.0, (float)ft_strlen(tmp));

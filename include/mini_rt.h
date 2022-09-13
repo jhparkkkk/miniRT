@@ -44,7 +44,7 @@ typedef struct s_cam
 {
 	t_vec3	position;
 	t_vec3	direction;
-	int		fov;
+	float		fov;
 } t_cam;
 
 typedef struct s_light
@@ -101,7 +101,7 @@ int		check_filename(char *fd_name);
 char	**get_scene(int fd, char *filename);
 t_cam	get_camera(char **scene);
 t_vec3	parse_position(char *line, int *idx);
-t_vec3	parse_direction(char *line);
+t_vec3	parse_direction(char *line, int *idx);
 
 void	*ft_memory(int size, int len);
 
