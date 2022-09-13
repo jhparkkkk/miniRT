@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 19:17:04 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/12 19:30:38 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/13 14:32:11 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <math.h>
 
 # define BUFFER_SIZE 1
 
@@ -35,6 +36,7 @@ void		*ft_memmove(void *dest, const void *src, size_t n);
 void		*ft_memset(void *s, int c, size_t n);
 int			ft_isalnum(int c);
 int			ft_atoi(const char *str);
+float		ft_atof(const char *str);
 long long	ft_llatoi(const char *str);
 int			ft_isalpha(int c);
 int			ft_isascii(int c);

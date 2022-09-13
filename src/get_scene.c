@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 15:56:29 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/12 19:19:31 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/13 11:37:05 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static char **get_scene_param(int fd, char **scene)
 		free(line);
 		line = get_next_line(fd);
 	}
+	scene[i] = NULL;
 	free(line);
 	return (scene);
 }
