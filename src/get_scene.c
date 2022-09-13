@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_scene.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 15:56:29 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/12 19:19:31 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/13 11:45:02 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,6 @@ char **get_scene(int fd, char *filename)
 		ft_putstr_fd("Failed malloc\n", 2);
 		exit(EXIT_FAILURE);
 	}
-	return (get_scene_param(fd, scene));
+	scene = get_scene_param(fd, scene);
+	return (scene);
 }

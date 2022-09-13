@@ -14,7 +14,9 @@ SRCS          := main.c \
 					utils.c \
 					destroy.c \
 					check_filename.c \
-					get_scene.c
+					get_scene.c \
+					get_light.c \
+					get_ambient_light.c
 				
 SRCS          := $(SRCS:%=$(SRCS_PATH)/%)
 OBJS          := $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)

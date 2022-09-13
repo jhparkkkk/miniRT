@@ -96,9 +96,12 @@ typedef struct s_mlx
 	int		len;
 } t_mlx;
 
-
+/* parsing */ 
 int	check_filename(char *fd_name);
 char **get_scene(int fd, char *filename);
+void    get_light(char **scene);
+
+/* utils */
 void	*ft_memory(int size, int len);
 
 #endif 
