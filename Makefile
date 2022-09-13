@@ -18,7 +18,8 @@ SRCS          := main.c \
 					get_scene.c \
 					get_camera.c \
 					get_light.c \
-					parse_position.c
+					parse_position.c \
+					parse_direction.c
 				
 SRCS          := $(SRCS:%=$(SRCS_PATH)/%)
 OBJS          := $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)

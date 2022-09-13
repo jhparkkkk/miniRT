@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:19:43 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/13 16:20:34 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/13 16:38:19 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static int	get_param(t_light *light, char *line, int i)
 {
-	light->position = parse_position(line + i);
+	light->position = parse_position(line + i, &i);
 	
 	printf("i : %i\n", i);
 	printf("get_light x : %f, y : %f, z : %f\n", light->position.x, light->position.y, light->position.z);
