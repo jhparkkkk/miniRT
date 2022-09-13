@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 15:31:59 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/13 11:45:32 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/13 15:23:58 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int main(int ac, char **av)
 {
 	int fd;
 	char **scene;
+	t_cam *camera;
 
 	if (ac != 2)
 	{

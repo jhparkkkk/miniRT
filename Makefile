@@ -1,7 +1,7 @@
 NAME          := miniRT
 
 CC            := cc
-CFLAGS        := -Wall -Wextra -Werror -g3
+CFLAGS        := -Wall -Wextra -Werror -g3 
 CPPFLAGS      := -I . -I include -I libft -I libmlx
 LDFLAGS       :=                 -L libft -L libmlx
 LDLIBS        :=                 -l ft    -l mlx
@@ -17,6 +17,8 @@ SRCS          := main.c \
 					get_scene.c \
 					get_light.c \
 					get_ambient_light.c
+					get_camera.c \
+					parse_position.c
 				
 SRCS          := $(SRCS:%=$(SRCS_PATH)/%)
 OBJS          := $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
@@ -40,7 +42,7 @@ libmlx/libmlx.a:
 	echo "CREATED libmlx"
 
 $(NAME): $(OBJS) libmlx/libmlx.a libft/libft.a
-	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -MD $(OBJS) $(LDLIBS) -o $(NAME)
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -MD $(OBJS) $(LDLIBS) -o $(NAME) -lm
 	echo "CREATED $(NAME)"
 
 clean:

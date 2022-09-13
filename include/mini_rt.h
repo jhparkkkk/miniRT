@@ -17,9 +17,9 @@
 
 #include "libft.h"
 #include "mlx.h"
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include <fcntl.h>
 
 /* Macros */
@@ -96,12 +96,13 @@ typedef struct s_mlx
 	int		len;
 } t_mlx;
 
-/* parsing */ 
-int	check_filename(char *fd_name);
-char **get_scene(int fd, char *filename);
+/* Parsing */
+int		check_filename(char *fd_name);
+char	**get_scene(int fd, char *filename);
 void    get_light(char **scene);
+t_cam	*get_camera(char **scene);
+t_vec3	parse_position(char *line);
 
-/* utils */
 void	*ft_memory(int size, int len);
 
 #endif 

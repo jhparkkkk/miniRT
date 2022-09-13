@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 15:56:29 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/13 11:45:02 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/13 15:23:43 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static char **get_scene_param(int fd, char **scene)
 		free(line);
 		line = get_next_line(fd);
 	}
+	scene[i] = NULL;
 	free(line);
 	return (scene);
 }

@@ -6,7 +6,7 @@
 #    By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/25 12:18:16 by cgosseli          #+#    #+#              #
-#    Updated: 2022/09/12 18:41:46 by cgosseli         ###   ########.fr        #
+#    Updated: 2022/09/13 14:32:16 by cgosseli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRCS = 	ft_isalpha.c\
 		ft_memcmp.c\
 		ft_strnstr.c\
 		ft_atoi.c\
+		ft_atof.c\
 		ft_llatoi.c\
 		ft_substr.c\
 		ft_strtrim.c\
