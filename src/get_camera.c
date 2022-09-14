@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:16:19 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/13 19:46:00 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/14 11:31:10 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static float	get_fov(char *line)
 	while (line[j] && (line[j] == 32 || (line[j] >= 9 && line[j] <= 13)))
 		j++;
 	ret = ft_atof(line + j);
-	
 	if (check_float(line + j) || ret < 0 || ret > 180.0)
 	{
 		ft_putstr_fd("Something is wrong with the field of view\n", 2);
@@ -30,7 +29,7 @@ static float	get_fov(char *line)
 	return (ret);
 }
 
-static t_cam get_camera_specs(char *line)
+static t_cam	get_camera_specs(char *line)
 {
 	int		i;
 	t_cam	cam;
@@ -45,18 +44,20 @@ static t_cam get_camera_specs(char *line)
 	return (cam);
 }
 
+/*Goes through the **scene and checks if there is one and only camera.
+Parse the line of the camera to get its specs. Returns the camera and its
+specs, exit if the camera was not valid*/
 t_cam	get_camera(char **scene)
 {
-	int	i;
-	int	j;
-	int	nb;
-	t_cam cam;
+	int		i;
+	int		j;
+	int		nb;
+	t_cam	cam;
 
-	
-	i = 0;
+	i = -1;
 	j = 0;
 	nb = 0;
-	while (scene[i])
+	while (scene[++i])
 	{
 		while (scene[i] && (scene[i][j] == 32 || (scene[i][j] >= 9
 			&& scene[i][j] <= 13)))
@@ -66,7 +67,6 @@ t_cam	get_camera(char **scene)
 			nb++;
 			cam = get_camera_specs(scene[i]);
 		}
-		i++;
 	}	
 	if (nb != 1)
 	{

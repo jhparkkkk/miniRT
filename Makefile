@@ -18,9 +18,11 @@ SRCS          := main.c \
 					get_scene.c \
 					get_camera.c \
 					get_light.c \
+					get_ambient_light.c \
 					parse_position.c \
 					parse_direction.c \
-					check_float.c
+					check_float.c \
+					check_valid_color_range.c 
 				
 SRCS          := $(SRCS:%=$(SRCS_PATH)/%)
 OBJS          := $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)

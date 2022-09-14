@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_scene.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 15:56:29 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/13 15:23:43 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/14 11:22:32 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	count_lines(int fd)
 {
 	char	*line;
 	int		size;
-	
+
 	line = get_next_line(fd);
 	if (!line)
 	{
@@ -40,11 +40,11 @@ static int	count_lines(int fd)
 	return (size);
 }
 
-static char **get_scene_param(int fd, char **scene)
+static char	**get_scene_param(int fd, char **scene)
 {
 	char	*line;
 	int		i;
-	
+
 	i = 0;
 	line = get_next_line(fd);
 	while (line)
@@ -67,11 +67,11 @@ static char **get_scene_param(int fd, char **scene)
 	return (scene);
 }
 
-char **get_scene(int fd, char *filename)
+char	**get_scene(int fd, char *filename)
 {
 	char	**scene;
 	int		size;
-	
+
 	size = count_lines(fd);
 	if (!size)
 	{
@@ -84,7 +84,7 @@ char **get_scene(int fd, char *filename)
 		perror("get_scene.c");
 		exit(EXIT_FAILURE);
 	}
-	scene = ft_memory(sizeof(char*), size + 1);
+	scene = ft_memory(sizeof(char *), size + 1);
 	// scene = malloc(sizeof(char *) * (size + 1));
 	if (!scene)
 	{
