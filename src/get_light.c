@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:19:43 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/14 11:38:29 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/14 11:43:17 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,10 @@ static int	get_param(t_light *light, char *line, int i)
 	printf("i : %i\n", i);
 	while(line[i] == 32 || (line[i] >=9 && line[i] <= 13))
 		i++;
-	if (check_float())
-	light->intensity = ft_atof(line + i);
-	printf("ici : %c\n", line[i + 1]);
-	printf("line : %s\n", line + i);
-	printf("")
-	printf("get_light x : %f, y : %f, z : %f\n", light->position.x, light->position.y, light->position.z);
+	if (!check_float(line + i)) 
+		light->intensity = ft_atof(line + i);
+	i += 3;
+	light->color = parse_position(line + i, &i);
 	return 0;
 }
 

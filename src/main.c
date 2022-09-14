@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 15:31:59 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/13 16:38:08 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/14 11:50:15 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,12 @@ int main(int ac, char **av)
 	camera = get_camera(scene);
 	printf("x : %f, y : %f, z : %f\n", camera.position.x, camera.position.y, camera.position.z);
 	get_light(&light, scene);
-	printf("get_light x : %f, y : %f, z : %f\n", light.position.x, light.position.y, light.position.z);
+	printf("light position : %f, y : %f, z : %f\n", light.position.x, light.position.y, light.position.z);
+	printf("light rgb x : %f, y : %f, z : %f\n", light.color.x, light.color.y, light.color.z);
 
 	printf("position => x : %f, y : %f, z : %f\n", camera.position.x, camera.position.y, camera.position.z);
-	printf("direction  => x : %f, y : %f, z : %f\n", camera.direction.x, camera.direction.y, camera.direction.z);
+	printf("direction => x : %f, y : %f, z : %f\n", camera.direction.x, camera.direction.y, camera.direction.z);
+	printf("fov => %f\n", camera.fov);
 	int i = 0;
 	while (scene[i])
 	{

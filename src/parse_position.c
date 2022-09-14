@@ -3,53 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   parse_position.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:57:20 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/13 16:37:20 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/14 11:17:04 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-static int	only_one_sign(char *data)
-{
-	int	i;
-
-	i = 0;
-	while (data[i])
-	{
-		if (data[i] == 32 || (data[i] >= 9 && data[i] <= 13))
-			break ;
-		i++;
-	}
-	if (i == 1 && (data[0] == '-' || data[0] == '+'))
-		return (1);
-	return (0);
-}
-
 static float	get_coordinates(char *data)
 {
-	int	i;
-	int	nb_dot;
-	int	valid_coordinates;
-	int	empty_line;
-
-	i = 0;
-	nb_dot = 0;
-	valid_coordinates = 1;
-	empty_line = 1;
-	while(data[i] && !(data[i] == 32 || (data[i] >= 9 && data[i] <= 13)))
-	{
-		if (data[i] == '.')
-			nb_dot++;
-		if ((!ft_isdigit(data[i]) && i != 0) || (!ft_isdigit(data[i]) && i == 0
-			&& data[i] != '+' && data[i] != '-'))
-			valid_coordinates = 0;
-		i++;
-		empty_line = 0;
-	}
-	if (nb_dot > 1 || !valid_coordinates || empty_line || only_one_sign(data))
+	if (check_float(data))
 	{
 		ft_putstr_fd("Something is wrong with coordinates\n", 2);
 		ft_memory(0, 0);
@@ -57,6 +22,7 @@ static float	get_coordinates(char *data)
 	return (ft_atof(data));
 }
 
+/*Returns the vec3 from the data string*/
 static t_vec3	extract_position(char *data)
 {
 	t_vec3 position;

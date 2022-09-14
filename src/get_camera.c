@@ -6,11 +6,29 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:16:19 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/13 16:33:52 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/13 19:46:00 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
+
+static float	get_fov(char *line)
+{
+	float	ret;
+	int		j;
+
+	j = 0;
+	while (line[j] && (line[j] == 32 || (line[j] >= 9 && line[j] <= 13)))
+		j++;
+	ret = ft_atof(line + j);
+	
+	if (check_float(line + j) || ret < 0 || ret > 180.0)
+	{
+		ft_putstr_fd("Something is wrong with the field of view\n", 2);
+		ft_memory(0, 0);
+	}
+	return (ret);
+}
 
 static t_cam get_camera_specs(char *line)
 {
@@ -22,7 +40,8 @@ static t_cam get_camera_specs(char *line)
 		i++;
 	i++;
 	cam.position = parse_position(line + i, &i);
-	cam.direction = parse_direction(line + i);
+	cam.direction = parse_direction(line + i, &i);
+	cam.fov = get_fov(line + i);
 	return (cam);
 }
 
@@ -56,16 +75,3 @@ t_cam	get_camera(char **scene)
 	}
 	return (cam);
 }
-
-// t_cam	*get_camera(char **scene)
-// {
-// 	t_cam	*cam;
-
-// 	cam = read_camera_specs(scene);
-// 	if (!cam)
-// 	{
-// 		ft_putstr_fd("Something is wrong with the camera\nCam example :\
-// C	-50,0,20	0,0,0	70", 2);
-// 	}
-// 	return (cam);
-// }
