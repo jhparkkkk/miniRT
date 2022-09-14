@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_light.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:19:43 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/14 13:17:23 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/14 13:51:57 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ static int	get_param(t_light *light, char *line, int i)
 		i++;
 	if (!check_float(line + i)) 
 		light->intensity = ft_atof(line + i);
-	i += 3;
+	// i += 3;
+	while (line[i] && !(line[i] == 32 || (line[i] >= 9 && line[i] <= 13)))
+		i++;
 	light->color = parse_position(line + i, &i);
 	return 0;
 }
