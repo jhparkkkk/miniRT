@@ -108,6 +108,8 @@ t_vec3	parse_direction(char *line, int *idx);
 int		check_float(char *data);
 int		check_valid_color_range(t_vec3 color);
 
+int		get_object(char **scene);
+
 void	*ft_memory(int size, int len);
 
 #endif 

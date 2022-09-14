@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:19:43 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/13 16:38:19 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/14 13:17:23 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,21 @@
 
 static int	get_param(t_light *light, char *line, int i)
 {
-	light->position = parse_position(line + i, &i);
 	
+	light->position = parse_position(line + i, &i);
 	printf("i : %i\n", i);
-	printf("get_light x : %f, y : %f, z : %f\n", light->position.x, light->position.y, light->position.z);
+	while(line[i] == 32 || (line[i] >=9 && line[i] <= 13))
+		i++;
+	if (!check_float(line + i)) 
+		light->intensity = ft_atof(line + i);
+	i += 3;
+	light->color = parse_position(line + i, &i);
 	return 0;
 }
 
 /* check if there is another line beginning with the same letter 
 */
+
 static int check_duplicate(char **scene, int i)
 {
 	int j;
@@ -63,7 +69,6 @@ int get_line(t_light *light, char **scene, char key)
 		if (scene[i][j] == key
 			&& scene[i][j + 1] >= 9 && scene[i][j + 1] <= 13)
 		{
-			printf("plop\n");
 			if (!check_duplicate(scene, i + 1))
 			{
 				get_param(light, scene[i], j + 1);

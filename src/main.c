@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 15:31:59 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/14 13:33:51 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/14 13:47:21 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,21 @@ int main(int ac, char **av)
 	scene = get_scene(fd, av[1]);
 	camera = get_camera(scene);
 	get_light(&light, scene);
-	printf("get_light x : %f, y : %f, z : %f\n", light.position.x, light.position.y, light.position.z);
 	ambient_light = get_ambient_light(scene);
-	printf("ambient light color => r : %f, g : %f, b: %f\nintensity : %f\n", ambient_light.color.x, ambient_light.color.y, ambient_light.color.z, ambient_light.intensity);
 	
+	/* light */
+	printf("\nlight position : %f, y : %f, z : %f\n", light.position.x, light.position.y, light.position.z);
+	printf("light rgb x : %f, y : %f, z : %f\n", light.color.x, light.color.y, light.color.z);
+	printf("light intensity : %f\n", light.intensity);
+	
+	/* camera */
+	printf("\ncamera position => x : %f, y : %f, z : %f\n", camera.position.x, camera.position.y, camera.position.z);
+	printf("camera direction => x : %f, y : %f, z : %f\n", camera.direction.x, camera.direction.y, camera.direction.z);
+	printf("camera fov => %f\n", camera.fov);
+	
+	/* ambient light */
+	printf("get_light x : %f, y : %f, z : %f\n", light.position.x, light.position.y, light.position.z);
+	printf("ambient light color => r : %f, g : %f, b: %f\nintensity : %f\n", ambient_light.color.x, ambient_light.color.y, ambient_light.color.z, ambient_light.intensity);
 	int i = 0;
 	while (scene[i])
 	{
