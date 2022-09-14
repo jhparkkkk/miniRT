@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 13:35:03 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/14 13:42:37 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/14 15:06:04 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int get_object(char **scene)
 {
-    int i;
-    int tab[3]
-    i = 0;
-    while(++i)
-        tab[i] = i;
-    while(tab[i])
-        printf("tab[i]");
+    // int i;
+    // int tab[3]
+    // i = 0;
+    // while(++i)
+    //     tab[i] = i;
+    // while(tab[i])
+    //     printf("tab[i]");
 }
