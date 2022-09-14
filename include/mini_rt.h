@@ -100,6 +100,8 @@ typedef struct s_mlx
 int		check_filename(char *fd_name);
 char	**get_scene(int fd, char *filename);
 t_cam	get_camera(char **scene);
+void    get_light(t_light *light, char **scene);
+
 t_vec3	parse_position(char *line, int *idx);
 t_vec3	parse_direction(char *line, int *idx);
 int		check_float(char *data);

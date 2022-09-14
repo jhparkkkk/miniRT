@@ -1,3 +1,4 @@
+
 NAME          := miniRT
 
 CC            := cc
@@ -16,6 +17,7 @@ SRCS          := main.c \
 					check_filename.c \
 					get_scene.c \
 					get_camera.c \
+					get_light.c \
 					parse_position.c \
 					parse_direction.c \
 					check_float.c
