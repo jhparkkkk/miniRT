@@ -20,7 +20,8 @@ SRCS          := main.c \
 					get_light.c \
 					parse_position.c \
 					parse_direction.c \
-					check_float.c
+					check_float.c \
+					get_object.c
 				
 SRCS          := $(SRCS:%=$(SRCS_PATH)/%)
 OBJS          := $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)

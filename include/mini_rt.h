@@ -106,6 +106,8 @@ t_vec3	parse_position(char *line, int *idx);
 t_vec3	parse_direction(char *line, int *idx);
 int		check_float(char *data);
 
+int		get_object(char **scene);
+
 void	*ft_memory(int size, int len);
 
 #endif 

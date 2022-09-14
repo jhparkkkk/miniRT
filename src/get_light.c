@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:19:43 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/14 11:43:17 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/14 13:17:23 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static int	get_param(t_light *light, char *line, int i)
 
 /* check if there is another line beginning with the same letter 
 */
+
 static int check_duplicate(char **scene, int i)
 {
 	int j;
@@ -68,7 +69,6 @@ int get_line(t_light *light, char **scene, char key)
 		if (scene[i][j] == key
 			&& scene[i][j + 1] >= 9 && scene[i][j + 1] <= 13)
 		{
-			printf("plop\n");
 			if (!check_duplicate(scene, i + 1))
 			{
 				get_param(light, scene[i], j + 1);
