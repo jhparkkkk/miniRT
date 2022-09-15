@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 15:31:59 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/14 13:47:21 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/14 15:10:45 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int main(int ac, char **av)
 	printf("camera fov => %f\n", camera.fov);
 	
 	/* ambient light */
-	printf("get_light x : %f, y : %f, z : %f\n", light.position.x, light.position.y, light.position.z);
 	printf("ambient light color => r : %f, g : %f, b: %f\nintensity : %f\n", ambient_light.color.x, ambient_light.color.y, ambient_light.color.z, ambient_light.intensity);
 	int i = 0;
 	while (scene[i])

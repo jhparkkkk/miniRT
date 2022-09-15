@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_light.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:19:43 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/14 13:51:57 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/14 15:23:45 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,66 +29,35 @@ static int	get_param(t_light *light, char *line, int i)
 	return 0;
 }
 
-/* check if there is another line beginning with the same letter 
-*/
-
-static int check_duplicate(char **scene, int i)
-{
-	int j;
-
-	while(scene[i])
-	{
-		j = 0;
-		while (scene[i][j] >= 9 && scene[i][j] <= 13)
-		{
-			if (scene[i][j] == 'L'
-				&& scene[i][j] >= 9 && scene[i][j] <= 13)
-				return (EXIT_FAILURE);
-			j++;
-		}
-		i++;	
-	}
-	return (EXIT_SUCCESS);	
-}
-
-
-
 /*	checks if light parameter exists and is valid in .rt file
 	else prints error and exits
 */
 
-int get_line(t_light *light, char **scene, char key)
+int get_light(t_light *light, char **scene)
 {
-	(void)light;
 	int i;
 	int j;
+	int nb;
+	
+	nb = 0;
 	i = -1;
     while (scene[++i])
 	{
 		j = 0;
 		while (scene[i][j] == 32 || (scene[i][j] >= 9 && scene[i][j] <= 13))
 			j++;
-		if (scene[i][j] == key
+		if (scene[i][j] == 'L'
 			&& scene[i][j + 1] >= 9 && scene[i][j + 1] <= 13)
 		{
-			if (!check_duplicate(scene, i + 1))
-			{
-				get_param(light, scene[i], j + 1);
-				return (i);
-			}
-				return (EXIT_FAILURE);
+			nb++;
+			get_param(light, scene[i], i);
 		}
+	}
+	if (nb != 1)
+	{
+		ft_putstr_fd("The scene must contain one light\n", 2);
+		ft_memory(0, 0);
 	}
 	return (EXIT_FAILURE);
     
-}
-
-/* init t_light structure from file .rt param */
-void    get_light(t_light *light, char **scene)
-{
-	int		line;
-
-    line = get_line(light, scene, 'L');
-	if (line == -1)
-		printf("doesn't exist");
 }

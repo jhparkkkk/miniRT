@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/14 13:31:04 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/14 15:24:16 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ typedef struct s_mlx
 int		check_filename(char *fd_name);
 char	**get_scene(int fd, char *filename);
 t_cam	get_camera(char **scene);
-void    get_light(t_light *light, char **scene);
+int		get_light(t_light *light, char **scene);
 t_ambient_light	get_ambient_light(char **scene);
 
 t_vec3	parse_position(char *line, int *idx);
