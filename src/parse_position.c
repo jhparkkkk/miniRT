@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:57:20 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/14 11:23:47 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/15 16:09:13 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ t_vec3	parse_position(char *line, int *idx)
 	i = 0;
 	j = 0;
 	nb_comma = 0;
-	while (line[j] && (line[j] == 32 || (line[j] >= 9 && line[j] <= 13)))
-		j++;
+	jump_spaces(line, &j);
 	i = j;
 	while (line[i] && !(line[i] == 32 || (line[i] >= 9 && line[i] <= 13)))
 	{

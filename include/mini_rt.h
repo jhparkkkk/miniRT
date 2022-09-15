@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/14 15:24:16 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/15 16:01:42 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct s_object t_object;
 typedef struct s_object
 {
 	int		type;
-	t_vec3	position;
+	t_vec3	center;
 	t_vec3	color;
 	t_vec3	direction;
 	float	radius;
@@ -97,19 +97,22 @@ typedef struct s_mlx
 } t_mlx;
 
 /* Parsing */
-int		check_filename(char *fd_name);
-char	**get_scene(int fd, char *filename);
-t_cam	get_camera(char **scene);
-int		get_light(t_light *light, char **scene);
+int				check_filename(char *fd_name);
+char			**get_scene(int fd, char *filename);
+t_cam			get_camera(char **scene);
+int				get_light(t_light *light, char **scene);
 t_ambient_light	get_ambient_light(char **scene);
+void			create_sphere(char *data, t_object *sphere);
 
-t_vec3	parse_position(char *line, int *idx);
-t_vec3	parse_direction(char *line, int *idx);
-int		check_float(char *data);
-int		check_valid_color_range(t_vec3 color);
+t_vec3			parse_position(char *line, int *idx);
+t_vec3			parse_direction(char *line, int *idx);
+int				check_float(char *data);
+int				check_valid_color_range(t_vec3 color);
 
-int		get_object(char **scene);
+t_object		**get_objects_list(char **scene);
 
-void	*ft_memory(int size, int len);
+void			jump_spaces(char *line, int *idx);
+void 			jump_data(char*line, int *idx);
+
 
 #endif 

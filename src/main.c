@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 15:31:59 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/14 15:10:45 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/15 16:43:07 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ int main(int ac, char **av)
 {
 	int fd;
 	char **scene;
-	t_cam camera;
-	t_light light;
-	t_ambient_light ambient_light;
-
+	t_world *world;
+	// t_cam camera;
+	// t_light light;
+	// t_ambient_light ambient_light;
+	world = ft_memory(sizeof(t_world), 1);
 	if (ac != 2)
 	{
 		printf("Too few argument\n");
@@ -30,22 +31,29 @@ int main(int ac, char **av)
 	if (fd == EXIT_FAILURE)
 		exit (EXIT_FAILURE);
 	scene = get_scene(fd, av[1]);
-	camera = get_camera(scene);
-	get_light(&light, scene);
-	ambient_light = get_ambient_light(scene);
+	world->cam = get_camera(scene);
+	get_light(&world->light, scene);
+	world->ambient_light = get_ambient_light(scene);
+	world->objects = get_objects_list(scene);
 	
 	/* light */
-	printf("\nlight position : %f, y : %f, z : %f\n", light.position.x, light.position.y, light.position.z);
-	printf("light rgb x : %f, y : %f, z : %f\n", light.color.x, light.color.y, light.color.z);
-	printf("light intensity : %f\n", light.intensity);
+	printf("\nlight position : %f, y : %f, z : %f\n", world->light.position.x, world->light.position.y, world->light.position.z);
+	printf("light rgb x : %f, y : %f, z : %f\n", world->light.color.x, world->light.color.y, world->light.color.z);
+	printf("light intensity : %f\n", world->light.intensity);
 	
 	/* camera */
-	printf("\ncamera position => x : %f, y : %f, z : %f\n", camera.position.x, camera.position.y, camera.position.z);
-	printf("camera direction => x : %f, y : %f, z : %f\n", camera.direction.x, camera.direction.y, camera.direction.z);
-	printf("camera fov => %f\n", camera.fov);
+	printf("\ncamera position => x : %f, y : %f, z : %f\n", world->cam.position.x, world->cam.position.y, world->cam.position.z);
+	printf("cam direction => x : %f, y : %f, z : %f\n", world->cam.direction.x, world->cam.direction.y, world->cam.direction.z);
+	printf("cam fov => %f\n", world->cam.fov);
 	
 	/* ambient light */
-	printf("ambient light color => r : %f, g : %f, b: %f\nintensity : %f\n", ambient_light.color.x, ambient_light.color.y, ambient_light.color.z, ambient_light.intensity);
+	printf("\nambient light color => r : %f, g : %f, b: %f\nintensity : %f\n", world->ambient_light.color.x, world->ambient_light.color.y, world->ambient_light.color.z, world->ambient_light.intensity);
+	
+	/* sphere */
+	printf("\nsphere center : %f, y : %f, z : %f\n", world->objects[0]->center.x, world->objects[0]->center.y, world->objects[0]->center.z);
+	printf("sphere radius %f\n", world->objects[0]->radius);
+	printf("\nsphere color : %f, y : %f, z : %f\n", world->objects[0]->color.x, world->objects[0]->color.y, world->objects[0]->color.z);
+
 	int i = 0;
 	while (scene[i])
 	{

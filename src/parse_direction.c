@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 15:14:06 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/14 11:25:30 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/15 16:11:04 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ t_vec3	parse_direction(char *line, int *idx)
 
 	j = 0;
 	nb_comma = 0;
-	while (line[j] && (line[j] == 32 || (line[j] >= 9 && line[j] <= 13)))
-		j++;
+
+	jump_spaces(line, &j);
 	i = j;
 	while (line[i] && !(line[i] == 32 || (line[i] >= 9 && line[i] <= 13)))
 	{
@@ -68,6 +68,7 @@ t_vec3	parse_direction(char *line, int *idx)
 	}
 	if (nb_comma != 2)
 	{
+		printf("LINE %s\n", line);
 		ft_putstr_fd("Something is wrong with the direction\n", 2);
 		ft_memory(0, 0);
 	}
