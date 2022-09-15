@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 15:31:59 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/15 16:43:07 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/15 17:51:34 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,11 @@ int main(int ac, char **av)
 	printf("sphere radius %f\n", world->objects[0]->radius);
 	printf("\nsphere color : %f, y : %f, z : %f\n", world->objects[0]->color.x, world->objects[0]->color.y, world->objects[0]->color.z);
 
+	printf("********************\n");
+	printf("\nsphere center : %f, y : %f, z : %f\n", world->objects[1]->center.x, world->objects[1]->center.y, world->objects[1]->center.z);
+	printf("\nsphere direction : %f, y : %f, z : %f\n", world->objects[1]->direction.x, world->objects[1]->direction.y, world->objects[1]->direction.z);
+	
+	printf("sphere color : %f, y : %f, z : %f\n", world->objects[1]->color.x, world->objects[1]->color.y, world->objects[1]->color.z);
 	int i = 0;
 	while (scene[i])
 	{

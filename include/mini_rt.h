@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/15 16:01:42 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:00:03 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,9 @@ t_cam			get_camera(char **scene);
 int				get_light(t_light *light, char **scene);
 t_ambient_light	get_ambient_light(char **scene);
 void			create_sphere(char *data, t_object *sphere);
+void			create_plane(char *data, t_object *plane);
+void			create_cylinder(char *data, t_object *cylinder);
+
 
 t_vec3			parse_position(char *line, int *idx);
 t_vec3			parse_direction(char *line, int *idx);

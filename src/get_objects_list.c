@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 13:35:03 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/15 16:46:51 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/15 17:58:44 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,14 @@ static t_object	*get_object(char *line)
 	if (!ft_strncmp(line + j, "sp", i))
 		create_sphere(line + j + i, new_object);
 	else if (!ft_strncmp(line + j, "pl", i))
-		printf("pas encore la\n");
-		// create_plane(line + j + i, new_object);
+		create_plane(line + j + i, new_object);
 	else if (!ft_strncmp(line + j, "cy", i))
-		printf("pas encore la\n");
-		// create_cylinder(line + j + i, new_object);
+		create_cylinder(line + j + i, new_object);
 	else
 	{
 		ft_putstr_fd("There is an unknown object in the map\n", 2);
 		ft_memory(0, 0);
 	}
-	printf("get object : sphere radius %f\n", new_object->radius);
 	
 	return (new_object);
 }
@@ -81,9 +78,7 @@ t_object **get_objects_list(char **scene)
 	objects = ft_memory(sizeof(t_object *), count_objects(scene));
 	while (scene[++i])
 	{
-		while (scene[i] && (scene[i][j] == 32 || (scene[i][j] >= 9
-			&& scene[i][j] <= 13)))
-			j++;
+		jump_spaces(scene[i], &j);
 		if (scene[i][j] && scene[i][j] != 'A' && scene[i][j] != 'C'
 			&& scene[i][j] != 'L')
 		{

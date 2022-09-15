@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:57:20 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/15 16:09:13 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:00:20 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ t_vec3	parse_position(char *line, int *idx)
 	}
 	if (nb_comma != 2)
 	{
+		printf("line %s\n", line);
 		ft_putstr_fd("Something is wrong with coordinates\n", 2);
 		ft_memory(0, 0);
 	}
