@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_object.c                                       :+:      :+:    :+:   */
+/*   jump_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 13:35:03 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/14 15:06:04 by jeepark          ###   ########.fr       */
+/*   Created: 2022/09/15 15:57:51 by cgosseli          #+#    #+#             */
+/*   Updated: 2022/09/16 11:50:37 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "mini_rt.h"
+#include "mini_rt.h"
 
-int get_object(char **scene)
+void jump_data(char*line, int *idx)
 {
-    // int i;
-    // int tab[3]
-    // i = 0;
-    // while(++i)
-    //     tab[i] = i;
-    // while(tab[i])
-    //     printf("tab[i]");
+	while(line[*idx] 
+		&& !(line[*idx] == 32 || (line[*idx] >=9 && line[*idx] <= 13)))
+		(*idx)++;	
 }

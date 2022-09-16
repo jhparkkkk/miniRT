@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 15:14:06 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/13 19:43:22 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/15 16:11:04 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static float	get_coordinates(char *data)
 {
 	float	ret;
-	
+
 	ret = ft_atof(data);
 	if (check_float(data) || !(ret >= -1.0 && ret <= 1.0))
 	{
@@ -27,9 +27,9 @@ static float	get_coordinates(char *data)
 
 static t_vec3	extract_direction(char *data)
 {
-	t_vec3 direction;
-	char **coordinates;
-	int	i;
+	t_vec3	direction;
+	char	**coordinates;
+	int		i;
 
 	i = 0;
 	coordinates = ft_split(data, ',');
@@ -46,19 +46,19 @@ static t_vec3	extract_direction(char *data)
 	return (direction);
 }
 
-/* Takes a line of the scene instructions beginning at the direction instruction.
-Checks if the direction contains 2 commas for x, y, z. Returns the vec3 direction
-or exit if something was wrong*/
+/* Takes a line of the scene instructions beginning at the direction
+instruction. Checks if the direction contains 2 commas for x, y, z.
+Returns the vec3 direction or exit if something was wrong*/
 t_vec3	parse_direction(char *line, int *idx)
 {
 	int	i;
 	int	j;
 	int	nb_comma;
-	
+
 	j = 0;
 	nb_comma = 0;
-	while (line[j] && (line[j] == 32 || (line[j] >= 9 && line[j] <= 13)))
-		j++;
+
+	jump_spaces(line, &j);
 	i = j;
 	while (line[i] && !(line[i] == 32 || (line[i] >= 9 && line[i] <= 13)))
 	{
@@ -68,6 +68,7 @@ t_vec3	parse_direction(char *line, int *idx)
 	}
 	if (nb_comma != 2)
 	{
+		printf("LINE %s\n", line);
 		ft_putstr_fd("Something is wrong with the direction\n", 2);
 		ft_memory(0, 0);
 	}

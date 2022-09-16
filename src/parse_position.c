@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_position.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:57:20 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/14 11:17:04 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/16 12:02:26 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static float	get_coordinates(char *data)
 /*Returns the vec3 from the data string*/
 static t_vec3	extract_position(char *data)
 {
-	t_vec3 position;
-	char **coordinates;
-	int	i;
+	t_vec3	position;
+	char	**coordinates;
+	int		i;
 
 	i = 0;
 	coordinates = ft_split(data, ',');
@@ -52,12 +52,11 @@ t_vec3	parse_position(char *line, int *idx)
 	int	i;
 	int	j;
 	int	nb_comma;
-	
+
 	i = 0;
 	j = 0;
 	nb_comma = 0;
-	while (line[j] && (line[j] == 32 || (line[j] >= 9 && line[j] <= 13)))
-		j++;
+	jump_spaces(line, &j);
 	i = j;
 	while (line[i] && !(line[i] == 32 || (line[i] >= 9 && line[i] <= 13)))
 	{
@@ -67,7 +66,7 @@ t_vec3	parse_position(char *line, int *idx)
 	}
 	if (nb_comma != 2)
 	{
-		ft_putstr_fd("Something is wrong with coordinates\n", 2);
+		ft_putstr_fd("HEY Something is wrong with coordinates\n", 2);
 		ft_memory(0, 0);
 	}
 	(*idx) += i;
