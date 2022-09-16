@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 13:35:03 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/16 11:52:26 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/16 15:16:13 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,15 @@ static t_object	*get_object(char *line)
 
 	i = 0;
 	j = 0;
+	printf("LINE : %s\n", line);
+
 	new_object = NULL;
 	new_object = ft_memory(sizeof(t_object), 1);
-	jump_spaces(line, &j);
+	if (is_space(line[j]))
+		jump_spaces(line, &j);
 	while (line[j + i] && !(line[j + i] == 32 || (line[j + i] >= 9
 			&& line[j + i] <= 13)))
-		i++;
-	printf("i : %i\n", i);
+				i++;
 	if (!ft_strncmp(line + j, "sp", i))
 		create_sphere(line + j + i, new_object);
 	else if (!ft_strncmp(line + j, "pl", i))
@@ -35,6 +37,7 @@ static t_object	*get_object(char *line)
 		create_cylinder(line + j + i, new_object);
 	else
 	{
+		printf("LINE : %s\n", line);
 		ft_putstr_fd("There is an unknown object in the map\n", 2);
 		ft_memory(0, 0);
 	}
@@ -49,17 +52,16 @@ static int	count_objects(char **scene)
 	int			nb;
 
 	i = -1;
-	j = 0;
 	nb = 0;
 	while (scene[++i])
 	{
-		while (scene[i] && (scene[i][j] == 32 || (scene[i][j] >= 9
-			&& scene[i][j] <= 13)))
-			j++;
+		j = 0;
+		jump_spaces(scene[i], &j);
 		if (scene[i][j] && scene[i][j] != 'A' && scene[i][j] != 'C'
 			&& scene[i][j] != 'L')
 			nb++;
 	}
+	printf("nb objects : %d\n", nb);
 	return (nb);
 }
 
@@ -78,23 +80,14 @@ t_object **get_objects_list(char **scene)
 	objects = ft_memory(sizeof(t_object *), count_objects(scene));
 	while (scene[++i])
 	{
+		j = 0;
 		jump_spaces(scene[i], &j);
 		if (scene[i][j] && scene[i][j] != 'A' && scene[i][j] != 'C'
 			&& scene[i][j] != 'L')
 		{
 			objects[idx] = get_object(scene[i]);
-			// printf("get list : sphere radius %f\n", objects[0]->radius);
-			
 			idx++;
 		}
 	}	
-
-    // int i;
-    // int tab[3]
-    // i = 0;
-    // while(++i)
-    //     tab[i] = i;
-    // while(tab[i])
-    //     printf("tab[i]");
 	return (objects);
 }

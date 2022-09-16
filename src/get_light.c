@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:19:43 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/16 12:07:18 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/16 12:08:49 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static int	get_param(t_light *light, char *line, int i)
 		jump_spaces(line, &i);
 		jump_data(line, &i);
 	}
-
 	light->position = parse_position(line + i, &i);
 	jump_spaces(line, &i);
 	if (!check_float(line + i)) 

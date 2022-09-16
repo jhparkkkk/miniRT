@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 15:31:59 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/16 12:04:26 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/16 15:17:31 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,12 @@ int main(int ac, char **av)
 	int fd;
 	char **scene;
 	t_world *world;
-	// t_cam camera;
-	// t_light light;
-	// t_ambient_light ambient_light;
+
 	world = ft_memory(sizeof(t_world), 1);
 	if (ac != 2)
 	{
-		printf("Too few argument\n");
-		exit (EXIT_FAILURE);
+		ft_putstr_fd("Too few argument\n", 2);
+		ft_memory(0, 0);
 	}
 	fd = check_filename(av[1]);
 	if (fd == EXIT_FAILURE)

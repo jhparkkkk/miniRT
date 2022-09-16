@@ -29,6 +29,7 @@ SRCS          := main.c \
 					check_valid_color_range.c \
 					/utils/jump_spaces.c \
 					/utils/jump_data.c \
+					/utils/is_space.c 
 				
 SRCS          := $(SRCS:%=$(SRCS_PATH)/%)
 OBJS          := $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
