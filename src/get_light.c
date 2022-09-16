@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:19:43 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/16 12:08:49 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/16 15:46:11 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static int	get_param(t_light *light, char *line, int i)
 {
-	if (line[0] == 32 || (line[0] >= 9 && line[0] <= 13))
+	if (is_space(line[0]))
 	{
 		jump_spaces(line, &i);
 		jump_data(line, &i);
@@ -25,7 +25,6 @@ static int	get_param(t_light *light, char *line, int i)
 	if (!check_float(line + i)) 
 		light->intensity = ft_atof(line + i);
 	jump_data(line, &i);
-	
 	light->color = parse_position(line + i, &i);
 	return 0;
 }
@@ -33,7 +32,6 @@ static int	get_param(t_light *light, char *line, int i)
 /*	checks if light parameter exists and is valid in .rt file
 	else prints error and exits
 */
-
 int get_light(t_light *light, char **scene)
 {
 	int i;
@@ -45,8 +43,7 @@ int get_light(t_light *light, char **scene)
     while (scene[++i])
 	{
 		j = 0;
-		while (scene[i][j] == 32 || (scene[i][j] >= 9 && scene[i][j] <= 13))
-			j++;
+		jump_spaces(scene[i], &j);
 		if (scene[i][j] == 'L'
 			&& scene[i][j + 1] >= 9 && scene[i][j + 1] <= 13)
 		{

@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/16 15:05:57 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/16 15:19:43 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <fcntl.h>
 
 /* Macros */
+
 # define _USE_MATH_DEFINES 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -109,11 +110,12 @@ void			create_cylinder(char *data, t_object *cylinder);
 
 t_vec3			parse_position(char *line, int *idx);
 t_vec3			parse_direction(char *line, int *idx);
-int				check_float(char *data);
-int				check_valid_color_range(t_vec3 color);
 
 t_object		**get_objects_list(char **scene);
 
+/* utils */
+int				check_valid_color_range(t_vec3 color);
+int				check_float(char *data);
 void			jump_spaces(char *line, int *idx);
 void 			jump_data(char*line, int *idx);
 int				is_space(int c);

@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 13:35:03 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/16 15:16:13 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/16 15:34:16 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ static t_object	*get_object(char *line)
 
 	i = 0;
 	j = 0;
-	printf("LINE : %s\n", line);
-
 	new_object = NULL;
 	new_object = ft_memory(sizeof(t_object), 1);
 	if (is_space(line[j]))
@@ -37,11 +35,9 @@ static t_object	*get_object(char *line)
 		create_cylinder(line + j + i, new_object);
 	else
 	{
-		printf("LINE : %s\n", line);
 		ft_putstr_fd("There is an unknown object in the map\n", 2);
 		ft_memory(0, 0);
 	}
-	
 	return (new_object);
 }
 
@@ -61,7 +57,6 @@ static int	count_objects(char **scene)
 			&& scene[i][j] != 'L')
 			nb++;
 	}
-	printf("nb objects : %d\n", nb);
 	return (nb);
 }
 

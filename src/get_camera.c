@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_camera.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:16:19 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/14 11:31:10 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/16 15:42:28 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ static float	get_fov(char *line)
 	int		j;
 
 	j = 0;
-	while (line[j] && (line[j] == 32 || (line[j] >= 9 && line[j] <= 13)))
-		j++;
+	jump_spaces(line, &j);
 	ret = ft_atof(line + j);
 	if (check_float(line + j) || ret < 0 || ret > 180.0)
 	{
@@ -35,8 +34,7 @@ static t_cam	get_camera_specs(char *line)
 	t_cam	cam;
 
 	i = 0;
-	while (line[i] && (line[i] == 32 || (line[i] >= 9 && line[i] <= 13)))
-		i++;
+	jump_spaces(line, &i);
 	i++;
 	cam.position = parse_position(line + i, &i);
 	cam.direction = parse_direction(line + i, &i);
@@ -59,9 +57,7 @@ t_cam	get_camera(char **scene)
 	nb = 0;
 	while (scene[++i])
 	{
-		while (scene[i] && (scene[i][j] == 32 || (scene[i][j] >= 9
-			&& scene[i][j] <= 13)))
-			j++;
+		jump_spaces(scene[i], &j);
 		if (scene[i][j] && scene[i][j] == 'C')
 		{
 			nb++;

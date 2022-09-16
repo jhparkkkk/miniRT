@@ -10,7 +10,6 @@ LDLIBS        :=                 -l ft    -l mlx
 SRCS_PATH     := src
 OBJS_PATH     := obj
 SRCS          := main.c \
-					init.c \
 					mlx.c \
 					utils.c \
 					destroy.c \
