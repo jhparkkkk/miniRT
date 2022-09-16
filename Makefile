@@ -13,19 +13,19 @@ SRCS          := main.c \
 					mlx.c \
 					utils.c \
 					destroy.c \
-					check_filename.c \
-					get_scene.c \
-					get_camera.c \
-					get_light.c \
-					get_ambient_light.c \
-					get_objects_list.c \
-					create_sphere.c \
-					create_plane.c \
-					create_cylinder.c \
-					parse_position.c \
-					parse_direction.c \
-					check_float.c \
-					check_valid_color_range.c \
+					/parsing/check_filename.c \
+					/parsing/get_scene.c \
+					/parsing/get_camera.c \
+					/parsing/get_light.c \
+					/parsing/get_ambient_light.c \
+					/parsing/get_objects_list.c \
+					/parsing/create_sphere.c \
+					/parsing/create_plane.c \
+					/parsing/create_cylinder.c \
+					/parsing/parse_position.c \
+					/parsing/parse_direction.c \
+					/parsing/check_float.c \
+					/parsing/check_valid_color_range.c \
 					/utils/jump_spaces.c \
 					/utils/jump_data.c \
 					/utils/is_space.c 
