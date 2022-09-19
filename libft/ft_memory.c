@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memory.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 16:57:55 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/12 19:28:29 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/19 15:27:26 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,16 @@ void	*ft_memory(int size, int len)
 {
 	static t_list	**bin =  NULL;
 	void			*content;
-
+	
 	if (!bin)
 	{
-		bin = malloc(sizeof(t_list *));
+		bin = ft_calloc(1, sizeof(t_list *));
+		// ft_bzero(bin, sizeof(t_list *));
+		//bin = malloc(sizeof(t_list *));
 		(*bin) = ft_lstnew(NULL);
 	}
-	content = malloc(size * len);
+	content = NULL;
+	content = ft_calloc(len, size);
 	if (!content || (!size && !len))
 	{
 		free(content);

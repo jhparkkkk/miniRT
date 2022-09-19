@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 15:31:59 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/16 15:30:42 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/19 15:24:09 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ int main(int ac, char **av)
 	int fd;
 	char **scene;
 	t_world *world;
+	t_view	**view;
 
+	view = NULL;
 	world = ft_memory(sizeof(t_world), 1);
 	if (ac != 2)
 	{
@@ -33,6 +35,12 @@ int main(int ac, char **av)
 	get_light(&world->light, scene);
 	world->ambient_light = get_ambient_light(scene);
 	world->objects = get_objects_list(scene);
+	
+	view = init_view(world, view);
+	
+	print_world(view);
+
+	
 	
 	/* light */
 	printf("\nlight position : %f, y : %f, z : %f\n", world->light.position.x, world->light.position.y, world->light.position.z);

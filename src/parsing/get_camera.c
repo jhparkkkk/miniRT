@@ -6,13 +6,31 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:16:19 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/16 15:42:28 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/19 18:23:33 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-static float	get_fov(char *line)
+float	degrees_to_radians(float degrees)
+{
+	return degrees * M_PI / 180.0;
+}
+
+static float	get_vfov(float hfov)
+{
+	
+	float	vfov;
+	
+	if (hfov == 180)
+		return (180);
+	hfov = degrees_to_radians(hfov);
+	vfov = 2 * atan((0.5 * HEIGHT) / (0.5 * WIDTH / tan(hfov / 2)));
+	return (vfov * (180/ M_PI));
+}
+
+
+static float	get_hfov(char *line)
 {
 	float	ret;
 	int		j;
@@ -38,7 +56,10 @@ static t_cam	get_camera_specs(char *line)
 	i++;
 	cam.position = parse_position(line + i, &i);
 	cam.direction = parse_direction(line + i, &i);
-	cam.fov = get_fov(line + i);
+	cam.hfov = get_hfov(line + i);
+	cam.vfov = get_vfov(cam.hfov);
+	printf("vfov : %f\n", cam.vfov);
+
 	return (cam);
 }
 

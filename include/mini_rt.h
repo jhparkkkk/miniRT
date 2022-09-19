@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/16 15:19:43 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/19 17:17:16 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 /* Macros */
 
 # define _USE_MATH_DEFINES 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 10
+# define HEIGHT 10
 # define SPHERE 1
 # define PLANE 2
 # define CYLINDER 3
@@ -45,7 +45,8 @@ typedef struct s_cam
 {
 	t_vec3	position;
 	t_vec3	direction;
-	float		fov;
+	float		hfov;
+	float		vfov;
 } t_cam;
 
 typedef struct s_light
@@ -78,6 +79,12 @@ typedef struct s_object
 	float	height;
 	t_vec3	(*intersect) (t_object object, t_ray ray);
 } t_object;
+
+typedef struct s_view
+{
+	t_vec3	dot;
+	t_vec3	color;
+}			t_view;
 
 typedef struct s_world 
 {
@@ -113,12 +120,16 @@ t_vec3			parse_direction(char *line, int *idx);
 
 t_object		**get_objects_list(char **scene);
 
+t_view			**init_view(t_world *world, t_view **view);
+
+
 /* utils */
 int				check_valid_color_range(t_vec3 color);
 int				check_float(char *data);
 void			jump_spaces(char *line, int *idx);
 void 			jump_data(char*line, int *idx);
 int				is_space(int c);
+void    		print_world(t_view **view);
 
 
 #endif 
