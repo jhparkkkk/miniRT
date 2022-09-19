@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_cylinder.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 17:53:12 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/16 15:40:34 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/16 16:58:31 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,9 @@ void	create_cylinder(char *data, t_object *cylinder)
 	cylinder->radius = get_float(data + i, &i) / 2;
 	cylinder->height = get_float(data + i, &i);
 	cylinder->color = parse_position(data + i, &i);
+	if (check_valid_color_range(cylinder->color))
+	{
+		ft_putstr_fd("Something is wrong with the cylinder color\n", 2);
+		ft_memory(0, 0);
+	}
 }

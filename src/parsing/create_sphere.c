@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 14:55:39 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/15 17:53:00 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/16 17:00:14 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,9 @@ void	create_sphere(char *data, t_object *sphere)
 	sphere->center = parse_position(data + i, &i);
 	sphere->radius = get_radius(data + i, &i);
 	sphere->color = parse_position(data + i, &i);
+	if (check_valid_color_range(sphere->color))
+	{
+		ft_putstr_fd("Something is wrong with the sphere color\n", 2);
+		ft_memory(0, 0);
+	}
 }
