@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 10:59:39 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/20 18:09:11 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/20 18:26:02 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void    init_mlx(t_mlx *mlx)
         ft_memory(0, 0);
         exit (1);
     }
-	mlx->win = mlx_new_window(mlx->ptr, WIDTH, HEIGHT, "fdf");
+	mlx->win = mlx_new_window(mlx->ptr, WIDTH, HEIGHT, "miniRT");
 	if (!mlx->win)
 	{
         ft_memory(0, 0);
