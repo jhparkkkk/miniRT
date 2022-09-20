@@ -3,14 +3,15 @@ NAME	= miniRT
 
 CC            := cc
 CFLAGS        := -Wall -Wextra -Werror -g3 
-INC			=	-I includes -I libft -I libmlx 
+INC			=	-I include -I libft -I libmlx 
 LFLAGS		=	-I./libft -lft -L./libft -I./libmlx -L./libmlx -I./miniRT -L./miniRT
 
 LIBFT		=	./libft/libft.a
 
 MLX			=	./libmlx/libmlx_Linux.a
-SRCS_PATH     := src
-OBJS_PATH     := obj
+SRCS_PATH     	:= src
+OBJS_PATH     	:= obj
+DEP_PATH		:= dep
 SRCS          := main.c \
 					mlx.c \
 					utils.c \
@@ -35,29 +36,36 @@ SRCS          := main.c \
 					init_view.c
 					
 				
+DEP           := $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.d)
 SRCS          := $(SRCS:%=$(SRCS_PATH)/%)
 OBJS          := $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
+
 
 RM            := rm -f
 MAKE          := make -C
 
 all:        $(NAME)
 
-$(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c
-	-[ ! -d $(@D) ] && mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+$(DEP_PATH)/%.d: $(SRCS_PATH)/%.c
+	@ mkdir -p $(@D)
+	$(CC) $(CFLAGS) $< $(OUTPUT_OPTION)
+	echo "CREATED $@"
+
+$(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c $(DEP_PATH)/%.d
+	@ mkdir -p $(@D)
+	$(CC) $(CFLAGS) -c $< $(OUTPUT_OPTION) $(INC) 
 	echo "CREATED $@"
 
 $(LIBFT):
-	$(MAKE) $(@D) $(@F) $(LFLAGS)
+	$(MAKE) $(@D) $(@F)
 	echo "CREATED libft"
 
 $(MLX):
-	$(MAKE) $(@D) $(@F) $(LFLAGS)
+	$(MAKE) $(@D)
 	echo "CREATED libmlx"
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
-	$(CC) $(CFLAGS) $(LFLAGS) $(OBJS) -o $(NAME) -lm
+	$(CC) $(OBJS) $(LFLAGS)  $(OUTPUT_OPTION)  -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)  
 	echo "CREATED $(NAME)"
 
 clean:
