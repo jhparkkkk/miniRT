@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 15:31:59 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/19 15:24:09 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/20 11:59:16 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 
 int main(int ac, char **av)
 {
-	int fd;
-	char **scene;
+	int		fd;
+	char	**scene;
 	t_world *world;
 	t_view	**view;
+	t_mlx	mlx;
 
 	view = NULL;
 	world = ft_memory(sizeof(t_world), 1);
@@ -37,6 +38,7 @@ int main(int ac, char **av)
 	world->objects = get_objects_list(scene);
 	
 	view = init_view(world, view);
+	mlx_init(&mlx);
 	
 	print_world(view);
 
@@ -50,7 +52,7 @@ int main(int ac, char **av)
 	/* camera */
 	printf("\ncamera position x : %f, y : %f, z : %f\n", world->cam.position.x, world->cam.position.y, world->cam.position.z);
 	printf("cam direction x : %f, y : %f, z : %f\n", world->cam.direction.x, world->cam.direction.y, world->cam.direction.z);
-	printf("cam fov %f\n", world->cam.fov);
+	printf("cam fov %f\n", world->cam.hfov);
 	
 	/* ambient light */
 	printf("\nambient light color r : %f, g : %f, b: %f\n", world->ambient_light.color.x, world->ambient_light.color.y, world->ambient_light.color.z);

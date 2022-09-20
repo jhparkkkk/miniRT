@@ -1,12 +1,14 @@
 
-NAME          := miniRT
+NAME	= miniRT
 
 CC            := cc
 CFLAGS        := -Wall -Wextra -Werror -g3 
-CPPFLAGS      := -I . -I include -I libft -I libmlx
-LDFLAGS       :=                 -L libft -L libmlx
-LDLIBS        :=                 -l ft    -l mlx
+INC			=	-I includes -I libft -I libmlx 
+LFLAGS		=	-I./libft -lft -L./libft -I./libmlx -L./libmlx -I./miniRT -L./miniRT
 
+LIBFT		=	./libft/libft.a
+
+MLX			=	./libmlx/libmlx_Linux.a
 SRCS_PATH     := src
 OBJS_PATH     := obj
 SRCS          := main.c \
@@ -46,16 +48,16 @@ $(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 	echo "CREATED $@"
 
-libft/libft.a:
-	$(MAKE) libft
+$(LIBFT):
+	$(MAKE) $(@D) $(@F) $(LFLAGS)
 	echo "CREATED libft"
 
-libmlx/libmlx.a:
-	$(MAKE) libmlx
+$(MLX):
+	$(MAKE) $(@D) $(@F) $(LFLAGS)
 	echo "CREATED libmlx"
 
-$(NAME): $(OBJS) libmlx/libmlx.a libft/libft.a
-	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -MD $(OBJS) $(LDLIBS) -o $(NAME) -lm
+$(NAME): $(OBJS) $(LIBFT) $(MLX)
+	$(CC) $(CFLAGS) $(LFLAGS) $(OBJS) -o $(NAME) -lm
 	echo "CREATED $(NAME)"
 
 clean:

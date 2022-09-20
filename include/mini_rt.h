@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/19 17:17:16 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/20 11:58:22 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define PLANE 2
 # define CYLINDER 3
 # define ESC 65307
+
 
 /* Structures */
 
@@ -102,6 +103,7 @@ typedef struct s_mlx
 	char	*addr;
 	int		bpp;
 	int		len;
+	int		end;
 } t_mlx;
 
 /* Parsing */
@@ -121,6 +123,7 @@ t_vec3			parse_direction(char *line, int *idx);
 t_object		**get_objects_list(char **scene);
 
 t_view			**init_view(t_world *world, t_view **view);
+void			init_mlx(t_mlx *mlx);
 
 
 /* utils */
