@@ -2,84 +2,94 @@
 NAME	= miniRT
 
 CC            := cc
-CFLAGS        := -Wall -Wextra -Werror -g3 
-INC			=	-I include -I libft -I libmlx 
-LFLAGS		=	-I./libft -lft -L./libft -I./libmlx -L./libmlx -I./miniRT -L./miniRT
+CFLAGS        := -Wall -Wextra -Werror -c
 
-LIBFT		=	./libft/libft.a
+ifeq ($(DEBUG), 1)
+CFLAGS			+= -g3
+endif
 
-MLX			=	./libmlx/libmlx_Linux.a
-SRCS_PATH     	:= src
-OBJS_PATH     	:= obj
-DEP_PATH		:= dep
-SRCS          := main.c \
-					mlx.c \
-					utils.c \
-					destroy.c \
-					/parsing/check_filename.c \
-					/parsing/get_scene.c \
-					/parsing/get_camera.c \
-					/parsing/get_light.c \
-					/parsing/get_ambient_light.c \
-					/parsing/get_objects_list.c \
-					/parsing/create_sphere.c \
-					/parsing/create_plane.c \
-					/parsing/create_cylinder.c \
-					/parsing/parse_position.c \
-					/parsing/parse_direction.c \
-					/parsing/check_float.c \
-					/parsing/check_valid_color_range.c \
-					/utils/jump_spaces.c \
-					/utils/jump_data.c \
-					/utils/is_space.c \
-					/utils/print_world.c \
-					init_view.c
+INC			=	-I include -I$(LIBFT_PATH) -I$(MLX_PATH)
+LFLAGS		=	-L$(MLX_PATH) -l$(MLX) -lXext -lX11
+# -lz si ca bug
+LFLAGS		+=	-L$(LIBFT_PATH) -l$(LIBFT)
+LFLAGS		+=	-lm
+
+LIBFT		=	ft
+LIBFT_A		=	lib$(LIBFT).a
+LIBFT_PATH	=	./libft/
+
+MLX			=	mlx_Linux
+MLX_A		=	lib$(MLX).a
+MLX_PATH	=	./libmlx/
+
+SRCS_PATH	:=	src
+OBJS_PATH	:=	obj
+SRCS     	+=	main.c \
+				init_view.c \
+				utils.c \
+				destroy.c \
+				${addprefix parsing/, \
+					check_filename.c \
+					get_scene.c \
+					get_camera.c \
+					get_light.c \
+					get_ambient_light.c \
+					get_objects_list.c \
+					create_sphere.c \
+					create_plane.c \
+					create_cylinder.c \
+					parse_position.c \
+					parse_direction.c \
+					check_float.c \
+					check_valid_color_range.c \
+				} \
+				${addprefix utils/, \
+					jump_spaces.c \
+					jump_data.c \
+					is_space.c \
+					print_world.c \
+				} \
+				${addprefix mlx/, \
+					init_mlx.c \
+				} 
 					
 				
-DEP           := $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.d)
 SRCS          := $(SRCS:%=$(SRCS_PATH)/%)
 OBJS          := $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
 
 
 RM            := rm -f
-MAKE          := make -C
+
+$(NAME): $(OBJS) $(LIBFT_PATH)$(LIBFT_A) $(MLX_PATH)$(MLX_A)
+	$(CC) $(OBJS) $(LFLAGS) $(OUTPUT_OPTION) 
+	echo "CREATED $(NAME)"
 
 all:        $(NAME)
 
-$(DEP_PATH)/%.d: $(SRCS_PATH)/%.c
+$(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c
 	@ mkdir -p $(@D)
-	$(CC) $(CFLAGS) $< $(OUTPUT_OPTION)
+	$(CC) $(CFLAGS) $< $(OUTPUT_OPTION) $(INC) 
 	echo "CREATED $@"
 
-$(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c $(DEP_PATH)/%.d
-	@ mkdir -p $(@D)
-	$(CC) $(CFLAGS) -c $< $(OUTPUT_OPTION) $(INC) 
-	echo "CREATED $@"
+$(LIBFT_PATH)$(LIBFT_A):
+	$(MAKE) -C $(@D) $(@F)
 
-$(LIBFT):
-	$(MAKE) $(@D) $(@F)
-	echo "CREATED libft"
+$(MLX_PATH)$(MLX_A):
+	$(MAKE) -C $(@D)
 
-$(MLX):
-	$(MAKE) $(@D)
-	echo "CREATED libmlx"
-
-$(NAME): $(OBJS) $(LIBFT) $(MLX)
-	$(CC) $(OBJS) $(LFLAGS)  $(OUTPUT_OPTION)  -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)  
-	echo "CREATED $(NAME)"
 
 clean:
 	$(RM) $(OBJS)
-	$(MAKE) libft clean
-	$(MAKE) libmlx clean
+	$(MAKE) -C $(LIBFT_PATH) clean
+	$(MAKE) -C $(MLX_PATH) clean
 
 fclean: clean
-	$(RM) $(NAME) $(LIBFT) $(MLX)
+	$(RM) $(NAME) $(LIBFT_PATH)$(LIBFT_A) $(MLX_PATH)$(MLX_A)
 
 re: fclean all
 
-info:
-	make --dry-run --always-make --no-print-directory | grep -v "echo \| mkdir"
+# info:
+# 	make --dry-run --always-make --no-print-directory | grep -v "echo \| mkdir"
 
 # .SILENT:
-.PHONY:    all clean fclean re bonus
+.PHONY:    all clean fclean re check_libft check_libmlx

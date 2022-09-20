@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+         #
+#    By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/25 12:18:16 by cgosseli          #+#    #+#              #
-#    Updated: 2022/09/13 14:32:16 by cgosseli         ###   ########.fr        #
+#    Updated: 2022/09/20 16:59:03 by jeepark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Wextra -Werror -g3
 CC = cc
 RM = rm -rf
 
-SRCS = 	ft_isalpha.c\
+SRCS +=	ft_isalpha.c\
 		ft_isdigit.c\
 		ft_isalldigit.c\
 		ft_isalnum.c\

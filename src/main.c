@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 15:31:59 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/20 11:59:16 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/20 18:09:47 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int main(int ac, char **av)
 	
 	print_world(view);
 
-	
 	
 	/* light */
 	printf("\nlight position : %f, y : %f, z : %f\n", world->light.position.x, world->light.position.y, world->light.position.z);
@@ -85,6 +84,10 @@ int main(int ac, char **av)
 		i++;
 	}
 	printf("\n");
+
+	mlx_loop(mlx.ptr);
+    mlx_put_image_to_window(mlx.ptr, mlx.win, mlx.img, 0, 0);
+	
 	ft_memory(0, 0);
     return 0;
 }
