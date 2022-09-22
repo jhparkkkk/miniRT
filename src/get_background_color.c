@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_dot.c                                          :+:      :+:    :+:   */
+/*   get_background_color.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/16 16:45:58 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/21 15:00:53 by jeepark          ###   ########.fr       */
+/*   Created: 2022/09/21 14:24:18 by jeepark           #+#    #+#             */
+/*   Updated: 2022/09/21 14:25:10 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-float   vec_dot(t_vec3 v1, t_vec3 v2)
+void	get_background_color(t_ambient_light light)
 {
-    float   x;
-    float   y;
-    float   z;
-
-    x = v1.x * v2.x;
-    y = v1.y * v2.y;
-    z = v1.z * v2.z;
-    return (x + y + z);
+	
 }

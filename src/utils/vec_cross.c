@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_dot.c                                          :+:      :+:    :+:   */
+/*   vec_cross.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/16 16:45:58 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/21 15:00:53 by jeepark          ###   ########.fr       */
+/*   Created: 2022/09/21 14:58:48 by jeepark           #+#    #+#             */
+/*   Updated: 2022/09/21 15:00:11 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-float   vec_dot(t_vec3 v1, t_vec3 v2)
+t_vec3  vec_cross(t_vec3 v1, t_vec3 v2)
 {
-    float   x;
-    float   y;
-    float   z;
+    t_vec3  res;
 
-    x = v1.x * v2.x;
-    y = v1.y * v2.y;
-    z = v1.z * v2.z;
-    return (x + y + z);
+    res.x = v1.x * v2.x;
+    res.y = v1.y * v2.y;
+    res.z = v1.z * v2.z;
+    return (res);
 }

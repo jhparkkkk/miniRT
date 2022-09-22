@@ -2,11 +2,11 @@
 NAME	= miniRT
 
 CC            := cc
-CFLAGS        := -Wall -Wextra -Werror -c
+CFLAGS        := -Wall -Wextra -Werror -c -g3
 
-ifeq ($(DEBUG), 1)
-CFLAGS			+= -g3
-endif
+# ifeq ($(DEBUG), 1)
+# CFLAGS			+= -g3
+# endif
 
 INC			=	-I include -I$(LIBFT_PATH) -I$(MLX_PATH)
 LFLAGS		=	-L$(MLX_PATH) -l$(MLX) -lXext -lX11
@@ -28,6 +28,7 @@ SRCS     	+=	main.c \
 				init_view.c \
 				utils.c \
 				destroy.c \
+				draw_world.c \
 				${addprefix parsing/, \
 					check_filename.c \
 					get_scene.c \
@@ -48,9 +49,11 @@ SRCS     	+=	main.c \
 					jump_data.c \
 					is_space.c \
 					print_world.c \
+					get_hex_color.c \
 				} \
 				${addprefix mlx/, \
 					init_mlx.c \
+					put_pix.c \
 				} 
 					
 				

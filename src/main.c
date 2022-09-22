@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 15:31:59 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/20 18:27:16 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/21 12:16:32 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main(int ac, char **av)
 	t_world *world;
 	t_view	**view;
 	t_mlx	mlx;
-
+	
 	view = NULL;
 	world = ft_memory(sizeof(t_world), 1);
 	if (ac != 2)
@@ -85,8 +85,8 @@ int main(int ac, char **av)
 	}
 	printf("\n");
 
-	mlx_loop(mlx.ptr);
-    mlx_put_image_to_window(mlx.ptr, mlx.win, mlx.img, 0, 0);
+	draw_world(world, &mlx);
+	
 	
 	ft_memory(0, 0);
     return 0;

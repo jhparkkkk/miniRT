@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_dot.c                                          :+:      :+:    :+:   */
+/*   get_hex_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/16 16:45:58 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/21 15:00:53 by jeepark          ###   ########.fr       */
+/*   Created: 2022/09/21 14:36:45 by jeepark           #+#    #+#             */
+/*   Updated: 2022/09/21 14:44:46 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-float   vec_dot(t_vec3 v1, t_vec3 v2)
+int get_hex_color(t_vec3 rgb_color)
 {
-    float   x;
-    float   y;
-    float   z;
+    int hex_color;
 
-    x = v1.x * v2.x;
-    y = v1.y * v2.y;
-    z = v1.z * v2.z;
-    return (x + y + z);
+    hex_color = 0 << 24; 
+    hex_color += (int)rgb_color.x << 16;
+    hex_color += (int)rgb_color.y << 8;
+    hex_color += (int)rgb_color.z;
+    return (hex_color);
 }

@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/20 11:58:22 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/21 14:58:11 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 /* Macros */
 
 # define _USE_MATH_DEFINES 
-# define WIDTH 10
-# define HEIGHT 10
+# define WIDTH 800
+# define HEIGHT 800
 # define SPHERE 1
 # define PLANE 2
 # define CYLINDER 3
@@ -122,9 +122,11 @@ t_vec3			parse_direction(char *line, int *idx);
 
 t_object		**get_objects_list(char **scene);
 
+
+/* MLX */
 t_view			**init_view(t_world *world, t_view **view);
 void			init_mlx(t_mlx *mlx);
-
+void			put_pix(t_mlx *mlx, int x, int y, int color);
 
 /* utils */
 int				check_valid_color_range(t_vec3 color);
@@ -133,6 +135,12 @@ void			jump_spaces(char *line, int *idx);
 void 			jump_data(char*line, int *idx);
 int				is_space(int c);
 void    		print_world(t_view **view);
+int				get_hex_color(t_vec3 rgb_color);
+t_vec3			vec_substract(t_vec3 v1, t_vec3 v2);
+t_vec3			vec_cross(t_vec3 v1, t_vec3 v2);
+float			vec_dot(t_vec3 v1, t_vec3 v2);
+/* Mini Raytracing */
+void    draw_world(t_world *world, t_mlx *mlx);
 
 
 #endif 
