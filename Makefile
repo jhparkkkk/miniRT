@@ -26,8 +26,6 @@ SRCS_PATH	:=	src
 OBJS_PATH	:=	obj
 SRCS     	+=	main.c \
 				init_view.c \
-				utils.c \
-				destroy.c \
 				draw_world.c \
 				${addprefix parsing/, \
 					check_filename.c \
@@ -50,6 +48,9 @@ SRCS     	+=	main.c \
 					is_space.c \
 					print_world.c \
 					get_hex_color.c \
+					vec_cross.c \
+					vec_dot.c \
+					vec_substract.c \
 				} \
 				${addprefix mlx/, \
 					init_mlx.c \

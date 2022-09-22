@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:38:39 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/22 15:02:13 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/22 18:16:46 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ void    draw_world(t_world *world, t_mlx *mlx)
 		j = 0;
 		while (j <= WIDTH)
 		{
-			// if (i + 1 < HEIGHT)
-			// 	put_pix(mlx, j, i, color);
-			// if (j + 1 <= WIDTH)
-			// 	put_pix(mlx, j, i, color);
+			if (i + 1 < HEIGHT)
+				put_pix(mlx, j, i, color);
+			if (j + 1 <= WIDTH)
+				put_pix(mlx, j, i, color);
 			j++;
 		}
 		i++;
