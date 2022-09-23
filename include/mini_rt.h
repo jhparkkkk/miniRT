@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/21 14:58:11 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/23 14:40:00 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 /* Macros */
 
 # define _USE_MATH_DEFINES 
-# define WIDTH 800
-# define HEIGHT 800
+# define WIDTH 100
+# define HEIGHT 100
 # define SPHERE 1
 # define PLANE 2
 # define CYLINDER 3
@@ -139,8 +139,11 @@ int				get_hex_color(t_vec3 rgb_color);
 t_vec3			vec_substract(t_vec3 v1, t_vec3 v2);
 t_vec3			vec_cross(t_vec3 v1, t_vec3 v2);
 float			vec_dot(t_vec3 v1, t_vec3 v2);
+t_vec3			vec_add(t_vec3 v1, t_vec3 v2);
+t_vec3			vec_scalar(t_vec3 v1, float scalar);
 /* Mini Raytracing */
 void    draw_world(t_world *world, t_mlx *mlx);
+int		hit_sp(t_ray *ray, t_world *world, t_object *sp);
 
 
 #endif 

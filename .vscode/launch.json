@@ -11,7 +11,8 @@
 			  "cwd": "${fileDirname}",
 			  "environment": [],
 			  "externalConsole": false,
-			  "MIMode": "gdb"
+			  "MIMode": "gdb",
+			  ""
 		  }
 	  ]
   }

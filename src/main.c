@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 15:31:59 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/21 12:16:32 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/23 13:40:42 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,25 @@ int main(int ac, char **av)
 	printf("sphere radius %f\n", world->objects[2]->height);
 	printf("plane color : %f, y : %f, z : %f\n", world->objects[2]->color.x, world->objects[2]->color.y, world->objects[2]->color.z);
 	
+	
+	/* debug */
+	// t_vec3 v1;
+	// t_vec3 v2;
+	// t_vec3 res;
+	// v1.x = 3;
+	// v1.y = 1;
+	// v1.z = 4;
+	
+	// v2.x = 1;
+	// v2.y = -2;
+	// v2.z = 3;
+
+	// res = vec_substract(v1, v2);
+	
+	// printf("\nx: %f\n", res.x);
+	// printf("y: %f\n", res.y);
+	// printf("z: %f\n", res.z);
+
 	
 
 	int i = 0;
