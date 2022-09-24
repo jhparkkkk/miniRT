@@ -6,11 +6,21 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:38:39 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/23 14:58:10 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/24 10:59:01 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
+
+static t_vec3 get_lower_left_corner
+
+static t_vec3 get_ray_direction()
+{
+	t_vec3 lower_left_corner; 
+	 
+	lower_left_corner = get_lower_left_corner()
+	return (direction);
+}
 
 void	set_ray(t_ray *ray, int i, int j)
 {
@@ -38,6 +48,8 @@ void	set_ray(t_ray *ray, int i, int j)
 	ray->origin.x = 0;
 	ray->origin.y = 0;
 	ray->origin.z = 0;
+	
+	get_ray_direction()
 	etape_1 = vec_substract(ray->origin, vec_scalar(h_vec, 0.5));
 	etape_2 = vec_substract(vec_scalar(v_vec, 0.5), focal_vec);
 	etape_3 = vec_substract(etape_1, etape_2);
