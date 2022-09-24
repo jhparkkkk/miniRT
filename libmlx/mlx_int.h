@@ -89,8 +89,8 @@ typedef struct	s_img
 	GC				gc;
 	int				size_line;
 	int				bpp;
-	int				width;
-	int				height;
+	int				SIZEX;
+	int				SIZEY;
 	int				type;
 	int				format;
 	char			*data;

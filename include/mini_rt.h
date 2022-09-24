@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/23 14:40:00 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/24 14:49:49 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 /* Macros */
 
 # define _USE_MATH_DEFINES 
-# define WIDTH 100
-# define HEIGHT 100
+# define SIZEX 500
+# define SIZEY 500
 # define SPHERE 1
 # define PLANE 2
 # define CYLINDER 3

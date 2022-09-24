@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_set_font.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amalliar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 13:30:47 by amalliar          #+#    #+#             */
-/*   Updated: 2020/09/30 17:08:36 by amalliar         ###   ########.fr       */
+/*   Updated: 2022/09/24 14:45:51 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 ** Allows to specify the font that will be used by mlx_string_put.
 **
-** Note: only fixed-width bitmap fonts are supported by Xlib, refer to xfontsel
+** Note: only fixed-SIZEX bitmap fonts are supported by Xlib, refer to xfontsel
 ** utility to get valid font names for this function.
 */
 

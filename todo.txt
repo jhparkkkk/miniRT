@@ -36,8 +36,8 @@ Parsing :
 	get_light et get_ambient_lightning en gros pareil que get_cam
 
 	struct my_window
-		int width //pour avoir en 0,0 => + width/2
-		int height // - height/2
+		int SIZEX //pour avoir en 0,0 => + SIZEX/2
+		int SIZEY // - SIZEY/2
 
 	struct world
 		cam
@@ -65,7 +65,7 @@ Parsing :
 		vec3 color
 		vec3 orientation (NULL if type == sphere)
 		double/float rayon (NULL if type == plane)
-		double/float height (NULL if type == plane || type == sphere)
+		double/float SIZEY (NULL if type == plane || type == sphere)
 		int (*intersection_algo) (int pixel.. autre int ?, object)
 			if type == sphere
 				intersection_algo = &sphere_algo

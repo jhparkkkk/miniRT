@@ -54,9 +54,9 @@ int			mlx_ext_fullscreen(t_xvar *xvar, t_win_list *win, int fullscreen)
       j = res->nmode;
       while (j--)
 	if (res->modes[j].id == o_info->modes[i])
-	  if (res->modes[j].width >= watt.width && res->modes[j].height >= watt.height &&
-	      (idx_candidate == -1 || res->modes[idx_candidate].width > res->modes[j].width ||
-	       res->modes[idx_candidate].height > res->modes[j].height) )
+	  if (res->modes[j].SIZEX >= watt.SIZEX && res->modes[j].SIZEY >= watt.SIZEY &&
+	      (idx_candidate == -1 || res->modes[idx_candidate].SIZEX > res->modes[j].SIZEX ||
+	       res->modes[idx_candidate].SIZEY > res->modes[j].SIZEY) )
 	    idx_candidate = i;
     }
   if (idx_candidate < 0)
@@ -77,7 +77,7 @@ int			mlx_ext_fullscreen(t_xvar *xvar, t_win_list *win, int fullscreen)
   i = XRRSetCrtcConfig(xvar->display, res, o_info->crtc, CurrentTime, 0, 0, mode_candidate,
 		       crtc->rotation, &res->outputs[idx_output], 1);
   if (fullscreen)
-    printf("found mode : %d x %d\n Status %d\n", res->modes[idx_candidate].width, res->modes[idx_candidate].height, i);
+    printf("found mode : %d x %d\n Status %d\n", res->modes[idx_candidate].SIZEX, res->modes[idx_candidate].SIZEY, i);
   else
     printf("back previous mode\n");
   

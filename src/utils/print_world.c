@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_world.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:19:38 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/19 15:44:08 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/24 14:45:51 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void    print_world(t_view **view)
     int j;
 
     i = 0;
-    while(i <  WIDTH)
+    while(i <  SIZEX)
     {
         j = 0;
-        while (j< HEIGHT)
+        while (j< SIZEY)
         {
             printf("%.f;%.f ", view[i][j].dot.x, view[i][j].dot.y);
             j++;

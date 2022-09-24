@@ -60,11 +60,11 @@ int	mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color);
 ** Image stuff
 */
 
-void	*mlx_new_image(void *mlx_ptr,int width,int height);
+void	*mlx_new_image(void *mlx_ptr,int SIZEX,int SIZEY);
 /*
 **  return void *0 if failed
 **  obsolete : image2 data is stored using bit planes
-**  void	*mlx_new_image2(void *mlx_ptr,int width,int height);
+**  void	*mlx_new_image2(void *mlx_ptr,int SIZEX,int SIZEY);
 */
 char	*mlx_get_data_addr(void *img_ptr, int *bits_per_pixel,
 			   int *size_line, int *endian);
@@ -108,9 +108,9 @@ int	mlx_string_put(void *mlx_ptr, void *win_ptr, int x, int y, int color,
 		       char *string);
 void	mlx_set_font(void *mlx_ptr, void *win_ptr, char *name);
 void	*mlx_xpm_to_image(void *mlx_ptr, char **xpm_data,
-			  int *width, int *height);
+			  int *SIZEX, int *SIZEY);
 void	*mlx_xpm_file_to_image(void *mlx_ptr, char *filename,
-			       int *width, int *height);
+			       int *SIZEX, int *SIZEY);
 int	mlx_destroy_window(void *mlx_ptr, void *win_ptr);
 
 int	mlx_destroy_image(void *mlx_ptr, void *img_ptr);

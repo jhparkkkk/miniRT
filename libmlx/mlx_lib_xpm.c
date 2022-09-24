@@ -14,7 +14,7 @@
 
 
 
-void		*mlx_int_xpm_f_image(t_xvar *xvar,int *width,int *height,
+void		*mlx_int_xpm_f_image(t_xvar *xvar,int *SIZEX,int *SIZEY,
 				     int (*xpm_func)(),void *param)
 {
   XImage	*img1;
@@ -32,16 +32,16 @@ void		*mlx_int_xpm_f_image(t_xvar *xvar,int *width,int *height,
   if (img2)
     XDestroyImage(img2);
 
-  if (!(im2 = (void *)mlx_new_image(xvar,img1->width,img1->height)))
+  if (!(im2 = (void *)mlx_new_image(xvar,img1->SIZEX,img1->SIZEY)))
     {
       XDestroyImage(img1);
       return ((void *)0);
     }
-  *width = img1->width;
-  *height = img1->height;
+  *SIZEX = img1->SIZEX;
+  *SIZEY = img1->SIZEY;
   if (mlx_int_egal_img(im2->image,img1))
     {
-      bcopy(img1->data,im2->data,img1->height*img1->bytes_per_line);
+      bcopy(img1->data,im2->data,img1->SIZEY*img1->bytes_per_line);
       XDestroyImage(img1);
       return (im2);
     }
@@ -49,7 +49,7 @@ void		*mlx_int_xpm_f_image(t_xvar *xvar,int *width,int *height,
     {
       XFreePixmap(xvar->display,im2->pix);
       im2->pix = XCreatePixmap(xvar->display,xvar->root,
-			       *width,*height,xvar->depth);
+			       *SIZEX,*SIZEY,xvar->depth);
     }
   if (im2->type>MLX_TYPE_XIMAGE)
     {
@@ -68,7 +68,7 @@ void		*mlx_int_xpm_f_image(t_xvar *xvar,int *width,int *height,
 
 int	mlx_int_egal_img(XImage *img1,XImage *img2)
 {
-  if (img1->width!=img2->width || img1->height!=img2->height ||
+  if (img1->SIZEX!=img2->SIZEX || img1->SIZEY!=img2->SIZEY ||
       img1->xoffset!=img2->xoffset || img1->format!=img2->format ||
       img1->byte_order!=img2->byte_order ||
       img1->bitmap_unit!=img2->bitmap_unit ||
@@ -84,13 +84,13 @@ int	mlx_int_egal_img(XImage *img1,XImage *img2)
 
 
 void	*mlx_xpm_file_to_image(t_xvar *xvar,char *filename,
-			       int *width,int *height)
+			       int *SIZEX,int *SIZEY)
 {
-  return (mlx_int_xpm_f_image(xvar,width,height,XpmReadFileToImage,filename));
+  return (mlx_int_xpm_f_image(xvar,SIZEX,SIZEY,XpmReadFileToImage,filename));
 }
 
 
-void	*mlx_xpm_to_image(t_xvar *xvar,char **data,int *width,int *height)
+void	*mlx_xpm_to_image(t_xvar *xvar,char **data,int *SIZEX,int *SIZEY)
 {
-  return (mlx_int_xpm_f_image(xvar,width,height,XpmCreateImageFromData,(void *)data));
+  return (mlx_int_xpm_f_image(xvar,SIZEX,SIZEY,XpmCreateImageFromData,(void *)data));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_sp.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:48:49 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/23 14:01:07 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/24 15:28:44 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int hit_sp(t_ray *ray, t_world *world, t_object *sp)
     float   b;
     float   c;
     
-    oc = vec_substract(ray->origin, sp->center);
+    oc = vec_substract(sp->center, ray->origin);
     a = vec_dot(ray->direction, ray->direction);
     b = 2.0 * vec_dot(oc, ray->direction);
     c = vec_dot(oc, oc) - sp->radius * sp->radius;
