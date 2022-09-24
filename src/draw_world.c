@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:38:39 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/24 15:08:17 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/24 15:35:34 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	set_ray(t_ray *ray, int i, int j)
 	
 	ray->origin.x = 0;
 	ray->origin.y = 0;
-	ray->origin.z = 0;
+	ray->origin.z = -10;
 	
 	// // get_ray_direction()
 	// etape_1 = vec_substract(ray->origin, vec_scalar(h_vec, 0.5));
