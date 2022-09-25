@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 15:31:59 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/24 14:50:08 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/25 11:32:00 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int main(int ac, char **av)
 	view = init_view(world, view);
 	init_mlx(&mlx);
 	
-	print_world(view);
+	// print_world(view);
 
 	
 	/* light */
@@ -57,22 +57,24 @@ int main(int ac, char **av)
 	printf("\nambient light color r : %f, g : %f, b: %f\n", world->ambient_light.color.x, world->ambient_light.color.y, world->ambient_light.color.z);
 	printf("ambient light intensity %f\n", world->ambient_light.intensity);
 	
-	/* sphere */
-	printf("\nsphere center : %f, y : %f, z : %f\n", world->objects[0]->center.x, world->objects[0]->center.y, world->objects[0]->center.z);
-	printf("sphere radius %f\n", world->objects[0]->radius);
-	printf("sphere color : %f, y : %f, z : %f\n", world->objects[0]->color.x, world->objects[0]->color.y, world->objects[0]->color.z);
-
+	/* prirnting obj */
+	int	i = 0;
+	while (world->objects[i])
+	{
+		world->objects[i]->print_object(*world->objects[i]);
+		i++;
+	}
 	/* plane */
-	printf("\nplane center : %f, y : %f, z : %f\n", world->objects[1]->center.x, world->objects[1]->center.y, world->objects[1]->center.z);
-	printf("plane direction : %f, y : %f, z : %f\n", world->objects[1]->direction.x, world->objects[1]->direction.y, world->objects[1]->direction.z);
-	printf("plane color : %f, y : %f, z : %f\n", world->objects[1]->color.x, world->objects[1]->color.y, world->objects[1]->color.z);
+	// printf("\nplane center : %f, y : %f, z : %f\n", world->objects[1]->center.x, world->objects[1]->center.y, world->objects[1]->center.z);
+	// printf("plane direction : %f, y : %f, z : %f\n", world->objects[1]->direction.x, world->objects[1]->direction.y, world->objects[1]->direction.z);
+	// printf("plane color : %f, y : %f, z : %f\n", world->objects[1]->color.x, world->objects[1]->color.y, world->objects[1]->color.z);
 	
-	/* cylinder */
-	printf("\ncylinder center : %f, y : %f, z : %f\n", world->objects[2]->center.x, world->objects[2]->center.y, world->objects[2]->center.z);
-	printf("cylinder direction : %f, y : %f, z : %f\n", world->objects[2]->direction.x, world->objects[2]->direction.y, world->objects[2]->direction.z);
-	printf("sphere radius %f\n", world->objects[2]->radius);
-	printf("sphere radius %f\n", world->objects[2]->height);
-	printf("plane color : %f, y : %f, z : %f\n", world->objects[2]->color.x, world->objects[2]->color.y, world->objects[2]->color.z);
+	// /* cylinder */
+	// printf("\ncylinder center : %f, y : %f, z : %f\n", world->objects[2]->center.x, world->objects[2]->center.y, world->objects[2]->center.z);
+	// printf("cylinder direction : %f, y : %f, z : %f\n", world->objects[2]->direction.x, world->objects[2]->direction.y, world->objects[2]->direction.z);
+	// printf("sphere radius %f\n", world->objects[2]->radius);
+	// printf("sphere radius %f\n", world->objects[2]->height);
+	// printf("plane color : %f, y : %f, z : %f\n", world->objects[2]->color.x, world->objects[2]->color.y, world->objects[2]->color.z);
 	
 	
 	/* debug */
@@ -95,14 +97,14 @@ int main(int ac, char **av)
 
 	
 
-	int i = 0;
-	printf("\n");
-	while (scene[i])
-	{
-		printf("%s", scene[i]);
-		i++;
-	}
-	printf("\n");
+	// int i = 0;
+	// printf("\n");
+	// while (scene[i])
+	// {
+	// 	printf("%s", scene[i]);
+	// 	i++;
+	// }
+	// printf("\n");
 
 	draw_world(world, &mlx);
 	

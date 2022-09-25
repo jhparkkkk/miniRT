@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_objects_list.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 13:35:03 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/16 15:34:16 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/25 11:17:59 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_object **get_objects_list(char **scene)
 	idx = 0;
 	objects = NULL;
 
-	objects = ft_memory(sizeof(t_object *), count_objects(scene));
+	objects = ft_memory(sizeof(t_object *), count_objects(scene) + 1);
 	while (scene[++i])
 	{
 		j = 0;
@@ -83,6 +83,7 @@ t_object **get_objects_list(char **scene)
 			objects[idx] = get_object(scene[i]);
 			idx++;
 		}
-	}	
+	}
+	objects[idx] = 0;
 	return (objects);
 }

@@ -53,12 +53,14 @@ SRCS     	+=	main.c \
 					vec_substract.c \
 					vec_add.c \
 					vec_scalar.c \
+					print_sp.c \
 				} \
 				${addprefix mlx/, \
 					init_mlx.c \
 					put_pix.c \
 				} \
 				${addprefix intersections/, \
+					hit_obj.c \
 					hit_sp.c \
 				}
 					

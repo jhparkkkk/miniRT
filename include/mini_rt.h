@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/24 14:49:49 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/25 14:27:22 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 /* Macros */
 
 # define _USE_MATH_DEFINES 
-# define SIZEX 500
-# define SIZEY 500
+# define SIZEX 1920
+# define SIZEY 1080
 # define SPHERE 1
 # define PLANE 2
 # define CYLINDER 3
@@ -70,6 +70,16 @@ typedef struct s_ray
 } t_ray;
 typedef struct s_object t_object;
 
+typedef struct s_hit_point
+{
+	int		status;
+	float	root;
+	t_vec3  oc;
+    float   a;
+    float   b;
+    float   c;
+} t_hit_point;
+
 typedef struct s_object
 {
 	int		type;
@@ -78,7 +88,8 @@ typedef struct s_object
 	t_vec3	direction;
 	float	radius;
 	float	height;
-	t_vec3	(*intersect) (t_object object, t_ray ray);
+	t_hit_point		(*intersect) (t_ray *ray, t_object *obj);
+	void	(*print_object) (t_object obj);
 } t_object;
 
 typedef struct s_view
@@ -141,9 +152,12 @@ t_vec3			vec_cross(t_vec3 v1, t_vec3 v2);
 float			vec_dot(t_vec3 v1, t_vec3 v2);
 t_vec3			vec_add(t_vec3 v1, t_vec3 v2);
 t_vec3			vec_scalar(t_vec3 v1, float scalar);
+void			print_sp(t_object sp);
+
 /* Mini Raytracing */
-void    draw_world(t_world *world, t_mlx *mlx);
-int		hit_sp(t_ray *ray, t_world *world, t_object *sp);
+void    	draw_world(t_world *world, t_mlx *mlx);
+int			hit_obj(t_ray *ray, t_world *world);
+t_hit_point	hit_sp(t_ray *ray, t_object *sp);
 
 
 #endif 

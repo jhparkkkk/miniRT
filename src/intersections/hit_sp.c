@@ -6,34 +6,44 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:48:49 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/24 15:28:44 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/25 13:59:52 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-int hit_sp(t_ray *ray, t_world *world, t_object *sp)
+t_hit_point hit_sp(t_ray *ray, t_object *sp)
 {
-    (void)world;
-    float   discr;
-    t_vec3  oc;
-    float   a;
-    float   b;
-    float   c;
+    float   	discr;
+	float		t1;
+	float		t2;
+	t_hit_point hit;
     
-    oc = vec_substract(sp->center, ray->origin);
-    a = vec_dot(ray->direction, ray->direction);
-    b = 2.0 * vec_dot(oc, ray->direction);
-    c = vec_dot(oc, oc) - sp->radius * sp->radius;
-    discr = b * b - 4 * a * c;
-    if (discr < 0)
-        return (0);
+	hit.status = 0;
+	hit.root = 0;
+    hit.oc = vec_substract(sp->center, ray->origin);
+    hit.a = vec_dot(ray->direction, ray->direction);
+    hit.b = 2.0 * vec_dot(hit.oc, ray->direction);
+    hit.c = vec_dot(hit.oc, hit.oc) - sp->radius * sp->radius;
+    discr = hit.b * hit.b - 4.0 * hit.a * hit.c;
+    if (discr < 0.0)
+	{
+		hit.status = 0;
+        return (hit);
+	}
+	hit.status = 1;
+	t1 = (- hit.b - sqrtf(discr)) / (2.0 * hit.a);
+	t2 = (- hit.b + sqrtf(discr)) / (2.0 * hit.a);
+	if (t1 < t2)
+		hit.root = t1;
+	else
+		hit.root = t2;
     // else
     // {
-    //    res = (-b - sqrt(discr)) / (2.0 * a);
-    // //    hit_point.x = ray->origin.x + res * ray->direction.x;
-    // //    hit_point.y = ray->origin.y + res * ray->direction.y;
-    // //    hit_point.z = ray->origin.z + res * ray->direction.z;
+    //    res = 
+    //    hit.x = ray->origin.x + res * ray->direction.x;
+    //    hit.y = ray->origin.y + res * ray->direction.y;
+    //    hit.z = ray->origin.z + res * ray->direction.z;
     // }
-    return (1);     
+    return (hit);     
 }

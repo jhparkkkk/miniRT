@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_world.c                                      :+:      :+:    :+:   */
+/*   print_sp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/19 15:19:38 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/25 11:17:23 by cgosseli         ###   ########.fr       */
+/*   Created: 2022/09/25 11:26:02 by cgosseli          #+#    #+#             */
+/*   Updated: 2022/09/25 11:29:28 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-void    print_world(t_view **view)
+void	print_sp(t_object sp)
 {
-    int i;
-    int j;
-
-    i = 0;
-    while(i <  SIZEX)
-    {
-        j = 0;
-        while (j < SIZEY)
-        {
-            printf("%.f;%.f ", view[i][j].dot.x, view[i][j].dot.y);
-            j++;
-        }
-        printf("\n");
-        i++;
-    }
+	printf("\nsphere center : %f, y : %f, z : %f\n", sp.center.x,
+	sp.center.y, sp.center.z);
+	printf("sphere radius %f\n", sp.radius);
+	printf("sphere color : %f, y : %f, z : %f\n", sp.color.x,
+	sp.color.y, sp.color.z);
+	printf("\n");
 }
