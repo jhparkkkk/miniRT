@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_obj.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 11:10:13 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/25 14:29:31 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/25 17:29:57 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	hit_obj(t_ray *ray, t_world *world)
 	int			i;
 	int			idx;
 	int			touch;
-	float		root_min;
+	double		root_min;
 	t_hit_point	hit;
 
 	i = 0;
@@ -37,8 +37,8 @@ int	hit_obj(t_ray *ray, t_world *world)
 		}
 		i++;
 	}
-	printf("8");
 	if (!touch)
 		return (-1);
+	ray->root = root_min;
 	return (idx); 
 }

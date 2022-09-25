@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_sp.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:48:49 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/25 13:59:52 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/25 16:40:03 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 t_hit_point hit_sp(t_ray *ray, t_object *sp)
 {
-    float   	discr;
-	float		t1;
-	float		t2;
+    double   	discr;
+	double		t1;
+	double		t2;
 	t_hit_point hit;
     
 	hit.status = 0;

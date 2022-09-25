@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/25 14:27:22 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/25 17:19:43 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,47 +37,48 @@
 
 typedef struct s_vec3
 {
-	float	x;
-	float	y;
-	float	z;
+	double	x;
+	double	y;
+	double	z;
 } t_vec3;
 
 typedef struct s_cam
 {
 	t_vec3	position;
 	t_vec3	direction;
-	float		hfov;
-	float		vfov;
+	double		hfov;
+	double		vfov;
 } t_cam;
 
 typedef struct s_light
 {
 	t_vec3	position;
 	t_vec3	color;
-	float	intensity;
+	double	intensity;
 } t_light;
 
 typedef struct s_ambient_light
 {
 	t_vec3	color;
-	float	intensity;
+	double	intensity;
 } t_ambient_light;
 
 typedef struct s_ray
 {
 	t_vec3	origin;
 	t_vec3	direction;
+	double	root;
 } t_ray;
 typedef struct s_object t_object;
 
 typedef struct s_hit_point
 {
 	int		status;
-	float	root;
+	double	root;
 	t_vec3  oc;
-    float   a;
-    float   b;
-    float   c;
+    double   a;
+    double   b;
+    double   c;
 } t_hit_point;
 
 typedef struct s_object
@@ -86,8 +87,8 @@ typedef struct s_object
 	t_vec3	center;
 	t_vec3	color;
 	t_vec3	direction;
-	float	radius;
-	float	height;
+	double	radius;
+	double	height;
 	t_hit_point		(*intersect) (t_ray *ray, t_object *obj);
 	void	(*print_object) (t_object obj);
 } t_object;
@@ -141,7 +142,7 @@ void			put_pix(t_mlx *mlx, int x, int y, int color);
 
 /* utils */
 int				check_valid_color_range(t_vec3 color);
-int				check_float(char *data);
+int				check_double(char *data);
 void			jump_spaces(char *line, int *idx);
 void 			jump_data(char*line, int *idx);
 int				is_space(int c);
@@ -149,9 +150,11 @@ void    		print_world(t_view **view);
 int				get_hex_color(t_vec3 rgb_color);
 t_vec3			vec_substract(t_vec3 v1, t_vec3 v2);
 t_vec3			vec_cross(t_vec3 v1, t_vec3 v2);
-float			vec_dot(t_vec3 v1, t_vec3 v2);
+double			vec_dot(t_vec3 v1, t_vec3 v2);
 t_vec3			vec_add(t_vec3 v1, t_vec3 v2);
-t_vec3			vec_scalar(t_vec3 v1, float scalar);
+t_vec3			vec_scalar(t_vec3 v1, double scalar);
+t_vec3			vec_divide(t_vec3 v, double scalar);
+double			vec_len(t_vec3 v);
 void			print_sp(t_object sp);
 
 /* Mini Raytracing */

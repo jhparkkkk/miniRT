@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   get_camera.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:16:19 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/24 14:45:51 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/25 16:52:01 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-float	degrees_to_radians(float degrees)
+double	degrees_to_radians(double degrees)
 {
 	return degrees * M_PI / 180.0;
 }
 
-static float	get_vfov(float hfov)
+static double	get_vfov(double hfov)
 {
 	
-	float	vfov;
+	double	vfov;
 	
 	if (hfov == 180)
 		return (180);
@@ -30,15 +30,15 @@ static float	get_vfov(float hfov)
 }
 
 
-static float	get_hfov(char *line)
+static double	get_hfov(char *line)
 {
-	float	ret;
+	double	ret;
 	int		j;
 
 	j = 0;
 	jump_spaces(line, &j);
 	ret = ft_atof(line + j);
-	if (check_float(line + j) || ret < 0 || ret > 180.0)
+	if (check_double(line + j) || ret < 0 || ret > 180.0)
 	{
 		ft_putstr_fd("Something is wrong with the field of view\n", 2);
 		ft_memory(0, 0);

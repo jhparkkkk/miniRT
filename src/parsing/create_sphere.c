@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   create_sphere.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 14:55:39 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/25 13:21:34 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/25 16:40:03 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-static float	get_radius(char *data, int *idx)
+static double	get_radius(char *data, int *idx)
 {
-	float	ret;
+	double	ret;
 	int		j;
 
 	j = 0;
@@ -23,7 +23,7 @@ static float	get_radius(char *data, int *idx)
 	printf("data %s\n", data + j);
 
 	printf("ret %f\n", ret);
-	if (check_float(data + j) || ret <= 0)
+	if (check_double(data + j) || ret <= 0)
 	{
 		ft_putstr_fd("Something is wrong with the sphere\n", 2);
 		ft_memory(0, 0);

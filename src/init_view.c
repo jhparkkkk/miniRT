@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_view.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 12:05:49 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/24 14:45:51 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/25 16:40:03 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static void init_dot(t_vec3 *dot, int i, int j)
 {
-    float   mid_SIZEY;
+    double   mid_SIZEY;
 
     mid_SIZEY = SIZEY / 2;
     dot->x = j - SIZEX/ 2;

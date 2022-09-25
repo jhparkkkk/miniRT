@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   parse_direction.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 15:14:06 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/15 16:11:04 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/25 16:40:03 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-static float	get_coordinates(char *data)
+static double	get_coordinates(char *data)
 {
-	float	ret;
+	double	ret;
 
 	ret = ft_atof(data);
-	if (check_float(data) || !(ret >= -1.0 && ret <= 1.0))
+	if (check_double(data) || !(ret >= -1.0 && ret <= 1.0))
 	{
 		ft_putstr_fd("Something is wrong with the direction\n", 2);
 		ft_memory(0, 0);

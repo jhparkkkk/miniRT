@@ -6,15 +6,15 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:57:20 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/16 12:02:26 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/25 16:40:03 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-static float	get_coordinates(char *data)
+static double	get_coordinates(char *data)
 {
-	if (check_float(data))
+	if (check_double(data))
 	{
 		ft_putstr_fd("Something is wrong with coordinates\n", 2);
 		ft_memory(0, 0);

@@ -1,18 +1,18 @@
 {
-	"version": "0.2.0",
-	"configurations": [
-		  {
-			  "name": "gcc - Build and debug active file",
-			  "type": "cppdbg",
-			  "request": "launch",
-			  "program": "${workspaceFolder}/miniRT",
-			  "args": ["${workspaceFolder}/scenes/test.rt"],
-			  "stopAtEntry": false,
-			  "cwd": "${fileDirname}",
-			  "environment": [],
-			  "externalConsole": false,
-			  "MIMode": "gdb",
-			  ""
-		  }
-	  ]
+    "version": "0.2.0",
+    "configurations": [
+          {
+              "name": "gcc - Build and debug active file",
+              "type": "cppdbg",
+              "request": "launch",
+              "program": "${workspaceFolder}/miniRT",
+              "args": ["${workspaceFolder}/scenes/test.rt"],
+              "stopAtEntry": false,
+              "cwd": "${fileDirname}",
+              "environment": [],
+              "externalConsole": false,
+              "MIMode": "gdb",
+              ""
+          }
+      ]
   }

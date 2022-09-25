@@ -39,7 +39,7 @@ SRCS     	+=	main.c \
 					create_cylinder.c \
 					parse_position.c \
 					parse_direction.c \
-					check_float.c \
+					check_double.c \
 					check_valid_color_range.c \
 				} \
 				${addprefix utils/, \
@@ -53,6 +53,8 @@ SRCS     	+=	main.c \
 					vec_substract.c \
 					vec_add.c \
 					vec_scalar.c \
+					vec_divide.c \
+					vec_len.c \
 					print_sp.c \
 				} \
 				${addprefix mlx/, \

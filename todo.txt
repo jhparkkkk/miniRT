@@ -52,11 +52,11 @@ Parsing :
 
 	struct light
 		vec3 position
-		float brightness
+		double brightness
 		vec3 color
 
 	struct ambient_lightning
-		float brightness
+		double brightness
 		vec3 color
 
 	struct object
@@ -64,8 +64,8 @@ Parsing :
 		vec3 position
 		vec3 color
 		vec3 orientation (NULL if type == sphere)
-		double/float rayon (NULL if type == plane)
-		double/float SIZEY (NULL if type == plane || type == sphere)
+		double/double rayon (NULL if type == plane)
+		double/double SIZEY (NULL if type == plane || type == sphere)
 		int (*intersection_algo) (int pixel.. autre int ?, object)
 			if type == sphere
 				intersection_algo = &sphere_algo

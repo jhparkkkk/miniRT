@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_float.c                                      :+:      :+:    :+:   */
+/*   check_double.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -31,28 +31,28 @@ static int	empty_data(char *data)
 	return (0);
 }
 
-/*Checks if the *data can be converted to a float : only digits, only one
+/*Checks if the *data can be converted to a double : only digits, only one
 dot, not an empty or only emptry spaces string. Returns 1 on failure, 
 0 on success*/
-int	check_float(char *data)
+int	check_double(char *data)
 {
 	int	i;
 	int	nb_dot;
-	int	valid_float;
+	int	valid_double;
 
 	i = 0;
 	nb_dot = 0;
-	valid_float = 1;
+	valid_double = 1;
 	while (data[i] && !(data[i] == 32 || (data[i] >= 9 && data[i] <= 13)))
 	{
 		if (data[i] == '.')
 			nb_dot++;
 		if (((!ft_isdigit(data[i]) && i != 0) || (!ft_isdigit(data[i]) && i == 0
 					&& data[i] != '+' && data[i] != '-')) && data[i] != '.')
-			valid_float = 0;
+			valid_double = 0;
 		i++;
 	}
-	if (nb_dot > 1 || !valid_float || empty_data(data))
+	if (nb_dot > 1 || !valid_double || empty_data(data))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

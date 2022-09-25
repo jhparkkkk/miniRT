@@ -6,13 +6,13 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:38:25 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/23 14:39:43 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/25 16:40:03 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-t_vec3  vec_scalar(t_vec3 v1, float scalar)
+t_vec3  vec_scalar(t_vec3 v1, double scalar)
 {
     t_vec3  v2;
 

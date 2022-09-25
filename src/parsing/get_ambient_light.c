@@ -6,21 +6,21 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:46:10 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/16 15:40:06 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/25 16:40:03 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-static float	get_intensity(char *line, int *idx)
+static double	get_intensity(char *line, int *idx)
 {
-	float	ret;
+	double	ret;
 	int		j;
 
 	j = 0;
 	jump_spaces(line, &j);
 	ret = ft_atof(line + j);
-	if (check_float(line + j) || ret < 0 || ret > 180.0)
+	if (check_double(line + j) || ret < 0 || ret > 180.0)
 	{
 		ft_putstr_fd("Something is wrong with the ambient light intensity\n", 2);
 		ft_memory(0, 0);
