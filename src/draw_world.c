@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_world.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:38:39 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/25 17:48:35 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/25 17:58:28 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ double	compute_lighting(t_ray *ray, t_object *sp, t_world *world)
 	intensity = 0.0;
 	intensity += world->ambient_light.intensity;
 	point = vec_add(ray->origin, vec_scalar(ray->direction, ray->root));
-	normal = vec_substract(point, sp->center);
+	normal = vec_substract(sp->center, point);
 	normal = vec_divide(normal, vec_len(normal));
 	
 	
