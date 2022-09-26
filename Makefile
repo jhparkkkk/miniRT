@@ -26,6 +26,7 @@ SRCS_PATH	:=	src
 OBJS_PATH	:=	obj
 SRCS     	+=	main.c \
 				init_view.c \
+				set_ray.c \
 				draw_world.c \
 				${addprefix parsing/, \
 					check_filename.c \
@@ -68,9 +69,8 @@ SRCS     	+=	main.c \
 					hit_sp.c \
 				} \
 				${addprefix lights/, \
-					compute_lightning.c \
-				}
-
+					compute_lighting.c \
+				} 
 					
 				
 SRCS          := $(SRCS:%=$(SRCS_PATH)/%)
