@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/25 17:19:43 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/26 11:55:35 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,9 +158,11 @@ double			vec_len(t_vec3 v);
 void			print_sp(t_object sp);
 
 /* Mini Raytracing */
-void    	draw_world(t_world *world, t_mlx *mlx);
-int			hit_obj(t_ray *ray, t_world *world);
-t_hit_point	hit_sp(t_ray *ray, t_object *sp);
+void    		draw_world(t_world *world, t_mlx *mlx);
+int				hit_obj(t_ray *ray, t_world *world);
+t_hit_point		hit_sp(t_ray *ray, t_object *sp);
+double			compute_lighting(t_ray *ray, t_object *sp, t_world *world);
+void			set_ray(t_ray *ray, t_cam cam, int i, int j);
 
 
 #endif 
