@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_world.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:38:39 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/25 17:58:28 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/26 11:42:35 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ double	compute_lighting(t_ray *ray, t_object *sp, t_world *world)
 	return (intensity);
 	
 }
-// TODO : pb avec n_dot_l qui n'est jamais positif / revoir le calcul 
 
 void    draw_world(t_world *world, t_mlx *mlx)
 {
@@ -68,7 +67,7 @@ void    draw_world(t_world *world, t_mlx *mlx)
 			if (obj_idx >= 0)
 			{
 				intensity = compute_lighting(&ray, world->objects[obj_idx], world);
-				put_pix(mlx, j, i, get_hex_color(vec_scalar(world->objects[obj_idx]->color, intensity)));
+				put_pix(mlx, j, i, get_hex_color(vec_scalar(world->objects[obj_idx]->color , intensity * 0.5)));
 			}
 			j++;
 		}
