@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_sphere.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 14:55:39 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/25 16:40:03 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/26 13:47:38 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@ static double	get_radius(char *data, int *idx)
 	j = 0;
 	jump_spaces(data, &j);
 	ret = ft_atof(data + j);
-	printf("data %s\n", data + j);
-
-	printf("ret %f\n", ret);
 	if (check_double(data + j) || ret <= 0)
 	{
 		ft_putstr_fd("Something is wrong with the sphere\n", 2);
@@ -51,4 +48,9 @@ void	create_sphere(char *data, t_object *sphere)
 	}
 	sphere->intersect = hit_sp;
 	sphere->print_object = &print_sp;
+	sphere->surface = get_surface(data + i, &i);
+	if (sphere->surface == SHINY)
+		sphere->specular_exponent = get_specular_exponent(data + i, &i);
+	else
+		sphere->specular_exponent = -1;
 }

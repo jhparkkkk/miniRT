@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_cylinder.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 17:53:12 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/25 16:40:03 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/26 13:29:43 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,5 @@ void	create_cylinder(char *data, t_object *cylinder)
 		ft_putstr_fd("Something is wrong with the cylinder color\n", 2);
 		ft_memory(0, 0);
 	}
+	cylinder->surface = get_surface(data + i, &i);
 }

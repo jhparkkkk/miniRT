@@ -6,23 +6,46 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 16:39:13 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/25 17:09:45 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/26 14:47:56 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-int	compute_lightning(t_world world, t_object obj, t_ray *ray)
+double	compute_lighting(t_ray *ray, t_object *sp, t_world *world)
 {
-	double	i;
-	t_vec3	vec_light;
-	t_vec3	point;
-	t_vec3	normal;
-
-	point = vec_add(ray->origin, vec_scalar(ray->direction, ray->hit_point.root))
-	normal = vec_substract(point, obj.center);
-	normal = vec_scalar(normal, 1 / vec_len(normal));
-	i = world.ambient_light.intensity;
-	vec_light = vec_substract(world.light.position, point);
+	t_vec3 point;
+	t_vec3 normal;
+	t_vec3 vec_light;
+	double intensity;
+	double n_dot_l;
+	
+	intensity = 0.0;
+	intensity += world->ambient_light.intensity;
+	point = vec_add(ray->origin, vec_scalar(ray->direction, ray->root));
+	normal = vec_substract(sp->center, point);
+	normal = vec_divide(normal, vec_len(normal));
+	
+	
+	vec_light = vec_substract(world->light.position, point);
+	
+	n_dot_l = vec_dot(normal, vec_light);
+	if (n_dot_l > 0.0)
+		intensity += world->light.intensity * n_dot_l / (vec_len(normal) * vec_len(vec_light)); 
+	/* SPEC LIGHTNING */
+	t_vec3	reflect;
+	t_vec3	view;
+	double r_dot_v;
+	if (sp->specular_exponent != -1.0)
+	{
+		reflect = vec_scalar(normal, 2.0);
+		reflect = vec_scalar(reflect, vec_dot(normal, vec_light));
+		reflect = vec_substract(reflect, vec_light);
+		view = vec_scalar(ray->direction, -1.0);
+		r_dot_v = vec_dot(reflect, view);
+		if (r_dot_v > 0.0)
+			intensity += world->light.intensity * pow(r_dot_v / vec_len(reflect) * vec_len(view), sp->specular_exponent);
+	}
+	return (intensity);
 	
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/25 17:19:43 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/26 13:37:51 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # define SPHERE 1
 # define PLANE 2
 # define CYLINDER 3
+# define MAT 11
+# define SHINY 12
 # define ESC 65307
 
 
@@ -69,6 +71,7 @@ typedef struct s_ray
 	t_vec3	direction;
 	double	root;
 } t_ray;
+
 typedef struct s_object t_object;
 
 typedef struct s_hit_point
@@ -91,6 +94,8 @@ typedef struct s_object
 	double	height;
 	t_hit_point		(*intersect) (t_ray *ray, t_object *obj);
 	void	(*print_object) (t_object obj);
+	int		surface;
+	double	specular_exponent;
 } t_object;
 
 typedef struct s_view
@@ -127,6 +132,8 @@ t_ambient_light	get_ambient_light(char **scene);
 void			create_sphere(char *data, t_object *sphere);
 void			create_plane(char *data, t_object *plane);
 void			create_cylinder(char *data, t_object *cylinder);
+int				get_surface(char *line, int *idx);
+double			get_specular_exponent(char *line, int *idx);
 
 
 t_vec3			parse_position(char *line, int *idx);
@@ -161,6 +168,7 @@ void			print_sp(t_object sp);
 void    	draw_world(t_world *world, t_mlx *mlx);
 int			hit_obj(t_ray *ray, t_world *world);
 t_hit_point	hit_sp(t_ray *ray, t_object *sp);
+double		compute_lighting(t_ray *ray, t_object *sp, t_world *world);
 
 
 #endif 

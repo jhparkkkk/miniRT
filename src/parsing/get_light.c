@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_light.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:19:43 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/25 16:40:03 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/26 14:46:52 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 static int	get_param(t_light *light, char *line, int i)
 {
+	double	ret;
+	
 	if (is_space(line[0]))
 	{
 		jump_spaces(line, &i);
@@ -22,8 +24,14 @@ static int	get_param(t_light *light, char *line, int i)
 	}
 	light->position = parse_position(line + i, &i);
 	jump_spaces(line, &i);
-	if (!check_double(line + i)) 
-		light->intensity = ft_atof(line + i);
+	ret = ft_atof(line + i);
+	if (check_double(line + i) || ret < 0 || ret > 1.0)
+	{
+		ft_putstr_fd("Something is wrong with the light intensity\n", 2);
+		ft_memory(0, 0);
+	}
+	// if (!check_double(line + i)) 
+	light->intensity = ret;
 	jump_data(line, &i);
 	light->color = parse_position(line + i, &i);
 	return 0;

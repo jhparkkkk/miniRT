@@ -41,6 +41,8 @@ SRCS     	+=	main.c \
 					parse_direction.c \
 					check_double.c \
 					check_valid_color_range.c \
+					get_surface.c \
+					get_specular_exponent.c \
 				} \
 				${addprefix utils/, \
 					jump_spaces.c \
@@ -64,7 +66,11 @@ SRCS     	+=	main.c \
 				${addprefix intersections/, \
 					hit_obj.c \
 					hit_sp.c \
+				} \
+				${addprefix lights/, \
+					compute_lightning.c \
 				}
+
 					
 				
 SRCS          := $(SRCS:%=$(SRCS_PATH)/%)

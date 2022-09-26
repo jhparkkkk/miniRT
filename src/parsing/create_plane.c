@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 17:39:18 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/16 17:00:19 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/26 13:29:43 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ void	create_plane(char *data, t_object *plane)
 		ft_putstr_fd("Something is wrong with the plane color\n", 2);
 		ft_memory(0, 0);
 	}
+	plane->surface = get_surface(data + i, &i);
 }
