@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_scene.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 15:56:29 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/16 15:31:52 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/27 14:19:32 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	count_lines(int fd)
 	size = 0;
 	while (line)
 	{
-		if (line[0] != '\n')
+		if (line[0] != '\n' && line[0] != '#')
 			size++;
 		free(line);
 		line = get_next_line(fd);
@@ -49,7 +49,7 @@ static char	**get_scene_param(int fd, char **scene)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (line[0] != '\n')
+		if (line[0] != '\n' && line[0] != '#')
 		{
 			scene[i] = ft_strdup(line);
 			if (!scene[i])
