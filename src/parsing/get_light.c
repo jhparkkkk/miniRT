@@ -6,12 +6,29 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:19:43 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/27 16:17:36 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/27 17:54:16 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
+static int	count_light(char **scene)
+{
+	int			i;
+	int			j;
+	int			nb;
+
+	i = -1;
+	nb = 0;
+	while (scene[++i])
+	{
+		j = 0;
+		jump_spaces(scene[i], &j);
+		if (scene[i][j] && scene[i][j] == 'L')
+			nb++;
+	}
+	return (nb);
+}
 
 static int	get_param(t_light *light, char *line, int i)
 {
@@ -39,15 +56,18 @@ static int	get_param(t_light *light, char *line, int i)
 /*	checks if light parameter exists and is valid in .rt file
 	else prints error and exits
 */
-int get_light(t_light *light, char **scene)
+t_light **get_light(t_world *world, char **scene)
 {
-	int i;
-	int j;
-	int nb;
+	int		i;
+	int		j;
+	int		nb;
+	t_light	**light;
 	
+	light = ft_memory(sizeof(t_light *), count_light(scene));
 	nb = 0;
 	i = -1;
-    while (scene[++i])
+    
+	while (scene[++i])
 	{
 		j = 0;
 		jump_spaces(scene[i], &j);
@@ -55,7 +75,7 @@ int get_light(t_light *light, char **scene)
 			&& scene[i][j + 1] >= 9 && scene[i][j + 1] <= 13)
 		{
 			nb++;
-			get_param(light, scene[i], i);
+			get_param(light[nb], scene[i], i);
 		}
 	}
 	if (nb < 1)
@@ -63,6 +83,8 @@ int get_light(t_light *light, char **scene)
 		ft_putstr_fd("The scene must contain one light\n", 2);
 		ft_memory(0, 0);
 	}
-	return (EXIT_FAILURE);
+	world->nb_light = nb;
+	return (light);
+	// return (EXIT_FAILURE);
     
 }

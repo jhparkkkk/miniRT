@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 15:31:59 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/25 11:32:00 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/27 17:51:34 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int main(int ac, char **av)
 		exit (EXIT_FAILURE);
 	scene = get_scene(fd, av[1]);
 	world->cam = get_camera(scene);
-	get_light(&world->light, scene);
+	world->light = get_light(world, scene);
 	world->ambient_light = get_ambient_light(scene);
 	world->objects = get_objects_list(scene);
 	
@@ -44,9 +44,9 @@ int main(int ac, char **av)
 
 	
 	/* light */
-	printf("\nlight position : %f, y : %f, z : %f\n", world->light.position.x, world->light.position.y, world->light.position.z);
-	printf("light rgb x : %f, y : %f, z : %f\n", world->light.color.x, world->light.color.y, world->light.color.z);
-	printf("light intensity : %f\n", world->light.intensity);
+	// printf("\nlight position : %f, y : %f, z : %f\n", world->light.position.x, world->light.position.y, world->light.position.z);
+	// printf("light rgb x : %f, y : %f, z : %f\n", world->light.color.x, world->light.color.y, world->light.color.z);
+	// printf("light intensity : %f\n", world->light.intensity);
 	
 	/* camera */
 	printf("\ncamera position x : %f, y : %f, z : %f\n", world->cam.position.x, world->cam.position.y, world->cam.position.z);
