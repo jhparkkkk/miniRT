@@ -58,6 +58,7 @@ SRCS     	+=	main.c \
 					vec_scalar.c \
 					vec_divide.c \
 					vec_len.c \
+					vec_normal.c \
 					print_sp.c \
 				} \
 				${addprefix mlx/, \
@@ -70,6 +71,7 @@ SRCS     	+=	main.c \
 				} \
 				${addprefix lights/, \
 					compute_lighting.c \
+					compute_color.c \
 				} 
 					
 				
