@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_world.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:38:39 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/26 16:30:52 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/27 15:09:38 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,20 @@
 int	compute_color(t_ray *ray, t_object *object, t_world *world)
 {
 	double	intensity;
-	t_vec3	color;
-	t_vec3 light_color;
+	t_vec3	color_1;
+	t_vec3	color_2;
+	t_vec3	color; 
 	intensity = compute_lighting(ray, object, world);
 	
-	light_color = vec_scalar(world->light.color, world->light.intensity);
 	
-	color = vec_add(object->color, light_color);
-	// color = vec_scalar(object->color, intensity);
+	
+	color_1 = vec_add(object->color, vec_scalar(world->light.color, intensity));
+	color_2 = vec_add(object->color, vec_scalar(world->ambient_light.color, world->ambient_light.intensity));
+	color = vec_add(color_1, color_2);
+	color = vec_divide(color, vec_len(color));
+	color = vec_scalar(color, 255.0);
+	// color = vec_scalar(color, intensity);
+	
 	return get_hex_color(color);
 }
 
