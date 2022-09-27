@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/26 16:32:40 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/27 14:26:33 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,10 @@ typedef struct s_light
 	t_vec3	position;
 	t_vec3	color;
 	double	intensity;
+	double	intensity_r;
+	double	intensity_g;
+	double	intensity_b;
+
 } t_light;
 
 typedef struct s_ambient_light
