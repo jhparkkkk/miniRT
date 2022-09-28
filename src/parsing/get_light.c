@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:19:43 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/27 17:54:16 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/28 10:58:50 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,9 @@ t_light **get_light(t_world *world, char **scene)
 	int		nb;
 	t_light	**light;
 	
-	light = ft_memory(sizeof(t_light *), count_light(scene));
+	light = ft_memory(sizeof(t_light *), count_light(scene) + 1);
 	nb = 0;
 	i = -1;
-    
 	while (scene[++i])
 	{
 		j = 0;
@@ -74,8 +73,8 @@ t_light **get_light(t_world *world, char **scene)
 		if (scene[i][j] == 'L'
 			&& scene[i][j + 1] >= 9 && scene[i][j + 1] <= 13)
 		{
-			nb++;
 			get_param(light[nb], scene[i], i);
+			nb++;
 		}
 	}
 	if (nb < 1)
