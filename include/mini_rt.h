@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/29 13:45:51 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/29 13:49:50 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,7 @@ void    		draw_world(t_world *world, t_mlx *mlx);
 int				hit_obj(t_ray *ray, t_world *world);
 t_hit_point		hit_sp(t_ray *ray, t_object *sp);
 double			compute_lighting(t_ray *ray, t_object *sp, t_world *world);
+int				compute_color(t_ray *ray, t_object *object, t_world *world);
 void			set_ray(t_ray *ray, t_cam cam, int i, int j);
 
 

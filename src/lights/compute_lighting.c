@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 16:39:13 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/29 13:44:22 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/29 14:01:58 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ double	compute_lighting(t_ray *ray, t_object *sp, t_world *world)
 	if (sp->specular_exponent != -1.0)
 	{
 		if (specular_lighting(&hit, ray) > 0.0)
-			intensity += (world->light.intensity * (hit.r_dot_v / (vec_len(hit.reflect) * vec_len(hit.view)))* sp->specular_exponent) ;
-			// intensity += world->light.intensity * pow(hit.r_dot_v / (vec_len(hit.reflect) * vec_len(hit.view)), 1 / sp->specular_exponent);
+			// intensity += (world->light.intensity * (hit.r_dot_v / (vec_len(hit.reflect) * vec_len(hit.view)))* sp->specular_exponent) ;
+			intensity += world->light.intensity * pow(hit.r_dot_v / (vec_len(hit.reflect) * vec_len(hit.view)), 1 / sp->specular_exponent);
 	}
 	return (intensity);
 }

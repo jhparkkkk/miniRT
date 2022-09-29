@@ -70,6 +70,7 @@ SRCS     	+=	main.c \
 				} \
 				${addprefix lights/, \
 					compute_lighting.c \
+					compute_color.c \
 				} 
 					
 				
