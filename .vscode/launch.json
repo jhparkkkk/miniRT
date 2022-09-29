@@ -6,7 +6,7 @@
               "type": "cppdbg",
               "request": "launch",
               "program": "${workspaceFolder}/miniRT",
-              "args": ["${workspaceFolder}/scenes/test.rt"],
+              "args": ["${workspaceFolder}/scenes/red_sp_blue_light.rt"],
               "stopAtEntry": false,
               "cwd": "${fileDirname}",
               "environment": [],

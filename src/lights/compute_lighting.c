@@ -6,45 +6,44 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 16:39:13 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/29 10:52:46 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/29 14:24:50 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-/* n dot l tells how the point and the light are aoriented one vs the other */
+static double	specular_lighting(t_hit_point *hit, t_ray *ray)
+{
+	hit->reflect = vec_scalar(hit->normal, 2.0);
+	hit->reflect = vec_scalar(hit->reflect, vec_dot(hit->normal, hit->vec_light));
+	hit->reflect = vec_substract(hit->reflect, hit->vec_light);
+	hit->view = vec_scalar(ray->direction, -1.0);
+	hit->r_dot_v = vec_dot(hit->reflect, hit->view);
+	return (hit->r_dot_v);
+}
 
+/* Calculates the intensity of light at the impact of *ray on the *sphere.
+Returns the intensity. */
 double	compute_lighting(t_ray *ray, t_object *sp, t_world *world)
 {
-	t_vec3 point;
-	t_vec3 normal;
-	t_vec3 vec_light;
+	t_hit_point	hit;
 	double intensity;
-	double n_dot_l;
-
 	
 	intensity = 0.0;
-	point = vec_add(ray->origin, vec_scalar(ray->direction, ray->root));
-	normal = vec_substract(sp->center, point);
-	normal = vec_divide(normal, vec_len(normal)); // normaliser la normale
-	vec_light = vec_substract(world->light.position, point);
-	n_dot_l = vec_dot(normal, vec_light);
-	if (n_dot_l > 0.0)
-		intensity += world->light.intensity * (n_dot_l / (vec_len(normal) * vec_len(vec_light)));
+	hit.point = vec_add(ray->origin, vec_scalar(ray->direction, ray->root));
+	hit.normal = vec_substract(sp->center, hit.point);
+	hit.normal = vec_divide(hit.normal, vec_len(hit.normal));
+	hit.vec_light = vec_substract(world->light.position, hit.point);
+	hit.n_dot_l = vec_dot(hit.normal, hit.vec_light);
+	if (hit.n_dot_l > 0.0)
+		intensity += world->light.intensity * (hit.n_dot_l / (vec_len(hit.normal) * vec_len(hit.vec_light)));
 	
 	/* SPEC LIGHTNING */
-	t_vec3	reflect;
-	t_vec3	view;
-	double r_dot_v;
 	if (sp->specular_exponent != -1.0)
 	{
-		reflect = vec_scalar(normal, 2.0);
-		reflect = vec_scalar(reflect, vec_dot(normal, vec_light));
-		reflect = vec_substract(reflect, vec_light);
-		view = vec_scalar(ray->direction, -1.0);
-		r_dot_v = vec_dot(reflect, view);
-		if (r_dot_v > 0.0)
-			intensity += world->light.intensity * pow(r_dot_v / vec_len(reflect) * vec_len(view), sp->specular_exponent);
+		if (specular_lighting(&hit, ray) > 0.0)
+			// intensity += (world->light.intensity * (hit.r_dot_v / (vec_len(hit.reflect) * vec_len(hit.view)))* sp->specular_exponent) ;
+			intensity += world->light.intensity * pow(hit.r_dot_v / (vec_len(hit.reflect) * vec_len(hit.view)), 1 / sp->specular_exponent);
 	}
 	return (intensity);
 }

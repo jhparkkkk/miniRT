@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/28 13:45:23 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/29 14:25:13 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 # define MAT 11
 # define SHINY 12
 # define ESC 65307
+# define K_AMBIENT 0.1
+# define K_DIFFUSE 1
 
 
 /* Structures */
@@ -57,10 +59,6 @@ typedef struct s_light
 	t_vec3	position;
 	t_vec3	color;
 	double	intensity;
-	double	intensity_r;
-	double	intensity_g;
-	double	intensity_b;
-
 } t_light;
 
 typedef struct s_ambient_light
@@ -80,12 +78,19 @@ typedef struct s_object t_object;
 
 typedef struct s_hit_point
 {
-	int		status;
-	double	root;
-	t_vec3  oc;
-    double   a;
-    double   b;
-    double   c;
+	t_vec3		point;
+	int			status;
+	double		root;
+	t_vec3  	oc;
+    double	 	 a;
+    double		 b;
+    double		 c;
+	t_vec3		normal;
+	t_vec3		vec_light;
+	t_vec3		reflect;
+	t_vec3		view;
+	double		n_dot_l;
+	double		r_dot_v;
 } t_hit_point;
 
 typedef struct s_object
@@ -176,7 +181,6 @@ int				hit_obj(t_ray *ray, t_world *world);
 t_hit_point		hit_sp(t_ray *ray, t_object *sp);
 double			compute_lighting(t_ray *ray, t_object *sp, t_world *world);
 int				compute_color(t_ray *ray, t_object *object, t_world *world);
-
 void			set_ray(t_ray *ray, t_cam cam, int i, int j);
 
 
