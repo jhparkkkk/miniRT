@@ -6,49 +6,25 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:38:39 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/28 14:06:51 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/29 13:46:06 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-// static int	check_rgb_value(t_vec3 color)
-// {
-// 	if (color.x > 255 || color.y > 255 || color.z > 255)
-// 		return (1);
-// 	return (0);
-// }
-
 int	compute_color(t_ray *ray, t_object *object, t_world *world)
 {
 	double	intensity;
-	t_vec3	color_1;
-	t_vec3	color_2;
 	t_vec3	color;
 	
 	intensity = compute_lighting(ray, object, world);
-	
-	// color_1 = vec_add(object->color, vec_scalar(world->light.color, intensity));
-	// color_2 = vec_add(object->color, vec_scalar(world->ambient_light.color, world->ambient_light.intensity));	color = vec_add(color_1, color_2);
-	
-	/* TEST pour */
-	(void)color_1;
-	(void)color_2;
-	t_vec3 light_1 = vec_scalar(world->light.color, intensity);
-	t_vec3 light_2 = vec_scalar(world->ambient_light.color, world->ambient_light.intensity);
+	t_vec3 light_1 = vec_scalar(world->light.color, intensity * K_DIFFUSE);
+	t_vec3 light_2 = vec_scalar(world->ambient_light.color, world->ambient_light.intensity * K_AMBIENT);
 	t_vec3 light_global = vec_add(light_1, light_2);
-	t_vec3 ambient_to_obj = vec_scalar(object->color, world->ambient_light.intensity);
-	t_vec3 light_to_obj = vec_scalar(object->color, intensity);
-	// color_1 = vec_add(object->color, vec_scalar(world->light.color, intensity));
-	// color_2 = vec_add(vec_scalar(object->color, world->ambient_light.intensity), vec_scalar(world->ambient_light.color, world->ambient_light.intensity));
-	// color = vec_add(color_1, color_2);
+	t_vec3 ambient_to_obj = vec_scalar(object->color, world->ambient_light.intensity * K_AMBIENT);
+	t_vec3 light_to_obj = vec_scalar(object->color, intensity * K_DIFFUSE);
 	color = vec_add(light_to_obj, ambient_to_obj);
 	color = vec_add(color, light_global);
-	// if (check_rgb_value(color))
-	// {
-	// 	color = vec_divide(color, vec_len(color));
-	// 	color = vec_scalar(color, 255.0 );
-	// }
 	return get_hex_color(color);
 }
 
