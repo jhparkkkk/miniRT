@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:48:49 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/25 16:40:03 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/30 16:08:40 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ t_hit_point hit_sp(t_ray *ray, t_object *sp)
 		hit.root = t2;
     // else
     // {
-    //    res = 
     //    hit.x = ray->origin.x + res * ray->direction.x;
     //    hit.y = ray->origin.y + res * ray->direction.y;
     //    hit.z = ray->origin.z + res * ray->direction.z;
