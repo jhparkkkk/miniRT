@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_ray.c                                          :+:      :+:    :+:   */
+/*   vec_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/24 13:16:54 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/29 15:48:19 by jeepark          ###   ########.fr       */
+/*   Created: 2022/09/29 15:56:55 by jeepark           #+#    #+#             */
+/*   Updated: 2022/09/29 15:58:07 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-void	set_ray(t_ray *ray, t_cam cam, int i, int j)
+t_vec3 vec_init(double x, double y, double z)
 {
-	ray->origin = cam.position;
-	ray->direction.x = j - SIZEX / 2;
-	ray->direction.y = i - SIZEY / 2;
-	ray->direction.z = -10.0;
-	ray->direction = vec_add(ray->direction, cam.direction);
-
+    t_vec3 res;
+    
+    res.x = x;
+    res.y = y;
+    res.z = z;
+    return (res);
 }

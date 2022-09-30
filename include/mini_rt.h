@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/28 13:45:23 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/09/29 16:06:19 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ t_object		**get_objects_list(char **scene);
 
 
 /* MLX */
-t_view			**init_view(t_world *world, t_view **view);
+void			init_view(t_world *world);
 void			init_mlx(t_mlx *mlx);
 void			put_pix(t_mlx *mlx, int x, int y, int color);
 
@@ -167,6 +167,8 @@ t_vec3			vec_scalar(t_vec3 v1, double scalar);
 t_vec3			vec_divide(t_vec3 v, double scalar);
 double			vec_len(t_vec3 v);
 t_vec3			vec_normal(t_vec3 v);
+t_vec3			vec_init(double x, double y, double z);
+
 
 void			print_sp(t_object sp);
 
