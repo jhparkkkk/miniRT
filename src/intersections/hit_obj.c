@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_obj.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 11:10:13 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/25 17:29:57 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/01 16:03:49 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	hit_obj(t_ray *ray, t_world *world)
 	while (world->objects[i])
 	{
 		hit = world->objects[i]->intersect(ray, world->objects[i]);
-		if (hit.status)
+		if (hit.status && hit.root > M_E) // si on met epsilon la, ca fait des trucs chelous
 		{
 			if (hit.root < root_min)
 			{
