@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:48:49 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/01 16:00:59 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/01 17:26:28 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_hit_point hit_sp(t_ray *ray, t_object *sp)
     hit.b = 2.0 * vec_dot(hit.oc, ray->direction);
     hit.c = vec_dot(hit.oc, hit.oc) - sp->radius * sp->radius;
     discr = hit.b * hit.b - 4.0 * hit.a * hit.c;
-    if (discr < 0.0)
+    if (discr < M_E)
 	{
 		hit.status = 0;
         return (hit);
