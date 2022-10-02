@@ -59,6 +59,7 @@ SRCS     	+=	main.c \
 					vec_divide.c \
 					vec_len.c \
 					vec_normal.c \
+					vec_init.c \
 					print_sp.c \
 				} \
 				${addprefix mlx/, \

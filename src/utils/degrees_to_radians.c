@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_ray.c                                          :+:      :+:    :+:   */
+/*   degrees_to_radians.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/24 13:16:54 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/02 12:54:57 by jeepark          ###   ########.fr       */
+/*   Created: 2022/10/01 15:44:57 by jeepark           #+#    #+#             */
+/*   Updated: 2022/10/01 15:45:29 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-void	set_ray(t_ray *ray, t_cam cam, int i, int j)
+double	degrees_to_radians(double degrees)
 {
-	ray->origin = cam.position;
-	ray->direction.x = j - SIZEX / 2;
-	ray->direction.y = i - SIZEY / 2;
-	ray->direction.z = 10.0;
-	ray->direction = vec_add(ray->origin, ray->direction);
-
+	return (degrees * M_PI / 180.0);
 }

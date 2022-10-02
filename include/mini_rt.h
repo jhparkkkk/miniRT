@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/29 14:25:13 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/02 12:26:25 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 /* Macros */
 
 # define _USE_MATH_DEFINES 
-# define SIZEX 1920
-# define SIZEY 1080
+# define SIZEX 1920.0
+# define SIZEY 1080.0
 # define SPHERE 1
 # define PLANE 2
 # define CYLINDER 3
@@ -172,6 +172,7 @@ t_vec3			vec_scalar(t_vec3 v1, double scalar);
 t_vec3			vec_divide(t_vec3 v, double scalar);
 double			vec_len(t_vec3 v);
 t_vec3			vec_normal(t_vec3 v);
+t_vec3 			vec_init(double x, double y, double z);
 
 void			print_sp(t_object sp);
 
