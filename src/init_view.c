@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 12:05:49 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/04 15:56:54 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/04 18:08:15 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ void    print_matrix(double **mat)
 
 
 
-void    init_view(t_world *world)
+double  **init_view(t_world *world)
 {
     t_vec3  camera_target;
     t_vec3  camera_right;
@@ -200,5 +200,6 @@ void    init_view(t_world *world)
     printf("\n");
 
     print_matrix(lookat);
+    return(lookat);
     
 }
