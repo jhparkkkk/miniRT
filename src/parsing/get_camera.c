@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:16:19 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/04 14:02:26 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/04 17:38:35 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static double	get_vfov(double hfov)
 	
 	double	vfov;
 	
-	if (hfov == 180)
-		return (180);
+	if (hfov == 180.0)
+		return (180.0);
 	hfov = degrees_to_radians(hfov);
-	vfov = 2 * atan((0.5 * SIZEY) / (0.5 * SIZEX / tan(hfov / 2)));
-	return (vfov * (180/ M_PI));
+	vfov = 2.0 * atan((0.5 * (double)SIZEY) / (0.5 * (double)SIZEX / tan(hfov / 2.0)));
+	return (vfov * (180.0/ M_PI));
 }
 
 
@@ -33,7 +33,7 @@ static double	get_hfov(char *line)
 	j = 0;
 	jump_spaces(line, &j);
 	ret = ft_atof(line + j);
-	if (check_double(line + j) || ret < 0 || ret > 180.0)
+	if (check_double(line + j) || ret < 0.0 || ret > 180.0)
 	{
 		ft_putstr_fd("Something is wrong with the field of view\n", 2);
 		ft_memory(0, 0);

@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/04 14:24:24 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/04 17:30:13 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,7 @@ int				hit_obj(t_ray *ray, t_world *world);
 t_hit_point		hit_sp(t_ray *ray, t_object *sp);
 double			compute_lighting(t_ray *ray, t_object *sp, t_world *world);
 int				compute_color(t_ray *ray, t_object *object, t_world *world);
-t_ray			set_ray(t_cam cam, int x, int y, t_viewport viewport);
+t_ray			set_ray(t_cam cam, double x, double y, t_viewport viewport);
 t_viewport		get_viewport(t_cam cam);
 
 
