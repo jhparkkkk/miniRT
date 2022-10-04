@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 12:05:49 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/02 14:32:03 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/04 11:06:51 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void    init_view(t_world *world)
     
     camera_target = vec_init(0.0,0.0,0.0);
 
-    camera_direction = vec_normal(vec_substract(world->cam.position, camera_target));
+    camera_direction = vec_normalize(vec_substract(world->cam.position, camera_target));
 
     up = vec_init(0.0, 1.0, 0.0);
 

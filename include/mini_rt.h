@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/02 13:46:19 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/04 14:24:24 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,12 +113,22 @@ typedef struct s_view
 	t_vec3	color;
 }			t_view;
 
+typedef struct s_viewport
+{
+	t_vec3	dot;
+	t_vec3	color;
+	t_vec3	lower_left_corner;
+	t_vec3	horizontal;
+	t_vec3	vertical;
+}			t_viewport;
+
 typedef struct s_world 
 {
 	t_cam			cam;
 	t_light			light;
 	t_ambient_light ambient_light;
 	t_object		**objects;
+	int				nb_obj;
 } t_world;
 
 typedef struct s_mlx
@@ -148,11 +158,11 @@ double			get_specular_exponent(char *line, int *idx);
 t_vec3			parse_position(char *line, int *idx);
 t_vec3			parse_direction(char *line, int *idx);
 
-t_object		**get_objects_list(char **scene);
+t_object 		**get_objects_list(char **scene, t_world *world);
 
 
 /* MLX */
-t_view			**init_view(t_world *world, t_view **view);
+void			init_view(t_world *world);
 void			init_mlx(t_mlx *mlx);
 void			put_pix(t_mlx *mlx, int x, int y, int color);
 
@@ -171,8 +181,10 @@ t_vec3			vec_add(t_vec3 v1, t_vec3 v2);
 t_vec3			vec_scalar(t_vec3 v1, double scalar);
 t_vec3			vec_divide(t_vec3 v, double scalar);
 double			vec_len(t_vec3 v);
+t_vec3			vec_init(double x, double y, double z);
 t_vec3			vec_normalize(t_vec3 vec);
 void			print_sp(t_object sp);
+double			degrees_to_radians(double degrees);
 
 /* Mini Raytracing */
 void    		draw_world(t_world *world, t_mlx *mlx);
@@ -180,7 +192,8 @@ int				hit_obj(t_ray *ray, t_world *world);
 t_hit_point		hit_sp(t_ray *ray, t_object *sp);
 double			compute_lighting(t_ray *ray, t_object *sp, t_world *world);
 int				compute_color(t_ray *ray, t_object *object, t_world *world);
-void			set_ray(t_ray *ray, t_cam cam, int i, int j);
+t_ray			set_ray(t_cam cam, int x, int y, t_viewport viewport);
+t_viewport		get_viewport(t_cam cam);
 
 
 #endif 

@@ -28,6 +28,7 @@ SRCS     	+=	main.c \
 				init_view.c \
 				set_ray.c \
 				draw_world.c \
+				get_viewport.c \
 				${addprefix parsing/, \
 					check_filename.c \
 					get_scene.c \
@@ -58,8 +59,10 @@ SRCS     	+=	main.c \
 					vec_scalar.c \
 					vec_divide.c \
 					vec_len.c \
+					vec_init.c \
 					vec_normalize.c \
 					print_sp.c \
+					deg_to_rad.c \
 				} \
 				${addprefix mlx/, \
 					init_mlx.c \

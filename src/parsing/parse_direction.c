@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_direction.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 15:14:06 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/25 16:40:03 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/04 14:29:10 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ static double	get_coordinates(char *data)
 {
 	double	ret;
 
+	if (!data)
+	{
+		ft_putstr_fd("Something is wrong with the direction\n", 2);
+		ft_memory(0, 0);
+	}
 	ret = ft_atof(data);
 	if (check_double(data) || !(ret >= -1.0 && ret <= 1.0))
 	{

@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 13:35:03 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/25 11:17:59 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/04 14:23:39 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static t_object	*get_object(char *line)
 	return (new_object);
 }
 
-static int	count_objects(char **scene)
+static int	count_objects(char **scene, t_world *world)
 {
 	int			i;
 	int			j;
@@ -57,10 +57,11 @@ static int	count_objects(char **scene)
 			&& scene[i][j] != 'L')
 			nb++;
 	}
+	world->nb_obj = nb;
 	return (nb);
 }
 
-t_object **get_objects_list(char **scene)
+t_object **get_objects_list(char **scene, t_world *world)
 {
 	int			i;
 	int			j;
@@ -72,7 +73,7 @@ t_object **get_objects_list(char **scene)
 	idx = 0;
 	objects = NULL;
 
-	objects = ft_memory(sizeof(t_object *), count_objects(scene) + 1);
+	objects = ft_memory(sizeof(t_object *), count_objects(scene, world) + 1);
 	while (scene[++i])
 	{
 		j = 0;
