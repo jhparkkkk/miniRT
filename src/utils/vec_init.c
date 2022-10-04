@@ -5,19 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/01 14:10:52 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/01 14:11:58 by jeepark          ###   ########.fr       */
+/*   Created: 2022/10/04 11:04:10 by cgosseli          #+#    #+#             */
+/*   Updated: 2022/10/04 14:59:52 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-t_vec3 vec_init(double x, double y, double z)
+t_vec3	vec_init(double x, double y, double z)
 {
-    t_vec3 res;
+	t_vec3 vec;
 
-    res.x = x;
-    res.y = y;
-    res.z = z;
-    return(res);
+	vec.x = x;
+	vec.y = y;
+	vec.z = z;
+	return (vec);
 }

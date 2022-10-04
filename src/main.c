@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 15:31:59 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/02 14:42:18 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/04 15:00:02 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ int main(int ac, char **av)
 	int		fd;
 	char	**scene;
 	t_world *world;
+	// t_view	**view;
 	t_mlx	mlx;
 	
+	// view = NULL;
 	world = ft_memory(sizeof(t_world), 1);
 	if (ac != 2)
 	{
@@ -33,7 +35,7 @@ int main(int ac, char **av)
 	world->cam = get_camera(scene);
 	get_light(&world->light, scene);
 	world->ambient_light = get_ambient_light(scene);
-	world->objects = get_objects_list(scene);
+	world->objects = get_objects_list(scene, world);
 	
 	init_view(world);
 	init_mlx(&mlx);
@@ -57,7 +59,7 @@ int main(int ac, char **av)
 	
 	/* prirnting obj */
 	int	i = 0;
-	while (world->objects[i])
+	while (i < world->nb_obj)
 	{
 		world->objects[i]->print_object(*world->objects[i]);
 		i++;
@@ -110,3 +112,5 @@ int main(int ac, char **av)
 	ft_memory(0, 0);
     return 0;
 }
+
+//segfault quand 0,,0 

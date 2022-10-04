@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   degrees_to_radians.c                               :+:      :+:    :+:   */
+/*   deg_to_rad.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/01 15:44:57 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/01 15:45:29 by jeepark          ###   ########.fr       */
+/*   Created: 2022/10/04 14:01:44 by cgosseli          #+#    #+#             */
+/*   Updated: 2022/10/04 14:02:08 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 double	degrees_to_radians(double degrees)
 {
-	return (degrees * M_PI / 180.0);
+	return degrees * M_PI / 180.0;
 }

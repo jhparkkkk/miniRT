@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 12:05:49 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/02 14:40:38 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/04 15:56:54 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,53 @@ static void fill_mat_translation(double **mat, t_vec3 camera_pos)
 
 }
 
+double  **mat_multiply(double **mat_1, double **mat_2, double **mat_res)
+{
+    int i;
+    int j;
+    int k;
+    int sum;
+    
+    i = 0;
+    while (mat_1[i] && i < 4)
+    {
+        j = 0;
+        while (mat_2[j] && j < 4)
+        {
+            k = 0;
+            sum = 0;
+            while (k < 4)
+            {
+                sum += mat_1[i][k] * mat_2[k][j];
+                k++;        
+            }
+            mat_res[i][j] = sum;
+            j++;
+        }
+        i++;
+    }
+    return (mat_res);
+}
+
+void    print_matrix(double **mat)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while(i < 4)
+    {
+        j = 0;
+        while(j < 4)
+        {
+            printf("%f ", mat[i][j]);
+            j++;
+        }
+        printf("\n");
+        i++;
+    }
+}
+
 
 
 
@@ -109,7 +156,7 @@ void    init_view(t_world *world)
 
     double  **mat_rotation;
     double  **mat_translation;
-    
+    double  **lookat;
 
 
     t_vec3  camera_direction;
@@ -117,11 +164,11 @@ void    init_view(t_world *world)
     
     camera_target = vec_init(0.0,0.0,0.0);
 
-    camera_direction = vec_normalize(vec_substract(world->cam.position, camera_target));
+    camera_direction = world->cam.direction;
 
     up = vec_init(0.0, 1.0, 0.0);
 
-    camera_right = vec_cross(up, camera_direction);
+    camera_right = vec_normalize(vec_cross(up, camera_direction));
     
     camera_up = vec_cross(camera_direction, camera_right);
     
@@ -138,4 +185,20 @@ void    init_view(t_world *world)
         mat_translation[i] = ft_memory(sizeof(double), 4);
     
     fill_mat_translation(mat_translation, world->cam.position);
+    
+    lookat = ft_memory(sizeof(double *), 4);
+    i = -1;
+    while(++i < 4)
+        lookat[i] = ft_memory(sizeof(double), 4);
+    
+    lookat = mat_multiply(mat_rotation, mat_translation, lookat);
+
+    print_matrix(mat_rotation);
+    printf("\n");
+
+    print_matrix(mat_translation);
+    printf("\n");
+
+    print_matrix(lookat);
+    
 }
