@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:38:39 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/02 14:25:30 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/02 14:43:08 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	compute_camera_ray(t_ray *ray, double n_i, double n_j, t_vec3 cam_ri
 	image_point = vec_add(image_point, cam_dir);
 	
 	ray->direction = vec_substract(image_point, cam_pos);
-	ray->direction = vec_normal(ray->direction);
+	ray->direction = vec_normalize(ray->direction);
 
 }
 
@@ -51,7 +51,7 @@ void    draw_world(t_world *world, t_mlx *mlx)
 	camera_position = world->cam.position;
 	
 	camera_direction = vec_substract(world->cam.direction, camera_position);
-	camera_direction = vec_normal(camera_direction);
+	camera_direction = vec_normalize(camera_direction);
 
 	camera_right = vec_cross(vec_init(0.0, 1.0, 0.0), camera_direction);
 	

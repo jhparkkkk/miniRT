@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 15:31:59 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/25 11:32:00 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/02 14:42:18 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@ int main(int ac, char **av)
 	int		fd;
 	char	**scene;
 	t_world *world;
-	t_view	**view;
 	t_mlx	mlx;
 	
-	view = NULL;
 	world = ft_memory(sizeof(t_world), 1);
 	if (ac != 2)
 	{
@@ -37,7 +35,7 @@ int main(int ac, char **av)
 	world->ambient_light = get_ambient_light(scene);
 	world->objects = get_objects_list(scene);
 	
-	view = init_view(world, view);
+	init_view(world);
 	init_mlx(&mlx);
 	
 	// print_world(view);

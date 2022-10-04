@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_normal.c                                       :+:      :+:    :+:   */
+/*   vec_normalize.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 15:54:27 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/02 14:43:08 by jeepark          ###   ########.fr       */
+/*   Created: 2022/10/01 14:17:48 by cgosseli          #+#    #+#             */
+/*   Updated: 2022/10/01 14:18:40 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-t_vec3  vec_normalize(t_vec3 v)
+t_vec3	vec_normalize(t_vec3 vec)
 {
-    t_vec3 res;
-
-    res = vec_divide(v, vec_len(v));
-    return (res);
+	return (vec_divide(vec, vec_len(vec)));
 }
