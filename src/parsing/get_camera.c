@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_camera.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:16:19 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/04 14:02:26 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:34:42 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static double	get_vfov(double hfov)
 	double	vfov;
 	
 	if (hfov == 180)
-		return (180);
+		return (180.0);
 	hfov = degrees_to_radians(hfov);
-	vfov = 2 * atan((0.5 * SIZEY) / (0.5 * SIZEX / tan(hfov / 2)));
+	vfov = 2.0 * atan((0.5 * SIZEY) / (0.5 * SIZEX / tan(hfov / 2.0)));
 	return (vfov * (180/ M_PI));
 }
 

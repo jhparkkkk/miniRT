@@ -6,41 +6,40 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 13:16:54 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/04 18:17:12 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/05 16:39:11 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-t_vec3 vec_mat_multiply(t_vec3 vec, double **mat)
+t_vec3	mat_multiply_vec(double **mat, t_vec3 vec)
 {
-	t_vec3	vec_res;
-	int		i;
-	int		j;
+	t_vec3 res;
 
-	i = 0;
-	while (i < 4)
-	{
-		j = 0;
-		while (j < 4)
-		{
-			
-		}
-	}	
+	res.x = mat[0][0] * vec.x + mat[0][1] * vec.y + mat[0][2] * vec.z + mat[0][3];
+	res.y = mat[1][0] * vec.x + mat[1][1] * vec.y + mat[1][2] * vec.z + mat[1][3];
+	res.z = mat[2][0] * vec.x + mat[2][1] * vec.y + mat[2][2] * vec.z + mat[2][3];
+
+	return (res);
 }
 
-t_ray	set_ray(t_cam cam, int x, int y, t_viewport viewport)
+t_ray	set_ray(t_cam cam, int x, int y)
 {
 	t_ray	ray;
 	
-	double imageAspectRatio = (double)SIZEX / (double)SIZEY;
-    double Px = (2.0 * ((x + 0.5) / (double)SIZEX) - 1.0) * tan(cam.vfov / 2.0 * M_PI / 180.0) * imageAspectRatio; 
-    double Py = (1.0 - 2.0 * ((y + 0.5) / (double)SIZEY) * tan(cam.vfov / 2.0 * M_PI / 180.0));
+	double	scale = tan(degrees_to_radians(cam.vfov * 0.5));
+	double	imageAspectRatio = (double)SIZEX / (double)SIZEY;
+    // double	Px = (2.0 * (x + 0.5) / (double)SIZEX - 1.0) * imageAspectRatio * scale; 
+    // double	Py = (1.0 - 2.0 * (y + 0.5) / (double)SIZEY) * scale;
 	
+	double px = (2 * (x + 0.5) / (double)SIZEX - 1) * imageAspectRatio * scale; 
+    double py = (1 - 2 * (y + 0.5) / (double)SIZEY) * scale; 
+
 	ray.origin = cam.position;
-	
-	ray.direction = vec_mat_multiply(vec_init(Px, Py, -1), cam.lookat);
-	
+	// ray.origin = mat_multiply_vec(cam.lookat, ray.origin);
+	// ray.origin = vec_normalize(ray.origin);
+
+	ray.direction = mat_multiply_vec(cam.lookat, vec_init(px, py, -1));
 	ray.direction = vec_normalize(ray.direction);
 	
 	return (ray);

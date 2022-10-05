@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 12:05:49 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/04 18:08:15 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/05 16:32:34 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ void    print_matrix(double **mat)
         j = 0;
         while(j < 4)
         {
-            printf("%f ", mat[i][j]);
+            printf("%f  ", mat[i][j]);
             j++;
         }
         printf("\n");
@@ -162,9 +162,9 @@ double  **init_view(t_world *world)
     t_vec3  camera_direction;
     t_vec3  up;    
     
-    camera_target = vec_init(0.0,0.0,0.0);
-
-    camera_direction = world->cam.direction;
+    camera_target = world->cam.direction;      // vec(0.0, 0.0, 0.0) ? openGL
+    
+    camera_direction = vec_normalize(vec_substract(camera_target, world->cam.position));
 
     up = vec_init(0.0, 1.0, 0.0);
 
@@ -193,13 +193,28 @@ double  **init_view(t_world *world)
     
     lookat = mat_multiply(mat_rotation, mat_translation, lookat);
 
+    printf("\n--rotation matrix--\n");
     print_matrix(mat_rotation);
     printf("\n");
 
+    printf("\n--translation matrix--\n");
     print_matrix(mat_translation);
     printf("\n");
 
+    printf("\n--lookat matrix (cam to world)--\n");
     print_matrix(lookat);
+
+    world->cam.right = camera_right;
+    world->cam.up = camera_up;
+    world->cam.dir = camera_direction;
+    
+    t_vec3  w_prim;
+    w_prim = vec_scalar(camera_right, (-SIZEX * 0.5));
+    w_prim = vec_add(w_prim, vec_scalar(camera_up, (-SIZEY * 0.5)));
+    w_prim = vec_substract(w_prim, vec_scalar(camera_direction, ((SIZEY * 0.5) / tan(degrees_to_radians(world->cam.hfov * 0.5)))));
+    
+    world->cam.w_prim = w_prim; 
+
     return(lookat);
     
 }

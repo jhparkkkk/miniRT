@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/04 18:11:19 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/05 13:39:55 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,13 @@ typedef struct s_cam
 {
 	t_vec3	position;
 	t_vec3	direction;
-	double		hfov;
-	double		vfov;
+	double	hfov;
+	double	vfov;
 	double	**lookat;
+	t_vec3	right;
+	t_vec3	up;
+	t_vec3	dir;
+	t_vec3	w_prim;
 } t_cam;
 
 typedef struct s_light
@@ -190,7 +194,7 @@ int				hit_obj(t_ray *ray, t_world *world);
 t_hit_point		hit_sp(t_ray *ray, t_object *sp);
 double			compute_lighting(t_ray *ray, t_object *sp, t_world *world);
 int				compute_color(t_ray *ray, t_object *object, t_world *world);
-t_ray			set_ray(t_cam cam, int x, int y, t_viewport viewport);
+t_ray			set_ray(t_cam cam, int x, int y);
 t_viewport		get_viewport(t_cam cam);
 double			**init_view(t_world *world);
 
