@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 13:16:54 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/05 16:39:11 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/05 18:41:59 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,20 @@ t_ray	set_ray(t_cam cam, int x, int y)
 {
 	t_ray	ray;
 	
-	double	scale = tan(degrees_to_radians(cam.vfov * 0.5));
-	double	imageAspectRatio = (double)SIZEX / (double)SIZEY;
-    // double	Px = (2.0 * (x + 0.5) / (double)SIZEX - 1.0) * imageAspectRatio * scale; 
-    // double	Py = (1.0 - 2.0 * (y + 0.5) / (double)SIZEY) * scale;
-	
-	double px = (2 * (x + 0.5) / (double)SIZEX - 1) * imageAspectRatio * scale; 
-    double py = (1 - 2 * (y + 0.5) / (double)SIZEY) * scale; 
-
 	ray.origin = cam.position;
-	// ray.origin = mat_multiply_vec(cam.lookat, ray.origin);
-	// ray.origin = vec_normalize(ray.origin);
+	ray.direction.x = (double)x - (double)SIZEX / 2.0;
+	ray.direction.y = (double)y - (double)SIZEY / 2.0;
+	ray.direction.z = -10.0;
 
-	ray.direction = mat_multiply_vec(cam.lookat, vec_init(px, py, -1));
+	// ray.direction.x = (double)x ;
+	// ray.direction.y = (double)y ;
+	// ray.direction.z = -10.0;
+
+	// ray.direction = mat_multiply_vec(cam.mat_projection, ray.direction);
+	
+	ray.direction = vec_substract(ray.direction, cam.direction);
+	
+	
 	ray.direction = vec_normalize(ray.direction);
 	
 	return (ray);

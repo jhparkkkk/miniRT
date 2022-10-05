@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/05 13:39:55 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/05 18:00:45 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ typedef struct s_cam
 	double	hfov;
 	double	vfov;
 	double	**lookat;
+	double	**mat_identity;
+	double	**mat_projection;
 	t_vec3	right;
 	t_vec3	up;
 	t_vec3	dir;

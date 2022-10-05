@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:38:39 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/05 16:16:33 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/05 17:25:35 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,7 @@ void    draw_world(t_world *world, t_mlx *mlx)
 	int		obj_idx;
     y = 0;
 	(void)world;
-	
-	double rad = degrees_to_radians(50.0);
-	double distance = (SIZEX * 0.5) * (1.0 * tan(rad));
-	ray.origin.x = SIZEY * 0.5;
-	ray.origin.y = SIZEX * 0.5;
-	ray.origin.z = -distance;
+
 	
     while (y < SIZEY)
 	{

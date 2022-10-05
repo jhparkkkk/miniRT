@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 12:05:49 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/05 16:32:34 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/05 18:24:17 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,50 @@ static void put_last_row(double *mat)
     mat[1] = 0.0;
     mat[2] = 0.0;
     mat[3] = 1.0;   
+}
+
+static void fill_mat_projection(double **mat, t_world *world)
+{
+    double scale = 1.0 / tan(degrees_to_radians(world->cam.hfov * 0.5f) * (M_PI / 180.0));
+    double far = 100.0;
+    double near = 0.1;
+    double ratio = (double)SIZEX / (double)SIZEY;
+    mat[0][0] = scale / ratio;
+    mat[0][1] = 0.0;
+    mat[0][2] = 0.0;
+    mat[0][3] = 0.0;
+
+    mat[1][0] = 0.0;
+    mat[1][1] = scale;
+    mat[1][2] = 0.0;
+    mat[1][3] = 0.0;
+
+    mat[2][0] = 0.0;
+    mat[2][1] = 0.0;
+    mat[2][2] = -(far + near) / (far - near);
+    mat[2][3] = -2 * far * near / (far - near);
+
+    mat[3][0] = 0.0;
+    mat[3][1] = 0.0;
+    mat[3][2] = -1.0;
+    mat[3][3] = 0.0;
+
+}
+
+
+static void fill_mat_identity(double **mat)
+{
+    int i;
+
+    i = 0;
+    put_vec(mat[i], vec_init(1.0, 0.0, 0.0));
+    mat[i][3] = 0.0;
+    put_vec(mat[++i], vec_init(0.0, 1.0, 0.0));
+    mat[i][3] = 0.0;
+    put_vec(mat[++i], vec_init(0.0, 0.0, 1.0));
+    mat[i][3] = 0.0;
+    put_vec(mat[++i], vec_init(0.0, 0.0, 0.0));
+    mat[i][3] = 1.0;
 }
 
 
@@ -157,6 +201,8 @@ double  **init_view(t_world *world)
     double  **mat_rotation;
     double  **mat_translation;
     double  **lookat;
+    double  **identity;
+    double  **projection;
 
 
     t_vec3  camera_direction;
@@ -215,6 +261,31 @@ double  **init_view(t_world *world)
     
     world->cam.w_prim = w_prim; 
 
+    identity = ft_memory(sizeof(double *), 4);
+    i = -1;
+    while(++i < 4)
+        identity[i] = ft_memory(sizeof(double), 4);
+
+    fill_mat_identity(identity);
+    
+    printf("\n--identity matrix--\n");
+    print_matrix(identity);
+    
+    world->cam.mat_identity = identity;
+
+    projection = ft_memory(sizeof(double *), 4);
+    i = -1;
+    while(++i < 4)
+        projection[i] = ft_memory(sizeof(double), 4);
+    
+    fill_mat_projection(projection, world);
+
+    printf("\n--projection matrix--\n");
+
+    print_matrix(projection);
+
+    world->cam.mat_projection = projection;
+    
     return(lookat);
     
 }
