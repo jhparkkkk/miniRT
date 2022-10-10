@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 13:16:54 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/09 22:16:38 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/10 12:22:58 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,39 +28,19 @@ t_ray	set_ray(t_cam cam, int x, int y)
 	t_ray	ray;
 	
 	double imageAspectRatio = (double)SIZEX / (double)SIZEY;  //assuming width > height 
-	double angle = tan(M_PI * 0.5 * cam.hfov / 180.); 
-	double Px = (2.0 * ((x + 0.5) * (1.0 / SIZEX)) - 1.0) * angle * imageAspectRatio; 
-	double Py = (1.0 - 2.0 * ((y + 0.5) * (1.0 / SIZEY))) * angle;
+	double angle = tan((0.5 * cam.hfov) * (M_PI / 180.0)); 
+	double Px = (2.0 * (((double)x + 0.5) * (1.0 / (double)SIZEX)) - 1) * angle * imageAspectRatio; 
+	double Py = (1.0 - 2.0 * (((double)y + 0.5) * (1.0 / (double)SIZEY))) * angle;
 
 	ray.origin = cam.position;
 
-	ray.direction.x = Px;
-	ray.direction.y = Py;
+	ray.direction.x = -Px;
+	ray.direction.y = -Py;
 	ray.direction.z = -1.0;
 	
-	ray.direction = vec_substract(ray.direction, ray.origin);
+	// ray.direction = vec_substract(ray.direction, ray.origin);
 	
 	ray.direction = vec_normalize(ray.direction);
 	
 	return (ray);
 }
-
-/*
-Imaginon un "ECRan" 8 * 6, le point & correspong(<=>)
-imaginon, le centre C(xc,yc,zc); ainci que deux vecteur de dirrection
-parrelelles a notre plan X(x',y',z') && Y(x'',y'',z'')
-
-& = C - (X * longuer/2) + (Y * longuer/2) <=> C - (X * 8/2) + (Y * 6 / 2)
-
-&x =
-&y =
-&z =
-
-&#######
-########
-########
-########
-########
-########
-
-*/

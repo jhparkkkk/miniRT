@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 12:05:49 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/05 18:24:17 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/10 13:54:40 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,9 +194,9 @@ void    print_matrix(double **mat)
 
 double  **init_view(t_world *world)
 {
-    t_vec3  camera_target;
-    t_vec3  camera_right;
-    t_vec3  camera_up;
+    t_vec3  forward;
+    t_vec3  right;
+    t_vec3  up;
 
     double  **mat_rotation;
     double  **mat_translation;
@@ -208,22 +208,22 @@ double  **init_view(t_world *world)
     t_vec3  camera_direction;
     t_vec3  up;    
     
-    camera_target = world->cam.direction;      // vec(0.0, 0.0, 0.0) ? openGL
+    forward = world->cam.direction;      // vec(0.0, 0.0, 0.0) ? openGL
     
-    camera_direction = vec_normalize(vec_substract(camera_target, world->cam.position));
+    camera_direction = vec_normalize(vec_substract(forward, world->cam.position));
 
     up = vec_init(0.0, 1.0, 0.0);
 
-    camera_right = vec_normalize(vec_cross(up, camera_direction));
+    right = vec_normalize(vec_cross(up, camera_direction));
     
-    camera_up = vec_cross(camera_direction, camera_right);
+    up = vec_cross(camera_direction, right);
     
     mat_rotation = ft_memory(sizeof(double *), 4);
     int i = -1;
     while(++i < 4)
         mat_rotation[i] = ft_memory(sizeof(double), 4);
     
-    fill_mat_rotation(mat_rotation, camera_right, camera_up, camera_direction);
+    fill_mat_rotation(mat_rotation, right, up, camera_direction);
     
     mat_translation = ft_memory(sizeof(double *), 4);
     i = -1;
@@ -251,12 +251,12 @@ double  **init_view(t_world *world)
     print_matrix(lookat);
 
     world->cam.right = camera_right;
-    world->cam.up = camera_up;
+    world->cam.up = up;
     world->cam.dir = camera_direction;
     
     t_vec3  w_prim;
     w_prim = vec_scalar(camera_right, (-SIZEX * 0.5));
-    w_prim = vec_add(w_prim, vec_scalar(camera_up, (-SIZEY * 0.5)));
+    w_prim = vec_add(w_prim, vec_scalar(up, (-SIZEY * 0.5)));
     w_prim = vec_substract(w_prim, vec_scalar(camera_direction, ((SIZEY * 0.5) / tan(degrees_to_radians(world->cam.hfov * 0.5)))));
     
     world->cam.w_prim = w_prim; 

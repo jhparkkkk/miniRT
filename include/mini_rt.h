@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/05 18:00:45 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/10 13:36:27 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define SHINY 12
 # define ESC 65307
 # define K_AMBIENT 0.1
-# define K_DIFFUSE 1
+# define K_DIFFUSE 0.5
 
 
 /* Structures */
