@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/10 13:36:27 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/10 15:12:34 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_cam
 	double	**lookat;
 	double	**mat_identity;
 	double	**mat_projection;
+	// double	lookat[4][3];
 	t_vec3	right;
 	t_vec3	up;
 	t_vec3	dir;
@@ -196,9 +197,12 @@ int				hit_obj(t_ray *ray, t_world *world);
 t_hit_point		hit_sp(t_ray *ray, t_object *sp);
 double			compute_lighting(t_ray *ray, t_object *sp, t_world *world);
 int				compute_color(t_ray *ray, t_object *object, t_world *world);
-t_ray			set_ray(t_cam cam, int x, int y);
+t_ray			set_ray(t_cam cam, int x, int y, double lookat[4][4]);
 t_viewport		get_viewport(t_cam cam);
-double			**init_view(t_world *world);
+void			mat_lookat(double mat[4][4], t_vec3 from, t_vec3 to);
+
+/* debug printing */
+void    print_matrix(double **mat);
 
 
 #endif 

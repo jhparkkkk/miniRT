@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:38:39 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/05 17:25:35 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/10 15:05:45 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void    draw_world(t_world *world, t_mlx *mlx)
 	int		x;
 	t_ray	ray;
 	int		obj_idx;
+	double	lookat[4][4];
     y = 0;
 	(void)world;
 
@@ -29,7 +30,7 @@ void    draw_world(t_world *world, t_mlx *mlx)
 		x = 0;
 		while (x <= SIZEX)
 		{
-			ray = set_ray(world->cam, x, y);
+			ray = set_ray(world->cam, x, y, lookat);
 			obj_idx = hit_obj(&ray, world);
 			if (obj_idx >= 0)
 			{
