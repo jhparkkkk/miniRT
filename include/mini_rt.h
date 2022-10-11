@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/05 18:00:45 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/11 14:25:16 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define SHINY 12
 # define ESC 65307
 # define K_AMBIENT 0.1
-# define K_DIFFUSE 1
+# define K_DIFFUSE 0.4
 
 
 /* Structures */
@@ -112,6 +112,7 @@ typedef struct s_object
 	void	(*print_object) (t_object obj);
 	int		surface;
 	double	specular_exponent;
+	double	k_spec;
 } t_object;
 
 typedef struct s_view

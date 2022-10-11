@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_sphere.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 14:55:39 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/04 17:13:26 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/11 15:26:43 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,14 @@ void	create_sphere(char *data, t_object *sphere)
 	sphere->print_object = &print_sp;
 	sphere->surface = get_surface(data + i, &i);
 	if (sphere->surface == SHINY)
+	{
 		sphere->specular_exponent = get_specular_exponent(data + i, &i);
+		sphere->k_spec = 10.0;
+	}
 	else
-		sphere->specular_exponent = -1;
+	{
+		sphere->specular_exponent = 10.0;
+		sphere->k_spec = 2.0;
+	}
 		
 }

@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 13:33:16 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/26 13:38:20 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:24:51 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ double	get_specular_exponent(char *line, int *idx)
 	j = 0;
 	jump_spaces(line, &j);
 	ret = ft_atof(line + j);
-	if (check_double(line + j) || ret <= 0)
+	if (check_double(line + j) || ret <= 0.0 || ret > 1001.0)
 	{
 		ft_putstr_fd("Something is wrong with the specular exponent\n", 2);
 		ft_memory(0, 0);

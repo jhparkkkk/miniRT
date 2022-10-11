@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_ray.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 13:16:54 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/09 22:16:38 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/10 11:51:49 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ t_ray	set_ray(t_cam cam, int x, int y)
 
 	ray.origin = cam.position;
 
-	ray.direction.x = Px;
-	ray.direction.y = Py;
+	ray.direction.x = -Px;
+	ray.direction.y = -Py;
 	ray.direction.z = -1.0;
 	
 	ray.direction = vec_substract(ray.direction, ray.origin);
