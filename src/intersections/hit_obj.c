@@ -6,13 +6,16 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 11:10:13 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/02 14:11:55 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/12 16:18:51 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-int	hit_obj(t_ray *ray, t_world *world)
+/*Returns -1 if the ray didn't intersect any object. Returns -2 if the ray
+intersected an object and there was a shadow. Else returns the idx of the
+intersected object.*/
+int	hit_obj(t_ray *ray, t_world *world, double min, double max, int	shadow)
 {
 	int			i;
 	int			idx;
@@ -26,14 +29,16 @@ int	hit_obj(t_ray *ray, t_world *world)
 	while (world->objects[i])
 	{
 		hit = world->objects[i]->intersect(ray, world->objects[i]);
-		if (hit.status && hit.root > M_E)
+		if (hit.status && hit.root > min && hit.root < max)
 		{
+			touch = 1;
 			if (hit.root < root_min)
 			{
+				if (shadow)
+					return (-2);
 				root_min = hit.root;
 				idx = i;
 			}
-			touch = 1;
 		}
 		i++;
 	}

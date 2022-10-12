@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/11 18:20:11 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/12 16:15:05 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,13 +193,16 @@ double			degrees_to_radians(double degrees);
 
 /* Mini Raytracing */
 void    		draw_world(t_world *world, t_mlx *mlx);
-int				hit_obj(t_ray *ray, t_world *world);
+int				hit_obj(t_ray *ray, t_world *world, double min, double max, int	shadow);
 t_hit_point		hit_sp(t_ray *ray, t_object *sp);
 double			compute_lighting(t_ray *ray, t_object *sp, t_world *world);
 int				compute_color(t_ray *ray, t_object *object, t_world *world);
 t_ray			set_ray(t_cam cam, int x, int y);
 t_viewport		get_viewport(t_cam cam);
 double			**init_view(t_world *world);
+
+/* Shadows */
+int	sp_shadows(t_vec3 point, t_vec3 light, t_world *world);
 
 
 #endif 

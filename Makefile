@@ -75,7 +75,10 @@ SRCS     	+=	main.c \
 				${addprefix lights/, \
 					compute_lighting.c \
 					compute_color.c \
-				} 
+				} \
+				${addprefix shadows/, \
+					sp_shadows.c \
+				}
 					
 				
 SRCS          := $(SRCS:%=$(SRCS_PATH)/%)

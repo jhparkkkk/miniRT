@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_world.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:38:39 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/05 17:25:35 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/12 16:32:03 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void    draw_world(t_world *world, t_mlx *mlx)
 		while (x <= SIZEX)
 		{
 			ray = set_ray(world->cam, x, y);
-			obj_idx = hit_obj(&ray, world);
+			obj_idx = hit_obj(&ray, world, __DBL_EPSILON__, INFINITY, 0);
 			if (obj_idx >= 0)
 			{
 				put_pix(mlx, x, y, compute_color(&ray, world->objects[obj_idx], world));
