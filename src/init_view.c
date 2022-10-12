@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 12:05:49 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/10 17:07:00 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/11 18:08:03 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ typedef double mat4[16];
 //     return (view);
 // }
 
-void    put_vec(double *mat, t_vec3 vec)
-{
-    mat[0] = vec.x;
-    mat[1] = vec.y;
-    mat[2] = vec.z;
-    mat[3] = 0.0;
-}
+// void    put_vec(double *mat, t_vec3 vec)
+// {
+//     mat[0] = vec.x;
+//     mat[1] = vec.y;
+//     mat[2] = vec.z;
+//     mat[3] = 0.0;
+// }
 
 // static void put_last_row(double *mat)
 // {
@@ -124,7 +124,7 @@ void    put_vec(double *mat, t_vec3 vec)
 //     put_last_row(mat[++i]);
 // }
 
-// static void fill_mat_translation(double **mat, t_vec3 camera_pos)
+// static void fill_mat_translation(double mat[4][4], t_vec3 camera_pos)
 // {
 //     int i;
 
@@ -142,7 +142,7 @@ void    put_vec(double *mat, t_vec3 vec)
 
 // }
 
-double  **mat_multiply(double **mat_1, double **mat_2, double **mat_res)
+void mat_multiply(double mat_1[4][4], double mat_2[4][4], double mat_res[4][4])
 {
     int i;
     int j;
@@ -150,10 +150,10 @@ double  **mat_multiply(double **mat_1, double **mat_2, double **mat_res)
     int sum;
     
     i = 0;
-    while (mat_1[i] && i < 4)
+    while (i < 4)
     {
         j = 0;
-        while (mat_2[j] && j < 4)
+        while (j < 4)
         {
             k = 0;
             sum = 0;
@@ -167,10 +167,10 @@ double  **mat_multiply(double **mat_1, double **mat_2, double **mat_res)
         }
         i++;
     }
-    return (mat_res);
+    // return (mat_res);
 }
 
-void    print_matrix(double **mat)
+void    print_matrix(double mat[4][4])
 {
     int i;
     int j;
@@ -198,15 +198,40 @@ void    mat_lookat(double mat[4][4], t_vec3 from, t_vec3 to)
     t_vec3  right;
     t_vec3  up;
     t_vec3  tmp;
-
+    
     forward = vec_normalize(vec_substract(from, to));
     tmp = vec_init(0.0, 1.0, 0.0);
     right = vec_cross(tmp, forward);
     up = vec_cross(forward, right);
 
-    mat[0][0] = right.x,   mat[0][1] = right.y,   mat[0][2] = right.z;
-    mat[1][0] = up.x,      mat[1][1] = up.y,      mat[1][2] = up.z;
-    mat[2][0] = forward.x, mat[2][1] = forward.y, mat[2][2] = forward.z;
-    mat[3][0] = from.x,    mat[3][1] = from.y,    mat[3][2] = from.z;
+
+    /* translation */ 
+    // double mat_trans[4][4];
+
+    // fill_mat_translation(mat_trans, from);
+
     
+   
+    /* rotation */
+    // double mat[4][4];
+
+    /* row major */
+    mat[0][0] = right.x,   mat[0][1] = right.y,   mat[0][2] = right.z,     mat[0][3] = 0.0;
+    mat[1][0] = up.x,      mat[1][1] = up.y,      mat[1][2] = up.z,        mat[1][3] = 0.0;
+    mat[2][0] = forward.x, mat[2][1] = forward.y, mat[2][2] = forward.z,   mat[2][3] = 0.0;
+    mat[3][0] = 0.0,       mat[3][1] = 0.0,       mat[3][2] = 0.0,         mat[3][3] = 1.0;
+
+
+    /* column major */
+    // mat[0][0] = right.x,   mat[0][1] = up.x,   mat[0][2] = forward.x,   mat[0][3] = 0.0;
+    // mat[1][0] = right.y,   mat[1][1] = up.y,   mat[1][2] = forward.y,   mat[1][3] = 0.0;
+    // mat[2][0] = right.z,   mat[2][1] = up.z,   mat[2][2] = forward.z,   mat[2][3] = 0.0;
+    // mat[3][0] = 0.0,       mat[3][1] = 0.0,    mat[3][2] = 0.0,         mat[3][3] = 1.0;
+   
+    /* final matrix */
+    // double mat_res[4][4];
+    
+
+    
+    // mat_multiply(mat, mat_trans, mat_res);    
 }

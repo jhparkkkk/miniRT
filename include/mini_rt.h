@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/10 15:12:34 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/11 17:46:05 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,7 @@ t_viewport		get_viewport(t_cam cam);
 void			mat_lookat(double mat[4][4], t_vec3 from, t_vec3 to);
 
 /* debug printing */
-void    print_matrix(double **mat);
+void    print_matrix(double mat[4][4]);
 
 
 #endif 
