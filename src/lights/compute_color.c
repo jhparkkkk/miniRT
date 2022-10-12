@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:48:38 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/10 16:36:06 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/12 13:51:26 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,16 @@ static	t_vec3 get_object_shade(t_vec3 color, double light_intensity,
 	return (vec_add(ambient_to_obj, light_to_obj));
 }
 
+// static t_vec3 get_amb(t_ambient_light ambient_light)
+// {
+// 	return(vec_scalar(ambient_light.color, K_AMBIENT * ambient_light.intensity));
+// }
+
+// static t_vec3 get_l(t_light light, double intensity)
+// {
+// 	return (vec_scalar(light.color, K_DIFFUSE * intensity));
+// }
+
 /*Returns the pixel color regarding the lights and ambient light in *world at
 *the impact of the *ray and the *object */
 int	compute_color(t_ray *ray, t_object *object, t_world *world)
@@ -59,4 +69,20 @@ int	compute_color(t_ray *ray, t_object *object, t_world *world)
 	color = vec_add(object_shade, light_global);
 	
 	return get_hex_color(color);
+
+/*Ca fait la meme chose*/
+	// t_vec3	light_color;
+	// t_vec3	object_color;
+	// double	intensity;
+
+	// (void)ray;
+	// (void)object;
+	// intensity = compute_lighting(ray, object, world);
+	
+	// light_color = vec_add(get_amb(world->ambient_light), get_l(world->light, intensity));
+	
+	// object_color = vec_scalar(object->color, world->ambient_light.intensity * K_AMBIENT
+	// 											+ intensity * K_DIFFUSE);
+	// return get_hex_color(vec_add(light_color, object_color));
+	
 }

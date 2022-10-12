@@ -90,7 +90,7 @@ $(NAME): $(OBJS) $(LIBFT_PATH)$(LIBFT_A) $(MLX_PATH)$(MLX_A)
 
 all:        $(NAME)
 
-$(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c
+$(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c 
 	@ mkdir -p $(@D)
 	$(CC) $(CFLAGS) $< $(OUTPUT_OPTION) $(INC) 
 	echo "CREATED $@"

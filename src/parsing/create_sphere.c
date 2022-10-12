@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 14:55:39 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/11 15:26:43 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:43:51 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	create_sphere(char *data, t_object *sphere)
 	}
 	else
 	{
-		sphere->specular_exponent = 10.0;
-		sphere->k_spec = 2.0;
+		sphere->specular_exponent = 0.1; // tweak ca en moins eleve pour voir
+		sphere->k_spec = 0.0;
 	}
 		
 }
