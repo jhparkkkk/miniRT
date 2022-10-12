@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 12:05:49 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/12 16:40:03 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/12 17:30:17 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,6 +220,7 @@ void    inverse_matrix(double m[4][4], double r[4][4], t_vec3 from)
    z_axis <=> forward */
 
 
+/* tmp is a random vec to determine where right vector is pointing at */
 
 void    mat_lookat(double mat[4][4], t_vec3 from, t_vec3 to)
 {
@@ -230,11 +231,14 @@ void    mat_lookat(double mat[4][4], t_vec3 from, t_vec3 to)
     
     forward = to;
     // forward = vec_normalize(vec_substract(to, from));  
-    tmp = vec_init(0.0, 1.0, 0.0);
+    if (to.y != 0.0 && to.z == 0.0)
+        tmp = vec_init(0.0, 0.0, 1.0);
+    else
+        tmp = vec_init(0.0, 1.0, 0.0);
     right = vec_cross(forward, tmp);
-    // right = vec_normalize(right);
     up = vec_cross(right, forward);
-
+    
+    // right = vec_normalize(right);
     forward = vec_scalar(forward, -1.0);
     /* translation */ 
     // double mat_trans[4][4];
@@ -246,10 +250,10 @@ void    mat_lookat(double mat[4][4], t_vec3 from, t_vec3 to)
     /* rotation */
     // double mat[4][4];
 
-    // mat[0][0] = right.x,   mat[0][1] = right.y,   mat[0][2] = right.z,     mat[0][3] = vec_dot(right, from) * -1.0;
-    // mat[1][0] = up.x,      mat[1][1] = up.y,      mat[1][2] = up.z,        mat[1][3] = vec_dot(up, from)* -1.0;
-    // mat[2][0] = forward.x, mat[2][1] = forward.y, mat[2][2] = forward.z,   mat[2][3] = vec_dot(forward, from)* -1.0;
-    // mat[3][0] = 0.0,       mat[3][1] = 0.0,       mat[3][2] = 0.0,         mat[3][3] = 1.0;
+    mat[0][0] = right.x,   mat[0][1] = right.y,   mat[0][2] = right.z,     mat[0][3] = vec_dot(right, from) * -1.0;
+    mat[1][0] = up.x,      mat[1][1] = up.y,      mat[1][2] = up.z,        mat[1][3] = vec_dot(up, from)* -1.0;
+    mat[2][0] = forward.x, mat[2][1] = forward.y, mat[2][2] = forward.z,   mat[2][3] = vec_dot(forward, from)* -1.0;
+    mat[3][0] = 0.0,       mat[3][1] = 0.0,       mat[3][2] = 0.0,         mat[3][3] = 1.0;
     
     /* row major */
     // mat[0][0] = right.x,   mat[0][1] = right.y,   mat[0][2] = right.z,     mat[0][3] = 0.0;
@@ -260,10 +264,10 @@ void    mat_lookat(double mat[4][4], t_vec3 from, t_vec3 to)
 
     /* maboye */
 
-    mat[0][0] = right.x;   mat[0][1] = up.x,   mat[0][2] = forward.x,   mat[0][3] = -vec_dot(right, from);
-    mat[1][0] = right.y,   mat[1][1] = up.y,   mat[1][2] = forward.y,   mat[1][3] = -vec_dot(up, from);
-    mat[2][0] = right.z,   mat[2][1] = up.z,   mat[2][2] = forward.z,   mat[2][3] = -vec_dot(forward, from);
-    mat[3][0] = from.x,    mat[3][1] = from.y, mat[3][2] = from.z,      mat[3][3] = 1.0;
+    // mat[0][0] = right.x;   mat[0][1] = up.x,   mat[0][2] = forward.x,   mat[0][3] = -vec_dot(right, from);
+    // mat[1][0] = right.y,   mat[1][1] = up.y,   mat[1][2] = forward.y,   mat[1][3] = -vec_dot(up, from);
+    // mat[2][0] = right.z,   mat[2][1] = up.z,   mat[2][2] = forward.z,   mat[2][3] = -vec_dot(forward, from);
+    // mat[3][0] = from.x,    mat[3][1] = from.y, mat[3][2] = from.z,      mat[3][3] = 1.0;
    
     /* j'ai l'impression que reverse ne change rien */
     // double r[4][4];
