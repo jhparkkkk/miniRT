@@ -6,13 +6,12 @@
               "type": "cppdbg",
               "request": "launch",
               "program": "${workspaceFolder}/miniRT",
-              "args": ["${workspaceFolder}/scenes/red_sp_blue_light.rt"],
+              "args": ["${workspaceFolder}/scenes/test.rt"],
               "stopAtEntry": false,
               "cwd": "${fileDirname}",
               "environment": [],
               "externalConsole": false,
-              "MIMode": "gdb",
-              ""
+              "MIMode": "gdb"
           }
       ]
   }

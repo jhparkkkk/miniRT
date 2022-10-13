@@ -25,7 +25,7 @@ MLX_PATH	=	./libmlx/
 SRCS_PATH	:=	src
 OBJS_PATH	:=	obj
 SRCS     	+=	main.c \
-				init_view.c \
+				mat_lookat.c \
 				set_ray.c \
 				draw_world.c \
 				${addprefix parsing/, \
@@ -58,8 +58,12 @@ SRCS     	+=	main.c \
 					vec_scalar.c \
 					vec_divide.c \
 					vec_len.c \
+					vec_init.c \
 					vec_normalize.c \
+					mat_multiply_vec.c \
+					deg_to_rad.c \
 					print_sp.c \
+					print_matrix.c \
 				} \
 				${addprefix mlx/, \
 					init_mlx.c \

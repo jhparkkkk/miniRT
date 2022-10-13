@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_sphere.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 14:55:39 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/26 13:47:38 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/04 17:13:26 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,5 @@ void	create_sphere(char *data, t_object *sphere)
 		sphere->specular_exponent = get_specular_exponent(data + i, &i);
 	else
 		sphere->specular_exponent = -1;
+		
 }

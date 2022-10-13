@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_light.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:19:43 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/26 14:46:52 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/09/27 16:17:36 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static int	get_param(t_light *light, char *line, int i)
 		ft_putstr_fd("Something is wrong with the light intensity\n", 2);
 		ft_memory(0, 0);
 	}
-	// if (!check_double(line + i)) 
 	light->intensity = ret;
 	jump_data(line, &i);
 	light->color = parse_position(line + i, &i);
@@ -59,7 +58,7 @@ int get_light(t_light *light, char **scene)
 			get_param(light, scene[i], i);
 		}
 	}
-	if (nb != 1)
+	if (nb < 1)
 	{
 		ft_putstr_fd("The scene must contain one light\n", 2);
 		ft_memory(0, 0);

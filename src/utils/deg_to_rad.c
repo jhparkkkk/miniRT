@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_normalize.c                                    :+:      :+:    :+:   */
+/*   deg_to_rad.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/01 14:17:48 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/13 13:45:49 by jeepark          ###   ########.fr       */
+/*   Created: 2022/10/04 14:01:44 by cgosseli          #+#    #+#             */
+/*   Updated: 2022/10/04 14:02:08 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-t_vec3	vec_normalize(t_vec3 vec)
+double	degrees_to_radians(double degrees)
 {
-	return (vec_divide(vec, vec_len(vec)));
+	return degrees * M_PI / 180.0;
 }
