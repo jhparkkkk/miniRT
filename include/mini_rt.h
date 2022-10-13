@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/13 11:41:22 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/13 17:51:53 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ typedef struct s_object
 	void	(*print_object) (t_object obj);
 	int		surface;
 	double	specular_exponent;
+	double	k_spec;
 } t_object;
 
 typedef struct s_view
@@ -195,7 +196,7 @@ double			degrees_to_radians(double degrees);
 
 /* Mini Raytracing */
 void    		draw_world(t_world *world, t_mlx *mlx);
-int				hit_obj(t_ray *ray, t_world *world);
+int				hit_obj(t_ray *ray, t_world *world, double min, double max, int	shadow);
 t_hit_point		hit_sp(t_ray *ray, t_object *sp);
 double			compute_lighting(t_ray *ray, t_object *sp, t_world *world);
 int				compute_color(t_ray *ray, t_object *object, t_world *world);
@@ -205,6 +206,9 @@ void			mat_lookat(double mat[4][4], t_vec3 from, t_vec3 to);
 
 /* debug printing */
 void    print_matrix(double mat[4][4]);
+
+/* Shadows */
+int	sp_shadows(t_vec3 point, t_vec3 light, t_world *world);
 
 
 #endif 

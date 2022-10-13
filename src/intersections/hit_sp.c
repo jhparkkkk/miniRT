@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_sp.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:48:49 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/05 16:40:46 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/12 16:32:12 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_hit_point hit_sp(t_ray *ray, t_object *sp)
     hit.b = 2.0 * vec_dot(hit.oc, ray->direction);
     hit.c = vec_dot(hit.oc, hit.oc) - sp->radius * sp->radius;
     discr = hit.b * hit.b - 4.0 * hit.a * hit.c;
-    if (discr < M_E)
+    if (discr < __DBL_EPSILON__)
 	{
         // printf("plop\n");
 

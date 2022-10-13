@@ -25,8 +25,6 @@ MLX_PATH	=	./libmlx/
 SRCS_PATH	:=	src
 OBJS_PATH	:=	obj
 SRCS     	+=	main.c \
-				mat_lookat.c \
-				set_ray.c \
 				draw_world.c \
 				${addprefix parsing/, \
 					check_filename.c \
@@ -76,7 +74,14 @@ SRCS     	+=	main.c \
 				${addprefix lights/, \
 					compute_lighting.c \
 					compute_color.c \
-				} 
+				} \
+				${addprefix camera/, \
+					set_ray.c \
+					mat_lookat.c \
+				} \
+				${addprefix shadows/, \
+					sp_shadows.c \
+				}
 					
 				
 SRCS          := $(SRCS:%=$(SRCS_PATH)/%)
@@ -91,7 +96,7 @@ $(NAME): $(OBJS) $(LIBFT_PATH)$(LIBFT_A) $(MLX_PATH)$(MLX_A)
 
 all:        $(NAME)
 
-$(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c
+$(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c 
 	@ mkdir -p $(@D)
 	$(CC) $(CFLAGS) $< $(OUTPUT_OPTION) $(INC) 
 	echo "CREATED $@"

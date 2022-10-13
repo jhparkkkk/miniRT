@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:38:39 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/13 13:29:33 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/13 15:37:37 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void    draw_world(t_world *world, t_mlx *mlx)
 		while (x <= SIZEX)
 		{
 			ray = set_ray(world->cam, x, y, lookat);
-			obj_idx = hit_obj(&ray, world);
+			obj_idx = hit_obj(&ray, world, __DBL_EPSILON__, INFINITY, 0);
 			if (obj_idx >= 0)
 			{
 				put_pix(mlx, x, y, compute_color(&ray, world->objects[obj_idx], world));
