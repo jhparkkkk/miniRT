@@ -6,13 +6,11 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 12:05:49 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/13 12:19:05 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/13 13:58:36 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
-
-
 
 /* Transforms the positions of the objects within the 3D scene to give
 the illusion that they are being viewed from the lens of the camera.
