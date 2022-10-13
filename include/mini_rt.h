@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/13 13:35:58 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/13 15:47:45 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_cam
 	double	**lookat;
 	double	**mat_identity;
 	double	**mat_projection;
+	// double	lookat[4][3];
 	t_vec3	right;
 	t_vec3	up;
 	t_vec3	dir;
@@ -189,6 +190,8 @@ double			vec_len(t_vec3 v);
 t_vec3			vec_init(double x, double y, double z);
 t_vec3			vec_normalize(t_vec3 vec);
 int				vec_compare(t_vec3 v1, t_vec3 v2);
+t_vec3			mat_multiply_vec(double mat[4][4], t_vec3 vec);
+
 void			print_sp(t_object sp);
 double			degrees_to_radians(double degrees);
 
@@ -198,9 +201,12 @@ int				hit_obj(t_ray *ray, t_world *world, double min, double max, int	shadow);
 t_hit_point		hit_sp(t_ray *ray, t_object *sp);
 double			compute_lighting(t_ray *ray, t_object *sp, t_world *world);
 int				compute_color(t_ray *ray, t_object *object, t_world *world);
-t_ray			set_ray(t_cam cam, int x, int y);
+t_ray			set_ray(t_cam cam, int x, int y, double lookat[4][4]);
 t_viewport		get_viewport(t_cam cam);
-double			**init_view(t_world *world);
+void			mat_lookat(double mat[4][4], t_vec3 from, t_vec3 to);
+
+/* debug printing */
+void    print_matrix(double mat[4][4]);
 
 /* Shadows */
 int	sp_shadows(t_vec3 point, t_vec3 light, t_world *world);

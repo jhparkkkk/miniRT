@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 15:31:59 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/04 18:11:29 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/10 14:35:09 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int main(int ac, char **av)
 	world->ambient_light = get_ambient_light(scene);
 	world->objects = get_objects_list(scene, world);
 	
-	world->cam.lookat = init_view(world);
 	init_mlx(&mlx);
 	
 	// print_world(view);

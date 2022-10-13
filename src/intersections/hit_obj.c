@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 11:10:13 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/13 15:00:24 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:20:04 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	hit_obj(t_ray *ray, t_world *world, double min, double max, int	shadow)
 	while (world->objects[i])
 	{
 		hit = world->objects[i]->intersect(ray, world->objects[i]);
-		if (hit.status && hit.root > min && hit.root < max)
+		if (hit.status && fabs(hit.root) > min && fabs(hit.root) < max)
 		{
 			touch = 1;
 			if (hit.root < root_min)
