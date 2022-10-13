@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/11 17:46:05 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/13 11:41:22 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,8 @@ t_vec3			vec_divide(t_vec3 v, double scalar);
 double			vec_len(t_vec3 v);
 t_vec3			vec_init(double x, double y, double z);
 t_vec3			vec_normalize(t_vec3 vec);
+t_vec3			mat_multiply_vec(double mat[4][4], t_vec3 vec);
+
 void			print_sp(t_object sp);
 double			degrees_to_radians(double degrees);
 
