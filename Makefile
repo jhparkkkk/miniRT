@@ -61,6 +61,7 @@ SRCS     	+=	main.c \
 					vec_len.c \
 					vec_init.c \
 					vec_normalize.c \
+					vec_compare.c \
 					print_sp.c \
 					deg_to_rad.c \
 				} \

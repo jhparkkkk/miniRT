@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:48:38 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/12 13:51:26 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/13 11:40:06 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,14 @@ static t_vec3 global_light(double intensity, t_light light,
 {
 	t_vec3	diffuse;
 	t_vec3	ambient;
-	// t_vec3	specular;
+	t_vec3	specular;
 	
 	diffuse = vec_scalar(light.color, intensity * K_DIFFUSE);
 	ambient = vec_scalar(ambient_light.color, ambient_light.intensity * K_AMBIENT);
-	(void)object;
-	// if (object->specular_exponent != -1)
-	// {
-	// 	specular = vec_scalar(light.color, intensity * object->specular_exponent * K_SPEC);
-	// 	return (vec_add(specular, vec_add(diffuse, ambient)));
+	specular = vec_scalar(light.color, intensity * (object->k_spec / 100)); //A check
+	return (vec_add(specular, vec_add(diffuse, ambient)));
 	// }
-	return (vec_add(diffuse, ambient));
+	// return (vec_add(diffuse, ambient));
 }
 
 static	t_vec3 get_object_shade(t_vec3 color, double light_intensity,
@@ -37,10 +34,8 @@ static	t_vec3 get_object_shade(t_vec3 color, double light_intensity,
 	t_vec3	light_to_obj;
 	
 	ambient_to_obj = vec_scalar(color, ambient_intensity * K_AMBIENT);
-	light_to_obj = vec_scalar(color, light_intensity * K_DIFFUSE);
-	(void)object;
-	// if (object->specular_exponent != -1)
-	// 	light_to_obj = vec_add(light_to_obj, vec_scalar(color, object->specular_exponent * K_SPEC));
+	light_to_obj = vec_scalar(color, light_intensity * K_DIFFUSE + light_intensity * (object->k_spec / 50));
+	// light_to_obj = vec_add(light_to_obj, vec_scalar(color, object->specular_exponent * K_SPEC));
 	return (vec_add(ambient_to_obj, light_to_obj));
 }
 

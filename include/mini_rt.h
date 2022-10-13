@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/12 16:15:05 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/13 13:35:58 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,7 @@ t_vec3			vec_divide(t_vec3 v, double scalar);
 double			vec_len(t_vec3 v);
 t_vec3			vec_init(double x, double y, double z);
 t_vec3			vec_normalize(t_vec3 vec);
+int				vec_compare(t_vec3 v1, t_vec3 v2);
 void			print_sp(t_object sp);
 double			degrees_to_radians(double degrees);
 
