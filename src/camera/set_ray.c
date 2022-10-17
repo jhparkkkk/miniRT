@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 13:16:54 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/17 17:14:44 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/17 19:28:26 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ t_ray	set_ray(t_cam cam, int x, int y, double mat[4][4])
 	
 	mat_lookat(mat, cam.position, cam.direction);
 	ray.direction = mat_multiply_vec(mat, ray.direction);
+
+
+
 	return (ray);
 }
 
