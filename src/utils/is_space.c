@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   is_space.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 15:03:46 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/16 15:05:34 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/17 18:26:11 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-int is_space(int c)
+int	is_space(int c)
 {
-    if (c == 32 || (c >= 9 && c <= 13))
-        return (1);
-    return (0);   
+	if (c == 32 || (c >= 9 && c <= 13))
+		return (1);
+	return (0);
 }
