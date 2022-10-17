@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_camera.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:16:19 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/05 13:34:42 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/14 13:43:34 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static double	get_hfov(char *line)
 	j = 0;
 	jump_spaces(line, &j);
 	ret = ft_atof(line + j);
-	if (check_double(line + j) || ret < 0 || ret > 180.0)
+	if (check_double(line + j) || ret < 0.0 || ret > 180.0)
 	{
 		ft_putstr_fd("Something is wrong with the field of view\n", 2);
 		ft_memory(0, 0);

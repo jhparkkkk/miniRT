@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_cross.c                                        :+:      :+:    :+:   */
+/*   vec_compare.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/21 14:58:48 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/14 13:43:55 by cgosseli         ###   ########.fr       */
+/*   Created: 2022/10/13 13:33:47 by cgosseli          #+#    #+#             */
+/*   Updated: 2022/10/13 13:50:29 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-t_vec3  vec_cross(t_vec3 v1, t_vec3 v2)
+/*Returns 0 if v1 and v2 are the same. Returns 1 if they are different*/
+int	vec_compare(t_vec3 v1, t_vec3 v2)
 {
-    t_vec3  res;
-
-    res.x = v1.y * v2.z - v1.z * v2.y;
-    res.y = v1.z * v2.x - v1.x * v2.z;
-    res.z = v1.x * v2.y - v1.y * v2.x;
-    return (res);
+	
+	if (!(fabs(v1.x - v2.x) < __DBL_EPSILON__) ||
+		!(fabs(v1.y - v2.y) < __DBL_EPSILON__) ||
+		!(fabs(v1.z - v2.z) < __DBL_EPSILON__))
+		return (1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/13 17:51:53 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/17 16:59:49 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,6 @@ typedef struct s_ambient_light
 	double	intensity;
 } t_ambient_light;
 
-typedef struct s_ray
-{
-	t_vec3	origin;
-	t_vec3	direction;
-	double	root;
-} t_ray;
-
 typedef struct s_object t_object;
 
 typedef struct s_hit_point
@@ -100,6 +93,14 @@ typedef struct s_hit_point
 	double		n_dot_l;
 	double		r_dot_v;
 } t_hit_point;
+
+typedef struct s_ray
+{
+	t_vec3		origin;
+	t_vec3		direction;
+	// double		root;
+	t_hit_point hit;
+} t_ray;
 
 typedef struct s_object
 {
@@ -189,6 +190,7 @@ t_vec3			vec_divide(t_vec3 v, double scalar);
 double			vec_len(t_vec3 v);
 t_vec3			vec_init(double x, double y, double z);
 t_vec3			vec_normalize(t_vec3 vec);
+int				vec_compare(t_vec3 v1, t_vec3 v2);
 t_vec3			mat_multiply_vec(double mat[4][4], t_vec3 vec);
 
 void			print_sp(t_object sp);

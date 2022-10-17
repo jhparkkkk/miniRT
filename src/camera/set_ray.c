@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 13:16:54 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/13 18:00:43 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/17 17:14:44 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_ray	set_ray(t_cam cam, int x, int y, double mat[4][4])
 	aspect_ratio = SIZEX / SIZEY;
 	angle = tan((0.5 * cam.hfov) * (M_PI / 180.0));
 	ray.origin = cam.position;
-	ray.direction.x = -((2.0 * (((double)x + 0.5) * (1.0 / (double)SIZEX)) - 1) * angle * aspect_ratio); 
+	ray.direction.x = -((2.0 * (((double)x + 0.5) * (1.0 / (double)SIZEX)) - 1) * angle * aspect_ratio);
 	ray.direction.y = -((1.0 - 2.0 * (((double)y + 0.5) * (1.0 / (double)SIZEY))) * angle);
 	ray.direction.z = -1.0;
 

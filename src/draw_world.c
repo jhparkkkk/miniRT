@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:38:39 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/13 15:37:37 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/17 16:59:02 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 in the world. Put the image to the window and launch the mlx. */
 void    draw_world(t_world *world, t_mlx *mlx)
 {
-	int		y;
-	int		x;
+	double		y;
+	double		x;
 	t_ray	ray;
 	int		obj_idx;
 	double	lookat[4][4];
@@ -26,16 +26,16 @@ void    draw_world(t_world *world, t_mlx *mlx)
 	(void)world;
 
 	
-    while (y < SIZEY)
+    while (y < (double)SIZEY)
 	{
 		x = 0;
-		while (x <= SIZEX)
+		while (x <= (double)SIZEX)
 		{
 			ray = set_ray(world->cam, x, y, lookat);
 			obj_idx = hit_obj(&ray, world, __DBL_EPSILON__, INFINITY, 0);
 			if (obj_idx >= 0)
 			{
-				put_pix(mlx, x, y, compute_color(&ray, world->objects[obj_idx], world));
+				put_pix(mlx, (int)x, (int)y, compute_color(&ray, world->objects[obj_idx], world));
 			}
 			x++;
 		}

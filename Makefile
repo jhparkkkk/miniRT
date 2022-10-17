@@ -58,6 +58,7 @@ SRCS     	+=	main.c \
 					vec_len.c \
 					vec_init.c \
 					vec_normalize.c \
+					vec_compare.c \
 					mat_multiply_vec.c \
 					deg_to_rad.c \
 					print_sp.c \
@@ -81,7 +82,7 @@ SRCS     	+=	main.c \
 				} \
 				${addprefix shadows/, \
 					sp_shadows.c \
-				}
+				} 
 					
 				
 SRCS          := $(SRCS:%=$(SRCS_PATH)/%)
