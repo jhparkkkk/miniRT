@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_hex_color.c                                    :+:      :+:    :+:   */
+/*   mat_multiply_vec.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/21 14:36:45 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/29 14:25:03 by jeepark          ###   ########.fr       */
+/*   Created: 2022/10/13 11:40:37 by jeepark           #+#    #+#             */
+/*   Updated: 2022/10/13 11:40:52 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-int get_hex_color(t_vec3 rgb_color)
+t_vec3	mat_multiply_vec(double mat[4][4], t_vec3 vec)
 {
-    int hex_color;
+	t_vec3 res;
+
+	res.x = mat[0][0] * vec.x + mat[0][1] * vec.y + mat[0][2] * vec.z + mat[0][3];
+	res.y = mat[1][0] * vec.x + mat[1][1] * vec.y + mat[1][2] * vec.z + mat[1][3];
+	res.z = mat[2][0] * vec.x + mat[2][1] * vec.y + mat[2][2] * vec.z + mat[2][3];
 	
-	if (rgb_color.x > 255)
-		rgb_color.x = 255;
-	if (rgb_color.y > 255)
-		rgb_color.y = 255;
-	if (rgb_color.z > 255)
-		rgb_color.z = 255;
-    hex_color = 0 << 24; 
-    hex_color += (int)rgb_color.x << 16;
-    hex_color += (int)rgb_color.y << 8;
-    hex_color += (int)rgb_color.z;
-    return (hex_color);
+	return (res);
 }

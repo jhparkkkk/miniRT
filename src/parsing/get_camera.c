@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:16:19 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/04 17:38:35 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/14 13:43:34 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static double	get_vfov(double hfov)
 	
 	double	vfov;
 	
-	if (hfov == 180.0)
+	if (hfov == 180)
 		return (180.0);
 	hfov = degrees_to_radians(hfov);
-	vfov = 2.0 * atan((0.5 * (double)SIZEY) / (0.5 * (double)SIZEX / tan(hfov / 2.0)));
-	return (vfov * (180.0/ M_PI));
+	vfov = 2.0 * atan((0.5 * SIZEY) / (0.5 * SIZEX / tan(hfov / 2.0)));
+	return (vfov * (180/ M_PI));
 }
 
 

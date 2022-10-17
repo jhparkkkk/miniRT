@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 14:55:39 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/26 13:47:38 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:43:51 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,14 @@ void	create_sphere(char *data, t_object *sphere)
 	sphere->print_object = &print_sp;
 	sphere->surface = get_surface(data + i, &i);
 	if (sphere->surface == SHINY)
+	{
 		sphere->specular_exponent = get_specular_exponent(data + i, &i);
+		sphere->k_spec = 10.0;
+	}
 	else
-		sphere->specular_exponent = -1;
+	{
+		sphere->specular_exponent = 0.1; // tweak ca en moins eleve pour voir
+		sphere->k_spec = 0.0;
+	}
+		
 }

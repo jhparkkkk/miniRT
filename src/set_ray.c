@@ -6,31 +6,65 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 13:16:54 by jeepark           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/10/04 18:23:48 by cgosseli         ###   ########.fr       */
+=======
+/*   Updated: 2022/10/10 11:51:49 by cgosseli         ###   ########.fr       */
+>>>>>>> spec_to_shadows
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-t_ray	set_ray(t_cam cam, double x, double y, t_viewport viewport)
+t_vec3	mat_multiply_vec(double **mat, t_vec3 vec)
+{
+	t_vec3 res;
+
+	res.x = mat[0][0] * vec.x + mat[0][1] * vec.y + mat[0][2] * vec.z + mat[0][3];
+	res.y = mat[1][0] * vec.x + mat[1][1] * vec.y + mat[1][2] * vec.z + mat[1][3];
+	res.z = mat[2][0] * vec.x + mat[2][1] * vec.y + mat[2][2] * vec.z + mat[2][3];
+
+	return (res);
+}
+
+t_ray	set_ray(t_cam cam, int x, int y)
 {
 	t_ray	ray;
 	
+	double imageAspectRatio = (double)SIZEX / (double)SIZEY;  //assuming width > height 
+	double angle = tan(M_PI * 0.5 * cam.hfov / 180.); 
+	double Px = (2.0 * ((x + 0.5) * (1.0 / SIZEX)) - 1.0) * angle * imageAspectRatio; 
+	double Py = (1.0 - 2.0 * ((y + 0.5) * (1.0 / SIZEY))) * angle;
+
 	ray.origin = cam.position;
 
-	// ray.direction = vec_add(viewport.lower_left_corner, vec_scalar(viewport.horizontal, x - SIZEX /2));
-	// ray.direction = vec_add(ray.direction, vec_scalar(viewport.vertical,y - SIZEY/2));
-	// ray.direction = vec_substract(ray.direction, ray.origin);
+	ray.direction.x = -Px;
+	ray.direction.y = -Py;
+	ray.direction.z = -1.0;
 	
-	// ray.direction = vec_cross(ray.direction, cam.direction);
+	ray.direction = vec_substract(ray.direction, ray.origin);
 	
-	(void)viewport;
-	t_vec3 w_p;
-	double imageAspectRatio = (double)SIZEX / (double)SIZEY;
-	double Px = (2.0 * ((x + 0.5) / (double)SIZEX) - 1.0) * tan(cam.vfov / 2.0 * M_PI / 180.0) * imageAspectRatio; 
-	double Py = (1.0 - 2.0 * ((y + 0.5) / (double)SIZEY) * tan(cam.vfov / 2.0 * M_PI / 180.0)); 
-	// ray.direction = vec_substract(vec_init(Px, Py, -1.0), ray.origin);
-	// ray.direction = vec_normalize(ray.direction);
-	// Vec3f rayDirection = Vec3f(Px, Py, -1) - rayOrigin; 
+	ray.direction = vec_normalize(ray.direction);
+	
 	return (ray);
 }
+
+/*
+Imaginon un "ECRan" 8 * 6, le point & correspong(<=>)
+imaginon, le centre C(xc,yc,zc); ainci que deux vecteur de dirrection
+parrelelles a notre plan X(x',y',z') && Y(x'',y'',z'')
+
+& = C - (X * longuer/2) + (Y * longuer/2) <=> C - (X * 8/2) + (Y * 6 / 2)
+
+&x =
+&y =
+&z =
+
+&#######
+########
+########
+########
+########
+########
+
+*/

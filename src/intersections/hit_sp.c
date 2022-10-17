@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:48:49 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/04 14:42:36 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/17 16:08:29 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,16 @@ t_hit_point hit_sp(t_ray *ray, t_object *sp)
 	t_hit_point hit;
     
 	hit.status = 0;
-	hit.root = 0;
-    hit.oc = vec_substract(sp->center, ray->origin);
+	hit.root = 0.0;
+    hit.oc = vec_substract(ray->origin, sp->center);
     hit.a = vec_dot(ray->direction, ray->direction);
     hit.b = 2.0 * vec_dot(hit.oc, ray->direction);
     hit.c = vec_dot(hit.oc, hit.oc) - sp->radius * sp->radius;
     discr = hit.b * hit.b - 4.0 * hit.a * hit.c;
-    if (discr < M_E)
+    if (discr < __DBL_EPSILON__)
 	{
+        // printf("plop\n");
+
 		hit.status = 0;
         return (hit);
 	}
@@ -40,7 +42,6 @@ t_hit_point hit_sp(t_ray *ray, t_object *sp)
 		hit.root = t2;
     // else
     // {
-    //    res = 
     //    hit.x = ray->origin.x + res * ray->direction.x;
     //    hit.y = ray->origin.y + res * ray->direction.y;
     //    hit.z = ray->origin.z + res * ray->direction.z;

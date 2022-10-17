@@ -25,10 +25,7 @@ MLX_PATH	=	./libmlx/
 SRCS_PATH	:=	src
 OBJS_PATH	:=	obj
 SRCS     	+=	main.c \
-				init_view.c \
-				set_ray.c \
 				draw_world.c \
-				get_viewport.c \
 				${addprefix parsing/, \
 					check_filename.c \
 					get_scene.c \
@@ -61,8 +58,11 @@ SRCS     	+=	main.c \
 					vec_len.c \
 					vec_init.c \
 					vec_normalize.c \
-					print_sp.c \
+					vec_compare.c \
+					mat_multiply_vec.c \
 					deg_to_rad.c \
+					print_sp.c \
+					print_matrix.c \
 				} \
 				${addprefix mlx/, \
 					init_mlx.c \
@@ -75,6 +75,13 @@ SRCS     	+=	main.c \
 				${addprefix lights/, \
 					compute_lighting.c \
 					compute_color.c \
+				} \
+				${addprefix shadows/, \
+					sp_shadows.c \
+				} \
+				${addprefix camera/, \
+					set_ray.c \
+					mat_lookat.c \
 				} 
 					
 				
@@ -90,7 +97,7 @@ $(NAME): $(OBJS) $(LIBFT_PATH)$(LIBFT_A) $(MLX_PATH)$(MLX_A)
 
 all:        $(NAME)
 
-$(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c
+$(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c 
 	@ mkdir -p $(@D)
 	$(CC) $(CFLAGS) $< $(OUTPUT_OPTION) $(INC) 
 	echo "CREATED $@"
