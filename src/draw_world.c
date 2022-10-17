@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:38:39 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/17 16:59:02 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/17 23:16:13 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ void    draw_world(t_world *world, t_mlx *mlx)
 			obj_idx = hit_obj(&ray, world, __DBL_EPSILON__, INFINITY, 0);
 			if (obj_idx >= 0)
 			{
-				put_pix(mlx, (int)x, (int)y, compute_color(&ray, world->objects[obj_idx], world));
+				put_pix(mlx, (int)x, (int)y, get_hex_color(world->objects[obj_idx]->color));
+
+				// put_pix(mlx, (int)x, (int)y, compute_color(&ray, world->objects[obj_idx], world));
 			}
 			x++;
 		}

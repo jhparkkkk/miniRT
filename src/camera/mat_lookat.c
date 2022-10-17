@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 12:05:49 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/17 19:01:53 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/17 23:12:23 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,17 @@ void    mat_lookat(double mat[4][4], t_vec3 from, t_vec3 to)
     t_vec3  tmp;
     
     forward = to;
-    if (to.y > 0.0)
-        tmp = vec_init(0.0, 0.0, 1.0);
-    else if (to.y < 0.0)
-        tmp = vec_init(0.0, 0.0, -1.0);     
+    if (to.x == 0 && to.y == 1 && to.z == 0)
+        tmp = vec_init(1.0, 0.0, 0.0);
+        
+    // if (to.y > 0.0)
+    //     tmp = vec_init(0.0, 0.0, 1.0);
+    // else if (to.y < 0.0)
+    //     tmp = vec_init(0.0, 0.0, -1.0);     
     else
         tmp = vec_init(0.0, 1.0, 0.0);
     
-    right = vec_cross(forward,tmp);
+    right = vec_cross(tmp, forward);
     up = vec_cross( forward,right);
     
     forward = vec_scalar(forward, -1.0);

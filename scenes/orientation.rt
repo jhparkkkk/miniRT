@@ -1,4 +1,4 @@
-C	0,0,0			-1,0,0			90
+C	0,0,0			0,0,-1			90
 
 A	0.5                      			255,255,255
 # A	0.5                      			0,0,255
@@ -8,17 +8,17 @@ L	30,0,10		1			255,255,255
 # sp	0,0,300				200			255,0,0				shiny 1000
 
 # white
-sp	0,0,60				50			255,255,255 
+sp	0,0,60				30			255,255,255 
 # yellow / front
-sp	0,0,-60			50			255,255,0 
+sp	0,0,-60			30			255,255,0 
 # green / up
-sp	0,60,0				50			0,255,0
+sp	0,60,0				30			0,255,0
 # red / down
-sp	0,-60,0			50			255,0,0
+sp	0,-60,0			30			255,0,0
 # blue / right
-sp	60,0,0				50			0,0,255
+sp	60,0,0				30			0,0,255
 # magenta / left 
-sp	-60,0,0			50			255,0,255
+sp	-60,0,0			30			255,0,255
 
 # 0,1,0 et 0,-1,0 donne la meme sphere, surement pb avec le cas particulier => inverser quand -1 ?
 # on dirait que la lumiere est calculee en fonction de la cam et pas de la sphere (diff quadn on bouge de 0,0,0 a 100,0,0)

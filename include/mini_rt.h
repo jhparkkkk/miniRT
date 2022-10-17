@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/17 18:19:27 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/17 23:09:47 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define SHINY 12
 # define ESC 65307
 # define K_AMBIENT 0.1
-# define K_DIFFUSE 0.9
+# define K_DIFFUSE 20
 
 
 /* Structures */
@@ -55,11 +55,9 @@ typedef struct s_cam
 	double	**lookat;
 	double	**mat_identity;
 	double	**mat_projection;
-	// double	lookat[4][3];
 	t_vec3	right;
 	t_vec3	up;
 	t_vec3	dir;
-	t_vec3	w_prim;
 } t_cam;
 
 typedef struct s_light
