@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_camera.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:16:19 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/14 13:43:34 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/17 23:58:43 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static t_cam	get_camera_specs(char *line)
 	jump_spaces(line, &i);
 	i++;
 	cam.position = parse_position(line + i, &i);
-	cam.direction = parse_direction(line + i, &i);
+	cam.direction = vec_normalize(parse_direction(line + i, &i));
 	cam.hfov = get_hfov(line + i);
 	cam.vfov = get_vfov(cam.hfov);
 	printf("vfov : %f\n", cam.vfov);

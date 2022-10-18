@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:16:25 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/17 18:23:44 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/18 15:47:13 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	sp_shadows(t_vec3 point, t_vec3 vec_light, t_world *world)
 
 	set_ray_from_light(&ray, point, vec_light);
 	len_light = sqrt(vec_dot(vec_light, vec_light));
-	if (hit_obj(&ray, world, 0.001, INFINITY, 1) > -1)
+	if (hit_obj(&ray, world, __DBL_EPSILON__, INFINITY, 1) > -1)
 	{
 		light_hit = vec_scalar(ray.direction, ray.hit.root);
 		light_hit = vec_add(ray.origin, light_hit);
