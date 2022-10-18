@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 13:16:54 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/18 14:38:12 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/18 16:38:58 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_ray	set_ray(t_cam cam, int x, int y, double mat[4][4])
 // 	print_matrix(mat);
 // }
 
-/* autre possibilite de calcul * /
+/* autre possibilite de calcul */
 // ray.direction.x = x - SIZEX * 0.5;
 // ray.direction.y = y - SIZEY * 0.5;
 // ray.direction.z = - SIZEY / (2.0 * tan(angle * 0.5));
