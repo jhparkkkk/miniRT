@@ -6,19 +6,20 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 13:35:18 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/18 15:02:52 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/18 17:24:29 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-t_hit_point	hit_pl(t_ray *ray, t_object *pl)
+t_hit_point	hit_pl(t_ray *ray, t_object *pl, double shadow)
 {
 	t_vec3		normal; //orientation
 	t_vec3		distance_from_origin; //position
 	double		denom;
 	t_hit_point hit;
 
+	(void)shadow;
 	normal = pl->direction; // pl direction est normalisé dans le create pl
 	distance_from_origin = vec_substract(pl->center, ray->origin);
 	denom = vec_dot(normal, ray->direction);

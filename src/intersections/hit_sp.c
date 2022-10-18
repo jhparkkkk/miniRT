@@ -6,13 +6,13 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:48:49 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/18 15:58:10 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/18 18:52:52 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-t_hit_point hit_sp(t_ray *ray, t_object *sp)
+t_hit_point hit_sp(t_ray *ray, t_object *sp, double shadow)
 {
     double   	discr;
 	double		t1;
@@ -36,15 +36,29 @@ t_hit_point hit_sp(t_ray *ray, t_object *sp)
 	hit.status = 1;
 	t1 = (- hit.b - sqrt(discr)) / (2.0 * hit.a);
 	t2 = (- hit.b + sqrt(discr)) / (2.0 * hit.a);
-	if (t1 < t2 && t1 >= __DBL_EPSILON__)
-		hit.root = t1;
-	else
-		hit.root = t2;
-    // else
-    // {
-    //    hit.x = ray->origin.x + res * ray->direction.x;
-    //    hit.y = ray->origin.y + res * ray->direction.y;
-    //    hit.z = ray->origin.z + res * ray->direction.z;
-    // }
+	// if ((t1 > __DBL_EPSILON__ && t2 < __DBL_EPSILON__ ) || (t2 > __DBL_EPSILON__ && t1 < __DBL_EPSILON__ ))
+	// {
+	// 	if (t1 > __DBL_EPSILON__)
+	// 		hit.root = t1;
+	// 	else
+	// 		hit.root = t2;
+	// }
+	// else
+	// {
+	// if (!shadow)
+	// {
+	// 	if (t1 < t2 && t1 > __DBL_EPSILON__)
+	// 		hit.root = t1;
+	// 	else
+	// 		hit.root = t2;
+	// }
+	// else
+	// {
+		if (t1 < t2)
+			hit.root = t1;
+		else
+			hit.root = t2;
+	// }
+	(void)shadow;
     return (hit);     
 }

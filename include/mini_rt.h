@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/18 15:19:51 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/18 17:39:17 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ typedef struct s_object
 	t_vec3	direction;
 	double	radius;
 	double	height;
-	t_hit_point		(*intersect) (t_ray *ray, t_object *obj);
+	t_hit_point		(*intersect) (t_ray *ray, t_object *obj, double shadow);
 	void	(*print_object) (t_object obj);
 	int		surface;
 	double	specular_exponent;
@@ -206,8 +206,8 @@ void			mat_lookat(double mat[4][4], t_vec3 from, t_vec3 to);
 /* ===== Intersection ===== */
 
 int				hit_obj(t_ray *ray, t_world *world, double min, double max, int	shadow);
-t_hit_point		hit_sp(t_ray *ray, t_object *sp);
-t_hit_point		hit_pl(t_ray *ray, t_object *pl);
+t_hit_point		hit_sp(t_ray *ray, t_object *sp, double shadow);
+t_hit_point		hit_pl(t_ray *ray, t_object *pl, double shadow);
 
 /* debug printing */
 void    print_matrix(double mat[4][4]);
