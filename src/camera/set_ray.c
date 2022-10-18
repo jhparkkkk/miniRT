@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_ray.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 13:16:54 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/17 16:06:41 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/17 19:28:26 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,19 @@ t_ray	set_ray(t_cam cam, int x, int y, double mat[4][4])
 	aspect_ratio = SIZEX / SIZEY;
 	angle = tan((0.5 * cam.hfov) * (M_PI / 180.0));
 	ray.origin = cam.position;
-	ray.direction.x = -((2.0 * (((double)x + 0.5) * (1.0 / (double)SIZEX)) - 1) * angle * aspect_ratio); 
+	ray.direction.x = -((2.0 * (((double)x + 0.5) * (1.0 / (double)SIZEX)) - 1) * angle * aspect_ratio);
 	ray.direction.y = -((1.0 - 2.0 * (((double)y + 0.5) * (1.0 / (double)SIZEY))) * angle);
 	ray.direction.z = -1.0;
+
+	ray.direction.x += cam.position.x;
+	ray.direction.y += cam.position.y;
+	ray.direction.z += cam.position.z;
 	
-	/* rotation + translation */
 	mat_lookat(mat, cam.position, cam.direction);
 	ray.direction = mat_multiply_vec(mat, ray.direction);
+
+
+
 	return (ray);
 }
 

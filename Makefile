@@ -76,12 +76,12 @@ SRCS     	+=	main.c \
 					compute_lighting.c \
 					compute_color.c \
 				} \
-				${addprefix shadows/, \
-					sp_shadows.c \
-				} \
 				${addprefix camera/, \
 					set_ray.c \
 					mat_lookat.c \
+				} \
+				${addprefix shadows/, \
+					sp_shadows.c \
 				} 
 					
 				
