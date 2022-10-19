@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 17:53:12 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/26 13:29:43 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/19 13:58:57 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	create_cylinder(char *data, t_object *cylinder)
 	cylinder->type = CYLINDER;
 	cylinder->center = parse_position(data + i, &i);
 	cylinder->direction = parse_direction(data + i, &i);
+	cylinder->direction = vec_normalize(cylinder->direction);
 	cylinder->radius = get_double(data + i, &i) / 2;
 	cylinder->height = get_double(data + i, &i);
 	cylinder->color = parse_position(data + i, &i);
@@ -48,4 +49,7 @@ void	create_cylinder(char *data, t_object *cylinder)
 		ft_memory(0, 0);
 	}
 	cylinder->surface = get_surface(data + i, &i);
+	cylinder->intersect = hit_cy;
+	cylinder->print_object = &print_cy;
+
 }
