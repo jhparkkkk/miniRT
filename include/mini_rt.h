@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/18 18:57:34 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/19 17:56:57 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 # define MAT 11
 # define SHINY 12
 # define ESC 65307
-# define K_AMBIENT 0.1
-# define K_DIFFUSE 20
+# define K_AMBIENT 0.3
+# define K_DIFFUSE 40
 
 
 /* Structures */
@@ -193,6 +193,7 @@ t_vec3			mat_multiply_vec(double mat[4][4], t_vec3 vec);
 
 void			print_sp(t_object sp);
 void			print_pl(t_object pl);
+void			print_cy(t_object cy);
 double			degrees_to_radians(double degrees);
 
 /* Mini Raytracing */
@@ -208,6 +209,7 @@ void			mat_lookat(double mat[4][4], t_vec3 from, t_vec3 to);
 int				hit_obj(t_ray *ray, t_world *world, double min, double max, int	shadow);
 t_hit_point		hit_sp(t_ray *ray, t_object *sp);
 t_hit_point		hit_pl(t_ray *ray, t_object *pl);
+t_hit_point		hit_cy(t_ray *ray, t_object *cy);
 
 /* debug printing */
 void    print_matrix(double mat[4][4]);
