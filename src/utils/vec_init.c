@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 11:04:10 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/04 14:59:52 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/17 18:27:19 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_vec3	vec_init(double x, double y, double z)
 {
-	t_vec3 vec;
+	t_vec3	vec;
 
 	vec.x = x;
 	vec.y = y;

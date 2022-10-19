@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/17 23:09:47 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/18 18:57:34 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,22 +192,27 @@ int				vec_compare(t_vec3 v1, t_vec3 v2);
 t_vec3			mat_multiply_vec(double mat[4][4], t_vec3 vec);
 
 void			print_sp(t_object sp);
+void			print_pl(t_object pl);
 double			degrees_to_radians(double degrees);
 
 /* Mini Raytracing */
 void    		draw_world(t_world *world, t_mlx *mlx);
-int				hit_obj(t_ray *ray, t_world *world, double min, double max, int	shadow);
-t_hit_point		hit_sp(t_ray *ray, t_object *sp);
 double			compute_lighting(t_ray *ray, t_object *sp, t_world *world);
 int				compute_color(t_ray *ray, t_object *object, t_world *world);
 t_ray			set_ray(t_cam cam, int x, int y, double lookat[4][4]);
 t_viewport		get_viewport(t_cam cam);
 void			mat_lookat(double mat[4][4], t_vec3 from, t_vec3 to);
 
+/* ===== Intersection ===== */
+
+int				hit_obj(t_ray *ray, t_world *world, double min, double max, int	shadow);
+t_hit_point		hit_sp(t_ray *ray, t_object *sp);
+t_hit_point		hit_pl(t_ray *ray, t_object *pl);
+
 /* debug printing */
 void    print_matrix(double mat[4][4]);
 
-/* Shadows */
+/* ===== Shadows ===== */
 int	sp_shadows(t_vec3 point, t_vec3 light, t_world *world);
 
 

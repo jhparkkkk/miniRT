@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_space.c                                         :+:      :+:    :+:   */
+/*   hit_cy.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/16 15:03:46 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/17 18:26:11 by cgosseli         ###   ########.fr       */
+/*   Created: 2022/10/18 15:25:59 by cgosseli          #+#    #+#             */
+/*   Updated: 2022/10/18 15:26:24 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-int	is_space(int c)
+t_hit_point hit_cy(t_ray *ray, t_object *sp)
 {
-	if (c == 32 || (c >= 9 && c <= 13))
-		return (1);
-	return (0);
+	t_hit_point hit;
+	
+	return (hit);
 }

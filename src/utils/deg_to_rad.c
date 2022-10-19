@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 14:01:44 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/04 14:02:08 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/17 18:28:12 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 double	degrees_to_radians(double degrees)
 {
-	return degrees * M_PI / 180.0;
+	return (degrees * M_PI / 180.0);
 }

@@ -62,6 +62,7 @@ SRCS     	+=	main.c \
 					mat_multiply_vec.c \
 					deg_to_rad.c \
 					print_sp.c \
+					print_pl.c \
 					print_matrix.c \
 				} \
 				${addprefix mlx/, \
@@ -71,6 +72,7 @@ SRCS     	+=	main.c \
 				${addprefix intersections/, \
 					hit_obj.c \
 					hit_sp.c \
+					hit_pl.c \
 				} \
 				${addprefix lights/, \
 					compute_lighting.c \

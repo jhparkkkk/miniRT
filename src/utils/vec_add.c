@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   vec_add.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:33:12 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/23 14:34:20 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/17 18:27:40 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-t_vec3  vec_add(t_vec3 v1, t_vec3 v2)
+t_vec3	vec_add(t_vec3 v1, t_vec3 v2)
 {
-    t_vec3 v3;
+	t_vec3	v3;
 
-    v3.x = v1.x + v2.x;
-    v3.y = v1.y + v2.y;
-    v3.z = v1.z + v2.z;
-    return (v3);
+	v3.x = v1.x + v2.x;
+	v3.y = v1.y + v2.y;
+	v3.z = v1.z + v2.z;
+	return (v3);
 }

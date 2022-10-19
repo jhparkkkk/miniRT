@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 17:39:18 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/26 13:29:43 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/18 15:34:33 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	create_plane(char *data, t_object *plane)
 	plane->type = PLANE;
 	plane->center = parse_position(data + i, &i);
 	plane->direction = parse_direction(data + i, &i);
+	plane->direction = vec_normalize(plane->direction);
 	plane->color = parse_position(data + i, &i);
 	if (check_valid_color_range(plane->color))
 	{
@@ -28,4 +29,7 @@ void	create_plane(char *data, t_object *plane)
 		ft_memory(0, 0);
 	}
 	plane->surface = get_surface(data + i, &i);
+	plane->intersect = hit_pl;
+	plane->print_object = &print_pl;
+
 }
