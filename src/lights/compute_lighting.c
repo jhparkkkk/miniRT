@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 16:39:13 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/18 15:23:35 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/19 18:56:06 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,20 @@ static void	specular_lighting(t_hit_point *hit, t_ray *ray)
 
 /* Calculates the intensity of light at the impact of *ray on the *sphere.
 Returns the intensity. */
-double	compute_lighting(t_ray *ray, t_object *obj, t_world *world)
+double	compute_lighting(t_ray *ray, t_object *obj, t_world *world, t_hit_point hit)
 {
-	t_hit_point	hit;
 	double intensity;
 	double	k_type;
 	
 	intensity = 0.0;
-	hit.point = vec_add(ray->origin, vec_scalar(ray->direction, ray->hit.root));
+	// hit.point = vec_add(ray->origin, vec_scalar(ray->direction, ray->hit.root));
 	if (obj->type == PLANE)
 	{
 		hit.normal = obj->direction;
 		k_type = 10.0;
 	}
 	else if (obj->type == SPHERE)
-	{
-		hit.normal = vec_substract(obj->center, hit.point);
 		k_type = 1.0;
-	}
 	hit.vec_light = vec_substract(hit.point, world->light.position);
 	hit.n_dot_l = sqrt(vec_dot(hit.normal, hit.vec_light));
 	//On ne normalise pas la normal car sinon ca veut rien de faire ndotl qui est la longueur

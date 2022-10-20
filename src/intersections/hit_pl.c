@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 13:35:18 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/18 15:02:52 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/19 18:53:04 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_hit_point	hit_pl(t_ray *ray, t_object *pl)
 		if (hit.root >= __DBL_EPSILON__)
 		{
 			hit.status = 1;
+			hit.normal = pl->direction;
 			return (hit);
 		}
 	}

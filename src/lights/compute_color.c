@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:48:38 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/13 11:40:06 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/19 18:33:41 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ static	t_vec3 get_object_shade(t_vec3 color, double light_intensity,
 
 /*Returns the pixel color regarding the lights and ambient light in *world at
 *the impact of the *ray and the *object */
-int	compute_color(t_ray *ray, t_object *object, t_world *world)
+int	compute_color(t_ray *ray, t_object *object, t_world *world, t_hit_point hit)
 {
 	double	intensity;
 	t_vec3	color;
 	t_vec3	light_global;
 	t_vec3	object_shade;
 	
-	intensity = compute_lighting(ray, object, world);
+	intensity = compute_lighting(ray, object, world, hit);
 	light_global = global_light(intensity, world->light, world->ambient_light, object);
 	object_shade = get_object_shade(object->color, intensity, world->ambient_light.intensity, object);
 	color = vec_add(object_shade, light_global);

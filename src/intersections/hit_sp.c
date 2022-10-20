@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:48:49 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/18 15:58:10 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/19 18:52:55 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ t_hit_point hit_sp(t_ray *ray, t_object *sp)
 		hit.root = t1;
 	else
 		hit.root = t2;
+	hit.normal = vec_substract(sp->center, hit.point);
     // else
     // {
     //    hit.x = ray->origin.x + res * ray->direction.x;
