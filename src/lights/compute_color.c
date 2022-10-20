@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   compute_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:48:38 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/13 11:40:06 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/20 14:46:14 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,15 @@
 static t_vec3 global_light(double intensity, t_light light,
 	t_ambient_light ambient_light, t_object *object)
 {
+	(void)object;
 	t_vec3	diffuse;
 	t_vec3	ambient;
-	t_vec3	specular;
+	// t_vec3	specular;
 	
 	diffuse = vec_scalar(light.color, intensity * K_DIFFUSE);
 	ambient = vec_scalar(ambient_light.color, ambient_light.intensity * K_AMBIENT);
-	specular = vec_scalar(light.color, intensity * (object->k_spec / 100)); //A check
-	return (vec_add(specular, vec_add(diffuse, ambient)));
+	// specular = vec_scalar(light.color, intensity * (object->k_spec / 100)); //A check
+	return (vec_add(diffuse, ambient));
 	// }
 	// return (vec_add(diffuse, ambient));
 }
@@ -49,6 +50,18 @@ static	t_vec3 get_object_shade(t_vec3 color, double light_intensity,
 // 	return (vec_scalar(light.color, K_DIFFUSE * intensity));
 // }
 
+t_vec3	vec_multiply(t_vec3 v1, t_vec3 v2)
+{
+	t_vec3 res;
+
+	res.x = (v1.x * v2.x) / 255;
+	res.y = (v1.y * v2.y) / 255;
+	res.z = (v1.z * v2.z) / 255;
+
+	return res;
+
+}
+
 /*Returns the pixel color regarding the lights and ambient light in *world at
 *the impact of the *ray and the *object */
 int	compute_color(t_ray *ray, t_object *object, t_world *world)
@@ -61,7 +74,7 @@ int	compute_color(t_ray *ray, t_object *object, t_world *world)
 	intensity = compute_lighting(ray, object, world);
 	light_global = global_light(intensity, world->light, world->ambient_light, object);
 	object_shade = get_object_shade(object->color, intensity, world->ambient_light.intensity, object);
-	color = vec_add(object_shade, light_global);
+	color = vec_multiply(object_shade, light_global);
 	
 	return get_hex_color(color);
 
