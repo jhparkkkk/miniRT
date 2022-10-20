@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sp_shadows.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:16:25 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/18 15:47:13 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/20 16:41:35 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ int	sp_shadows(t_vec3 point, t_vec3 vec_light, t_world *world)
 		light_hit = vec_scalar(ray.direction, ray.hit.root);
 		light_hit = vec_add(ray.origin, light_hit);
 		light_hit = vec_substract(light_hit, world->light.position);
+		
 		len_light_to_hit = sqrt(vec_dot(light_hit, light_hit));
-		if (len_light_to_hit < len_light)
+		if (len_light_to_hit < len_light && vec_dot(light_hit, vec_light) > __DBL_EPSILON__)
 			return (0);
 	}
 	return (1);

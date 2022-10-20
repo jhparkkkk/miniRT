@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:48:38 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/20 14:46:14 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/20 15:57:44 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ static t_vec3 global_light(double intensity, t_light light,
 	(void)object;
 	t_vec3	diffuse;
 	t_vec3	ambient;
-	// t_vec3	specular;
+	t_vec3	specular;
 	
 	diffuse = vec_scalar(light.color, intensity * K_DIFFUSE);
 	ambient = vec_scalar(ambient_light.color, ambient_light.intensity * K_AMBIENT);
-	// specular = vec_scalar(light.color, intensity * (object->k_spec / 100)); //A check
-	return (vec_add(diffuse, ambient));
+	specular = vec_scalar(light.color, intensity * (object->k_spec / 100)); //A check
+	return (vec_add(specular, vec_add(diffuse, ambient)));
 	// }
 	// return (vec_add(diffuse, ambient));
 }

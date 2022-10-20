@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:48:49 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/20 14:51:18 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/20 16:54:54 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,6 @@ t_hit_point hit_sp(t_ray *ray, t_object *sp)
 		hit.root = t1;
 	else
 		hit.root = t2;
-	
-    hit.normal = vec_substract(sp->center, hit.point);
-    hit.normal = vec_normalize(hit.normal);
-    
-    double distance = vec_len(hit.normal);
-    
-    double angle = vec_dot(hit.normal, ray->direction) / distance;
-    
-    if (angle < __DBL_EPSILON__ )
-        hit.normal = vec_scalar(hit.normal, -1.0);
-    
-    
-    // else
-    // {
-    //    hit.x = ray->origin.x + res * ray->direction.x;
-    //    hit.y = ray->origin.y + res * ray->direction.y;
-    //    hit.z = ray->origin.z + res * ray->direction.z;
-    // }
+
     return (hit);     
 }
