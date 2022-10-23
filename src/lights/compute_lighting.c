@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   compute_lighting.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 16:39:13 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/23 14:50:34 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/23 15:44:00 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,19 @@ double	compute_lighting(t_ray *ray, t_object *obj, t_world *world)
 	{
 		hit.normal = vec_substract(obj->center, hit.point);
 		// k_type = 1.0;
+	}
+	else if (obj->type == CYLINDER)
+	{
+		// t_vec3 direction = vec_scalar(obj->direction, -1.0);
+		// direction = vec_normalize(direction);
+		hit.normal = vec_substract(vec_add(obj->center, vec_scalar(obj->direction, obj->height)), hit.point);
+		// hit.normal = vec_scalar(hit.normal, -1.0);
+		// hit.normal = vec_normalize(hit.normal);
+	}
+	else if (obj->type == CIRC_PLANE)
+	{	
+		hit.normal = obj->direction;
+		
 	}
 	hit.vec_light = vec_substract(hit.point, world->light.position);
 	hit.n_dot_l = sqrt(vec_dot(hit.normal, hit.vec_light));
