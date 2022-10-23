@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_cy.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:25:59 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/19 18:19:34 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/23 14:29:12 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ t_hit_point	hit_cy(t_ray *ray, t_object *cy)
 	double hit_disk = vec_dot(vec_substract(hit.point, cy->center), cy->direction);
 	if (hit_disk < __DBL_EPSILON__ || hit_disk > cy->height)
 		hit.status = 0;
+	hit.normal = vec_substract(cy->center, hit.point);
 	return (hit);
 }

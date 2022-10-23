@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/20 16:44:20 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/23 14:27:27 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define SPHERE 1
 # define PLANE 2
 # define CYLINDER 3
+# define CIRC_PLANE 4
 # define MAT 11
 # define SHINY 12
 # define ESC 65307
@@ -157,6 +158,7 @@ t_ambient_light	get_ambient_light(char **scene);
 void			create_sphere(char *data, t_object *sphere);
 void			create_plane(char *data, t_object *plane);
 void			create_cylinder(char *data, t_object *cylinder);
+void			get_caps(t_object **objects, t_object *cy, int *idx);
 int				get_surface(char *line, int *idx);
 double			get_specular_exponent(char *line, int *idx);
 
@@ -193,6 +195,7 @@ t_vec3			mat_multiply_vec(double mat[4][4], t_vec3 vec);
 
 void			print_sp(t_object sp);
 void			print_pl(t_object pl);
+void			print_cap(t_object cap);
 void			print_cy(t_object cy);
 double			degrees_to_radians(double degrees);
 
@@ -210,6 +213,7 @@ int				hit_obj(t_ray *ray, t_world *world, double min, double max, int	shadow);
 t_hit_point		hit_sp(t_ray *ray, t_object *sp);
 t_hit_point		hit_pl(t_ray *ray, t_object *pl);
 t_hit_point		hit_cy(t_ray *ray, t_object *cy);
+t_hit_point		hit_cap(t_ray *ray, t_object *cap);
 
 /* debug printing */
 void    print_matrix(double mat[4][4]);
