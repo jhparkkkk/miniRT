@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/23 14:27:27 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/25 19:16:54 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,15 +129,6 @@ typedef struct s_viewport
 	t_vec3	vertical;
 }			t_viewport;
 
-typedef struct s_world 
-{
-	t_cam			cam;
-	t_light			light;
-	t_ambient_light ambient_light;
-	t_object		**objects;
-	int				nb_obj;
-} t_world;
-
 typedef struct s_mlx
 {
 	void	*ptr;
@@ -148,6 +139,18 @@ typedef struct s_mlx
 	int		len;
 	int		end;
 } t_mlx;
+
+typedef struct s_world 
+{
+	t_cam			cam;
+	t_light			light;
+	t_ambient_light ambient_light;
+	t_object		**objects;
+	int				nb_obj;
+	t_mlx			*mlx;
+} t_world;
+
+
 
 /* Parsing */
 int				check_filename(char *fd_name);
@@ -172,6 +175,8 @@ t_object 		**get_objects_list(char **scene, t_world *world);
 /* MLX */
 void			init_mlx(t_mlx *mlx);
 void			put_pix(t_mlx *mlx, int x, int y, int color);
+int				press_mouse(t_world *world);
+
 
 /* utils */
 int				check_valid_color_range(t_vec3 color);

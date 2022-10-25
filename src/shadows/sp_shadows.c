@@ -6,15 +6,18 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:16:25 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/20 16:41:35 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/25 16:17:09 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
+// #define BIAS 1e-80
+
 static void	set_ray_from_light(t_ray *ray, t_vec3 point, t_vec3 light)
 {
 	ray->origin = point;
+	ray->origin = vec_scalar(point, __DBL_EPSILON__);
 	ray->direction = vec_scalar(light, -1.0);
 	ray->direction = vec_normalize(ray->direction);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   compute_lighting.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 16:39:13 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/25 13:33:10 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/25 19:27:14 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ double	compute_lighting(t_ray *ray, t_object *obj, t_world *world)
 	if (obj->type == PLANE || obj->type == CIRC_PLANE)
 	{
 		hit.normal = obj->direction;
+		if (obj->type == CIRC_PLANE)
+			hit.normal = vec_scalar(hit.normal, -1.0);
 		// k_type = 10.0;
 	}
 	else if (obj->type == SPHERE)
