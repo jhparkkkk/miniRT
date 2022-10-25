@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   compute_lighting.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 16:39:13 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/23 15:44:00 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/25 13:33:10 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,15 @@ double	compute_lighting(t_ray *ray, t_object *obj, t_world *world)
 	}
 	else if (obj->type == CYLINDER)
 	{
-		// t_vec3 direction = vec_scalar(obj->direction, -1.0);
-		// direction = vec_normalize(direction);
-		hit.normal = vec_substract(vec_add(obj->center, vec_scalar(obj->direction, obj->height)), hit.point);
-		// hit.normal = vec_scalar(hit.normal, -1.0);
-		// hit.normal = vec_normalize(hit.normal);
-	}
-	else if (obj->type == CIRC_PLANE)
-	{	
-		hit.normal = obj->direction;
-		
+		t_vec3 a = vec_substract(hit.point, obj->center);
+		t_vec3 a1 = vec_scalar(obj->direction, vec_dot(a, obj->direction));
+		hit.normal = vec_scalar(vec_substract(a, a1), -1.0);
 	}
 	hit.vec_light = vec_substract(hit.point, world->light.position);
 	hit.n_dot_l = sqrt(vec_dot(hit.normal, hit.vec_light));
-	//On ne normalise pas la normal car sinon ca veut rien de faire ndotl qui est la longueur
-	if (hit.n_dot_l > __DBL_EPSILON__ && sp_shadows(hit.point, hit.vec_light, world) && vec_dot(hit.vec_light, hit.normal) > __DBL_EPSILON__)
+	//On ne normalise pas la normal car sinon ca veut rien dire de faire ndotl qui est la longueur
+	if (hit.n_dot_l > __DBL_EPSILON__ && sp_shadows(hit.point, hit.vec_light, world))
+	// if (hit.n_dot_l > __DBL_EPSILON__)
 	{
 		intensity += world->light.intensity * (hit.n_dot_l / (vec_len(hit.normal) * vec_len(hit.vec_light)));
 		// intensity /= k_type;
