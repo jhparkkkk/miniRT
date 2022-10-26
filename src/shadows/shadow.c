@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shadow.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:16:25 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/26 13:26:04 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/26 17:20:51 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	set_ray_from_light(t_ray *ray, t_vec3 point, t_vec3 light)
 
 /*If the ray sent from the point to the light touches an object, returns 0. Else
 return 1.*/
-int	shadow(t_vec3 point, t_vec3 vec_light, t_world *world)
+int	shadow(t_vec3 point, t_vec3 vec_light, t_world *world, t_light light)
 {
 	t_ray	ray;
 	t_vec3	light_hit;
@@ -44,7 +44,7 @@ int	shadow(t_vec3 point, t_vec3 vec_light, t_world *world)
 	{
 		light_hit = vec_scalar(ray.dir, ray.hit.root);
 		light_hit = vec_add(ray.origin, light_hit);
-		light_hit = vec_substract(light_hit, world->light.position);
+		light_hit = vec_substract(light_hit, light.position);
 		len_light_to_hit = sqrt(vec_dot(light_hit, light_hit));
 		if (len_light_to_hit < len_light && vec_dot(light_hit, vec_light) > __DBL_EPSILON__)
 			return (0);

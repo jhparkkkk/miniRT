@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:48:38 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/26 17:11:02 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/26 17:56:06 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,19 @@ int	compute_color(t_ray *ray, t_object *obj, t_world *world)
 	t_vec3	color;
 	t_vec3	light_global;
 	t_vec3	obj_shade;
+	int		i;
 
-	intens = compute_lighting(ray, obj, world);
-	light_global = global_light(intens, world->light, world->amb_light, obj);
-	obj_shade = get_shade(obj->color, intens, world->amb_light.intens, obj);
-	color = vec_multiply(obj_shade, light_global);
+	intens = 0.0;
+	i = 0;
+	color = vec_init(0,0,0);
+	while (i < world->nb_light)
+	{
+		intens = compute_lighting(ray, obj, world, *(world)->lights[i]);
+		light_global = global_light(intens, *(world)->lights[i], world->amb_light, obj);
+		obj_shade = get_shade(obj->color, intens, world->amb_light.intens, obj);
+		color = vec_add(color, vec_multiply(obj_shade, light_global));
+		i++;
+	}
+	
 	return (get_hex_color(color));
 }

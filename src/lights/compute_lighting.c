@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 16:39:13 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/26 17:08:55 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/26 17:53:01 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_vec3	get_cy_normal(t_vec3 point, t_object *obj)
 
 /* Calculates the intens of light at the impact of *ray on the *sphere.
 Returns the intens. */
-double	compute_lighting(t_ray *ray, t_object *obj, t_world *world)
+double	compute_lighting(t_ray *ray, t_object *obj, t_world *world, t_light light)
 {
 	t_hit_point	hit;
 	double		intens;
@@ -49,12 +49,12 @@ double	compute_lighting(t_ray *ray, t_object *obj, t_world *world)
 		hit.normal = vec_substract(obj->center, hit.point);
 	else if (obj->type == CYLINDER)
 		hit.normal = get_cy_normal(hit.point, obj);
-	hit.vec_light = vec_substract(hit.point, world->light.position);
+	hit.vec_light = vec_substract(hit.point, light.position);
 	hit.ndotl = sqrt(vec_dot(hit.normal, hit.vec_light));
-	if (hit.ndotl > __DBL_EPSILON__ && shadow(hit.point, hit.vec_light, world))
+	if (hit.ndotl > __DBL_EPSILON__ && shadow(hit.point, hit.vec_light, world, light))
 	{
 		intens += (hit.ndotl / (vec_len(hit.normal) * vec_len(hit.vec_light)));
-		intens *= world->light.intens;
+		intens *= light.intens;
 		/* SPEC LIGHTNING */
 		// if (obj->specular_exponent != -1.0)
 		// {

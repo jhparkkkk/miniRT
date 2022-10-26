@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 15:31:59 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/26 17:08:55 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/26 17:53:28 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int main(int ac, char **av)
 		exit (EXIT_FAILURE);
 	scene = get_scene(fd, av[1]);
 	world->cam = get_camera(scene);
-	get_light(&world->light, scene);
+	world->lights = get_lights_list(scene, world);
+	// get_light(&world->light, scene);
 	world->amb_light = get_amb_light(scene);
 	world->objects = get_objects_list(scene, world);
 	
@@ -42,9 +43,9 @@ int main(int ac, char **av)
 
 	
 	/* light */
-	printf("\nlight position : %f, y : %f, z : %f\n", world->light.position.x, world->light.position.y, world->light.position.z);
-	printf("light rgb x : %f, y : %f, z : %f\n", world->light.color.x, world->light.color.y, world->light.color.z);
-	printf("light intens : %f\n", world->light.intens);
+	// printf("\nlight position : %f, y : %f, z : %f\n", world->light.position.x, world->light.position.y, world->light.position.z);
+	// printf("light rgb x : %f, y : %f, z : %f\n", world->light.color.x, world->light.color.y, world->light.color.z);
+	// printf("light intensity : %f\n", world->light.intens);
 	
 	/* camera */
 	printf("\ncamera position x : %f, y : %f, z : %f\n", world->cam.position.x, world->cam.position.y, world->cam.position.z);
