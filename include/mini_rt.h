@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/26 16:44:05 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/26 17:05:00 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,7 @@ double			degrees_to_radians(double degrees);
 
 /* Mini Raytracing */
 void    		draw_world(t_world *world, t_mlx *mlx);
-double			compute_lighting(t_ray *ray, t_object *sp, t_world *world);
+double			compute_lighting(t_ray *ray, t_object *sp, t_world *world, t_light light);
 int				compute_color(t_ray *ray, t_object *object, t_world *world);
 t_ray			set_ray(t_cam cam, int x, int y, double lookat[4][4]);
 void			mat_lookat(double mat[4][4], t_vec3 from, t_vec3 to);

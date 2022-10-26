@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 16:39:13 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/26 16:57:26 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/26 17:10:33 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ double	compute_lighting(t_ray *ray, t_object *obj, t_world *world, t_light light
 		t_vec3 a1 = vec_scalar(obj->direction, vec_dot(a, obj->direction));
 		hit.normal = vec_scalar(vec_substract(a, a1), -1.0);
 	}
-	hit.vec_light = vec_substract(hit.point, light->position);
+	hit.vec_light = vec_substract(hit.point, light.position);
 	hit.n_dot_l = sqrt(vec_dot(hit.normal, hit.vec_light));
 	//On ne normalise pas la normal car sinon ca veut rien dire de faire ndotl qui est la longueur
 	if (hit.n_dot_l > __DBL_EPSILON__ && sp_shadows(hit.point, hit.vec_light, world))
 	// if (hit.n_dot_l > __DBL_EPSILON__)
 	{
-		intensity += world->light.intensity * (hit.n_dot_l / (vec_len(hit.normal) * vec_len(hit.vec_light)));
+		intensity += light.intensity * (hit.n_dot_l / (vec_len(hit.normal) * vec_len(hit.vec_light)));
 		// intensity /= k_type;
 		/* SPEC LIGHTNING */
 		if (obj->specular_exponent != -1.0)
@@ -64,7 +64,7 @@ double	compute_lighting(t_ray *ray, t_object *obj, t_world *world, t_light light
 			specular_lighting(&hit, ray);
 			if (hit.r_dot_v > __DBL_EPSILON__) // si M_E bug et il faut remettre 0.0 puis M_E
 			{	
-				intensity += world->light.intensity * (obj->k_spec * pow(hit.r_dot_v / (vec_len(hit.reflect) * vec_len(hit.view)), obj->specular_exponent * 500000.0));
+				intensity += light.intensity * (obj->k_spec * pow(hit.r_dot_v / (vec_len(hit.reflect) * vec_len(hit.view)), obj->specular_exponent * 500000.0));
 				// intensity /= k_type;
 			}
 				// obj->specular_exponent = world->light.intensity * pow(hit.r_dot_v, obj->specular_exponent);
