@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/25 19:16:54 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/25 19:59:55 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define MAT 11
 # define SHINY 12
 # define ESC 65307
-# define K_AMBIENT 0.8
+# define K_AMBIENT 0.3
 # define K_DIFFUSE 20
 
 
