@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   hit_sp.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:48:49 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/20 16:54:54 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/25 16:22:32 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-t_hit_point hit_sp(t_ray *ray, t_object *sp)
+t_hit_point hit_sp(t_ray *ray, t_object *sp, double shadow)
 {
     double   	discr;
 	double		t1;
@@ -35,10 +35,24 @@ t_hit_point hit_sp(t_ray *ray, t_object *sp)
 	hit.status = 1;
 	t1 = (- hit.b - sqrt(discr)) / (2.0 * hit.a);
 	t2 = (- hit.b + sqrt(discr)) / (2.0 * hit.a);
-	if (t1 < t2 || t1 >= __DBL_EPSILON__)
-		hit.root = t1;
+	// if (t1 < t2 || t1 >= __DBL_EPSILON__)
+	// 	hit.root = t1;
+	// else
+	// 	hit.root = t2;
+	if (!shadow)
+	{
+		if (t1 < t2 && t1 > __DBL_EPSILON__)
+			hit.root = t1;
+		else
+			hit.root = t2;
+	}
 	else
-		hit.root = t2;
+	{
+		if (t1 < t2)
+			hit.root = t1;
+		else
+			hit.root = t2;
+	}
 
     return (hit);     
 }
