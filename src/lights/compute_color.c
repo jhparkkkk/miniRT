@@ -3,94 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   compute_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:48:38 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/20 15:57:44 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/26 17:11:02 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-static t_vec3 global_light(double intensity, t_light light,
-	t_ambient_light ambient_light, t_object *object)
+static t_vec3	global_light(double intens, t_light light,
+	t_amb_light amb_light, t_object *object)
 {
-	(void)object;
 	t_vec3	diffuse;
 	t_vec3	ambient;
 	t_vec3	specular;
-	
-	diffuse = vec_scalar(light.color, intensity * K_DIFFUSE);
-	ambient = vec_scalar(ambient_light.color, ambient_light.intensity * K_AMBIENT);
-	specular = vec_scalar(light.color, intensity * (object->k_spec / 100)); //A check
+
+	diffuse = vec_scalar(light.color, intens * K_DIFFUSE);
+	ambient = vec_scalar(amb_light.color, amb_light.intens * K_AMBIENT);
+	specular = vec_scalar(light.color, intens * (object->k_spec / 100)); //A check
 	return (vec_add(specular, vec_add(diffuse, ambient)));
-	// }
-	// return (vec_add(diffuse, ambient));
 }
 
-static	t_vec3 get_object_shade(t_vec3 color, double light_intensity,
-	double ambient_intensity, t_object *object)
+static t_vec3	get_shade(t_vec3 color, double light_intens,
+	double ambient_intens, t_object *object)
 {
 	t_vec3	ambient_to_obj;
 	t_vec3	light_to_obj;
-	
-	ambient_to_obj = vec_scalar(color, ambient_intensity * K_AMBIENT);
-	light_to_obj = vec_scalar(color, light_intensity * K_DIFFUSE + light_intensity * (object->k_spec / 50));
+
+	ambient_to_obj = vec_scalar(color, ambient_intens * K_AMBIENT);
+	light_to_obj = vec_scalar(color, light_intens * K_DIFFUSE
+			+ light_intens * (object->k_spec / 50));
 	// light_to_obj = vec_add(light_to_obj, vec_scalar(color, object->specular_exponent * K_SPEC));
 	return (vec_add(ambient_to_obj, light_to_obj));
 }
 
-// static t_vec3 get_amb(t_ambient_light ambient_light)
-// {
-// 	return(vec_scalar(ambient_light.color, K_AMBIENT * ambient_light.intensity));
-// }
-
-// static t_vec3 get_l(t_light light, double intensity)
-// {
-// 	return (vec_scalar(light.color, K_DIFFUSE * intensity));
-// }
-
 t_vec3	vec_multiply(t_vec3 v1, t_vec3 v2)
 {
-	t_vec3 res;
+	t_vec3	res;
 
 	res.x = (v1.x * v2.x) / 255;
 	res.y = (v1.y * v2.y) / 255;
 	res.z = (v1.z * v2.z) / 255;
-
-	return res;
-
+	return (res);
 }
 
 /*Returns the pixel color regarding the lights and ambient light in *world at
 *the impact of the *ray and the *object */
-int	compute_color(t_ray *ray, t_object *object, t_world *world)
+int	compute_color(t_ray *ray, t_object *obj, t_world *world)
 {
-	double	intensity;
+	double	intens;
 	t_vec3	color;
 	t_vec3	light_global;
-	t_vec3	object_shade;
-	
-	intensity = compute_lighting(ray, object, world);
-	light_global = global_light(intensity, world->light, world->ambient_light, object);
-	object_shade = get_object_shade(object->color, intensity, world->ambient_light.intensity, object);
-	color = vec_multiply(object_shade, light_global);
-	
-	return get_hex_color(color);
+	t_vec3	obj_shade;
 
-/*Ca fait la meme chose*/
-	// t_vec3	light_color;
-	// t_vec3	object_color;
-	// double	intensity;
-
-	// (void)ray;
-	// (void)object;
-	// intensity = compute_lighting(ray, object, world);
-	
-	// light_color = vec_add(get_amb(world->ambient_light), get_l(world->light, intensity));
-	
-	// object_color = vec_scalar(object->color, world->ambient_light.intensity * K_AMBIENT
-	// 											+ intensity * K_DIFFUSE);
-	// return get_hex_color(vec_add(light_color, object_color));
-	
+	intens = compute_lighting(ray, obj, world);
+	light_global = global_light(intens, world->light, world->amb_light, obj);
+	obj_shade = get_shade(obj->color, intens, world->amb_light.intens, obj);
+	color = vec_multiply(obj_shade, light_global);
+	return (get_hex_color(color));
 }

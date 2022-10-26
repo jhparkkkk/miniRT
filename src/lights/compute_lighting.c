@@ -6,75 +6,65 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 16:39:13 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/26 13:26:13 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/26 17:08:55 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
-
+/*
 // static void	specular_lighting(t_hit_point *hit, t_ray *ray)
 // {
 // 	hit->reflect = vec_scalar(hit->normal, 2.0);
 // 	hit->reflect = vec_scalar(hit->reflect, vec_dot(hit->normal, vec_scalar(hit->vec_light, 1.0)));
 // 	hit->reflect = vec_substract(hit->reflect, hit->vec_light);
-// 	hit->view = vec_scalar(ray->direction, -1.0);
-// 	hit->r_dot_v = sqrt(vec_dot(hit->reflect, hit->view));
+// 	hit->view = vec_scalar(ray->dir, -1.0);
+// 	hit->rdotv = sqrt(vec_dot(hit->reflect, hit->view));
 // }
+*/
 
+static t_vec3	get_cy_normal(t_vec3 point, t_object *obj)
+{
+	t_vec3	to_point;
+	t_vec3	new_center;
+	t_vec3	normal;
 
-/* Calculates the intensity of light at the impact of *ray on the *sphere.
-Returns the intensity. */
+	to_point = vec_substract(point, obj->center);
+	new_center = vec_scalar(obj->dir, vec_dot(to_point, obj->dir));
+	normal = vec_scalar(vec_substract(to_point, new_center), -1.0);
+	return (normal);
+}
+
+/* Calculates the intens of light at the impact of *ray on the *sphere.
+Returns the intens. */
 double	compute_lighting(t_ray *ray, t_object *obj, t_world *world)
 {
 	t_hit_point	hit;
-	double intensity;
-	// double	k_type;
-	
-	intensity = 0.0;
-	hit.point = vec_add(ray->origin, vec_scalar(ray->direction, ray->hit.root));
-	if (obj->type == PLANE)
-	{
-		hit.normal_in = vec_scalar(obj->direction, 1.0);
-	}
+	double		intens;
+
+	intens = 0.0;
+	hit.point = vec_add(ray->origin, vec_scalar(ray->dir, ray->hit.root));
+	if (obj->type == PLANE || obj->type == CIRC_PLANE)
+		hit.normal = vec_scalar(obj->dir, 1.0);
 	else if (obj->type == SPHERE)
-	{
-		hit.normal_in = vec_substract(obj->center, hit.point);
-	}
-	else if (obj->type == CIRC_PLANE)
-	{
-		hit.normal_in = vec_scalar(obj->direction, 1.0);
-	}
+		hit.normal = vec_substract(obj->center, hit.point);
 	else if (obj->type == CYLINDER)
-	{
-		t_vec3 a = vec_substract(hit.point, obj->center);
-		t_vec3 a1 = vec_scalar(obj->direction, vec_dot(a, obj->direction));
-		hit.normal_in = vec_scalar(vec_substract(a, a1), -1.0);
-	}
-	hit.normal_out = vec_scalar(hit.normal_in, -1.0);
+		hit.normal = get_cy_normal(hit.point, obj);
 	hit.vec_light = vec_substract(hit.point, world->light.position);
-	hit.n_dot_l = sqrt(vec_dot(hit.normal_in, hit.vec_light));
-	// if (hit.n_dot_l > sqrt(vec_dot(hit.normal_out, hit.vec_light)))
-	// {
-	// 	hit.n_dot_l = sqrt(vec_dot(hit.normal_out, hit.vec_light));
-	// 	hit.normal_in = hit.normal_out;
-	// }
-	//On ne normalise pas la normal car sinon ca veut rien dire de faire ndotl qui est la longueur
-	if (hit.n_dot_l > __DBL_EPSILON__ && sp_shadows(hit.point, hit.vec_light, world))
-	// if (hit.n_dot_l > __DBL_EPSILON__)
+	hit.ndotl = sqrt(vec_dot(hit.normal, hit.vec_light));
+	if (hit.ndotl > __DBL_EPSILON__ && shadow(hit.point, hit.vec_light, world))
 	{
-		intensity += world->light.intensity * (hit.n_dot_l / (vec_len(hit.normal_in) * vec_len(hit.vec_light)));
-		// intensity /= k_type;
+		intens += (hit.ndotl / (vec_len(hit.normal) * vec_len(hit.vec_light)));
+		intens *= world->light.intens;
 		/* SPEC LIGHTNING */
 		// if (obj->specular_exponent != -1.0)
 		// {
 		// 	specular_lighting(&hit, ray);
-		// 	if (hit.r_dot_v > __DBL_EPSILON__) // si M_E bug et il faut remettre 0.0 puis M_E
+		// 	if (hit.rdotv > __DBL_EPSILON__) // si M_E bug et il faut remettre 0.0 puis M_E
 		// 	{	
-		// 		intensity += world->light.intensity * (obj->k_spec * pow(hit.r_dot_v / (vec_len(hit.reflect) * vec_len(hit.view)), obj->specular_exponent * 500000.0));
-		// 		// intensity /= k_type;
+		// 		intens += world->light.intens * (obj->k_spec * pow(hit.rdotv / (vec_len(hit.reflect) * vec_len(hit.view)), obj->specular_exponent * 500000.0));
 		// 	}
-		// 		// obj->specular_exponent = world->light.intensity * pow(hit.r_dot_v, obj->specular_exponent);
+		// 		// obj->specular_exponent = world->light.intens * pow(hit.rdotv, obj->specular_exponent);
 		// }
 	}
-	return (intensity);
+	return (intens);
 }

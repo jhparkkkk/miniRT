@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_plane.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 17:39:18 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/26 15:33:29 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/26 17:06:23 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	create_plane(char *data, t_object *plane)
 	}
 	plane->type = PLANE;
 	plane->center = parse_position(data + i, &i);
-	plane->direction = parse_direction(data + i, &i);
-	plane->direction = vec_normalize(plane->direction);
+	plane->dir = parse_dir(data + i, &i);
+	plane->dir = vec_normalize(plane->dir);
 	plane->color = parse_position(data + i, &i);
 	if (check_valid_color_range(plane->color))
 	{

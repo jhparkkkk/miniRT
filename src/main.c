@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 15:31:59 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/25 19:21:32 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/26 17:08:55 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int main(int ac, char **av)
 	scene = get_scene(fd, av[1]);
 	world->cam = get_camera(scene);
 	get_light(&world->light, scene);
-	world->ambient_light = get_ambient_light(scene);
+	world->amb_light = get_amb_light(scene);
 	world->objects = get_objects_list(scene, world);
 	
 	init_mlx(&mlx);
@@ -44,16 +44,16 @@ int main(int ac, char **av)
 	/* light */
 	printf("\nlight position : %f, y : %f, z : %f\n", world->light.position.x, world->light.position.y, world->light.position.z);
 	printf("light rgb x : %f, y : %f, z : %f\n", world->light.color.x, world->light.color.y, world->light.color.z);
-	printf("light intensity : %f\n", world->light.intensity);
+	printf("light intens : %f\n", world->light.intens);
 	
 	/* camera */
 	printf("\ncamera position x : %f, y : %f, z : %f\n", world->cam.position.x, world->cam.position.y, world->cam.position.z);
-	printf("cam direction x : %f, y : %f, z : %f\n", world->cam.direction.x, world->cam.direction.y, world->cam.direction.z);
+	printf("cam direction x : %f, y : %f, z : %f\n", world->cam.dir.x, world->cam.dir.y, world->cam.dir.z);
 	printf("cam fov %f\n", world->cam.hfov);
 	
 	/* ambient light */
-	printf("\nambient light color r : %f, g : %f, b: %f\n", world->ambient_light.color.x, world->ambient_light.color.y, world->ambient_light.color.z);
-	printf("ambient light intensity %f\n", world->ambient_light.intensity);
+	printf("\nambient light color r : %f, g : %f, b: %f\n", world->amb_light.color.x, world->amb_light.color.y, world->amb_light.color.z);
+	printf("ambient light intens %f\n", world->amb_light.intens);
 	
 	/* prirnting obj */
 	int	i = 0;
@@ -64,12 +64,12 @@ int main(int ac, char **av)
 	}
 	/* plane */
 	// printf("\nplane center : %f, y : %f, z : %f\n", world->objects[1]->center.x, world->objects[1]->center.y, world->objects[1]->center.z);
-	// printf("plane direction : %f, y : %f, z : %f\n", world->objects[1]->direction.x, world->objects[1]->direction.y, world->objects[1]->direction.z);
+	// printf("plane direction : %f, y : %f, z : %f\n", world->objects[1]->dir.x, world->objects[1]->dir.y, world->objects[1]->dir.z);
 	// printf("plane color : %f, y : %f, z : %f\n", world->objects[1]->color.x, world->objects[1]->color.y, world->objects[1]->color.z);
 	
 	// /* cylinder */
 	// printf("\ncylinder center : %f, y : %f, z : %f\n", world->objects[2]->center.x, world->objects[2]->center.y, world->objects[2]->center.z);
-	// printf("cylinder direction : %f, y : %f, z : %f\n", world->objects[2]->direction.x, world->objects[2]->direction.y, world->objects[2]->direction.z);
+	// printf("cylinder direction : %f, y : %f, z : %f\n", world->objects[2]->dir.x, world->objects[2]->dir.y, world->objects[2]->dir.z);
 	// printf("sphere radius %f\n", world->objects[2]->radius);
 	// printf("sphere radius %f\n", world->objects[2]->height);
 	// printf("plane color : %f, y : %f, z : %f\n", world->objects[2]->color.x, world->objects[2]->color.y, world->objects[2]->color.z);

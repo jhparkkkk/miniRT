@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_amb_light.c                                :+:      :+:    :+:   */
+/*   get_amb_light.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:46:10 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/26 15:10:40 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/26 17:08:55 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static double	get_intens(char *line, int *idx)
 static t_amb_light	get_amb_light_specs(char *line)
 {
 	int				i;
-	t_amb_light		amb_light;
+	t_amb_light	amb_light;
 
 	i = 0;
 	jump_spaces(line, &i);
@@ -61,7 +61,7 @@ t_amb_light	get_amb_light(char **scene)
 	int				i;
 	int				j;
 	int				nb;
-	t_amb_light		amb_light;
+	t_amb_light	amb_light;
 
 	i = -1;
 	j = 0;

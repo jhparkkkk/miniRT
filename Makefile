@@ -31,14 +31,14 @@ SRCS     	+=	main.c \
 					get_scene.c \
 					get_camera.c \
 					get_light.c \
-					get_ambient_light.c \
+					get_amb_light.c \
 					get_objects_list.c \
 					create_sphere.c \
 					create_plane.c \
 					create_cylinder.c \
 					get_caps.c \
 					parse_position.c \
-					parse_direction.c \
+					parse_dir.c \
 					check_double.c \
 					check_valid_color_range.c \
 					get_surface.c \
@@ -90,7 +90,7 @@ SRCS     	+=	main.c \
 					mat_lookat.c \
 				} \
 				${addprefix shadows/, \
-					sp_shadows.c \
+					shadow.c \
 				} 
 					
 				

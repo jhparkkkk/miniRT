@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/26 15:23:56 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/26 17:08:20 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,28 +50,27 @@ typedef struct s_vec3
 typedef struct s_cam
 {
 	t_vec3	position;
-	t_vec3	direction;
+	t_vec3	dir;
 	double	hfov;
 	double	**lookat;
 	double	**mat_identity;
 	double	**mat_projection;
 	t_vec3	right;
 	t_vec3	up;
-	t_vec3	dir;
 } t_cam;
 
 typedef struct s_light
 {
 	t_vec3	position;
 	t_vec3	color;
-	double	intensity;
+	double	intens;
 } t_light;
 
-typedef struct s_ambient_light
+typedef struct s_amb_light
 {
 	t_vec3	color;
-	double	intensity;
-} t_ambient_light;
+	double	intens;
+} t_amb_light;
 
 typedef struct s_object t_object;
 
@@ -84,19 +83,18 @@ typedef struct s_hit_point
     double	 	 a;
     double		 b;
     double		 c;
-	t_vec3		normal_in;
-	t_vec3		normal_out;
+	t_vec3		normal;
 	t_vec3		vec_light;
 	t_vec3		reflect;
 	t_vec3		view;
-	double		n_dot_l;
-	double		r_dot_v;
+	double		ndotl;
+	double		rdotv;
 } t_hit_point;
 
 typedef struct s_ray
 {
 	t_vec3		origin;
-	t_vec3		direction;
+	t_vec3		dir;
 	t_hit_point hit;
 } t_ray;
 
@@ -105,7 +103,7 @@ typedef struct s_object
 	int		type;
 	t_vec3	center;
 	t_vec3	color;
-	t_vec3	direction;
+	t_vec3	dir;
 	double	radius;
 	double	height;
 	t_hit_point		(*intersect) (t_ray *ray, t_object *obj, double shadow);
@@ -137,7 +135,7 @@ typedef struct s_world
 {
 	t_cam			cam;
 	t_light			light;
-	t_ambient_light ambient_light;
+	t_amb_light amb_light;
 	t_object		**objects;
 	int				nb_obj;
 	t_mlx			*mlx;
@@ -150,7 +148,7 @@ int				check_filename(char *fd_name);
 char			**get_scene(int fd, char *filename);
 t_cam			get_camera(char **scene);
 int				get_light(t_light *light, char **scene);
-t_ambient_light	get_ambient_light(char **scene);
+t_amb_light	get_amb_light(char **scene);
 void			create_sphere(char *data, t_object *sphere);
 void			create_plane(char *data, t_object *plane);
 void			create_cylinder(char *data, t_object *cylinder);
@@ -161,7 +159,7 @@ int				check_elements_nb(int expected, char *data);
 
 
 t_vec3			parse_position(char *line, int *idx);
-t_vec3			parse_direction(char *line, int *idx);
+t_vec3			parse_dir(char *line, int *idx);
 
 t_object 		**get_objects_list(char **scene, t_world *world);
 
@@ -207,7 +205,7 @@ void			mat_lookat(double mat[4][4], t_vec3 from, t_vec3 to);
 
 /* ===== Intersection ===== */
 
-int				hit_obj(t_ray *ray, t_world *world, double min, double max, int	shadow);
+int				hit_obj(t_ray *ray, t_world *world, int	shadow);
 t_hit_point		hit_sp(t_ray *ray, t_object *sp, double shadow);
 t_hit_point		hit_pl(t_ray *ray, t_object *pl, double shadow);
 t_hit_point		hit_cy(t_ray *ray, t_object *cy, double shadow);
@@ -217,7 +215,7 @@ t_hit_point		hit_cap(t_ray *ray, t_object *cap, double shadow);
 void    print_matrix(double mat[4][4]);
 
 /* ===== Shadows ===== */
-int	sp_shadows(t_vec3 point, t_vec3 light, t_world *world);
+int	shadow(t_vec3 point, t_vec3 light, t_world *world);
 
 
 #endif 

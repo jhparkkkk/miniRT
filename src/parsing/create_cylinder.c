@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_cylinder.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 17:53:12 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/26 15:34:04 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/26 17:06:21 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	create_cylinder(char *data, t_object *cylinder)
 	}
 	cylinder->type = CYLINDER;
 	cylinder->center = parse_position(data + i, &i);
-	cylinder->direction = parse_direction(data + i, &i);
-	cylinder->direction = vec_normalize(cylinder->direction);
+	cylinder->dir = parse_dir(data + i, &i);
+	cylinder->dir = vec_normalize(cylinder->dir);
 	cylinder->radius = get_double(data + i, &i) / 2;
 	cylinder->height = get_double(data + i, &i);
 	cylinder->color = parse_position(data + i, &i);

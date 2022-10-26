@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_camera.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:16:19 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/26 15:25:23 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/26 17:06:43 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static t_cam	get_camera_specs(char *line)
 	jump_spaces(line, &i);
 	i++;
 	cam.position = parse_position(line + i, &i);
-	cam.direction = vec_normalize(parse_direction(line + i, &i));
+	cam.dir = vec_normalize(parse_dir(line + i, &i));
 	cam.hfov = get_hfov(line + i);
 	return (cam);
 }

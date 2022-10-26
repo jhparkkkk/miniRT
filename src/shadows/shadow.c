@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sp_shadows.c                                       :+:      :+:    :+:   */
+/*   shadow.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -19,19 +19,19 @@ static void	set_ray_from_light(t_ray *ray, t_vec3 point, t_vec3 light)
 {
 	ray->origin = point;
 	// ray->origin = vec_scalar(point, __DBL_EPSILON__);
-	ray->direction = vec_scalar(light, -1.0);
-	ray->direction = vec_normalize(ray->direction);
+	ray->dir = vec_scalar(light, -1.0);
+	ray->dir = vec_normalize(ray->dir);
 	ray->hit.root = 0.0;
 	ray->hit.a = 0.0;
 	ray->hit.b = 0.0;
 	ray->hit.c = 0.0;
-	ray->hit.n_dot_l = 0.0;
-	ray->hit.r_dot_v = 0.0;
+	ray->hit.ndotl = 0.0;
+	ray->hit.rdotv = 0.0;
 }
 
 /*If the ray sent from the point to the light touches an object, returns 0. Else
 return 1.*/
-int	sp_shadows(t_vec3 point, t_vec3 vec_light, t_world *world)
+int	shadow(t_vec3 point, t_vec3 vec_light, t_world *world)
 {
 	t_ray	ray;
 	t_vec3	light_hit;
@@ -40,9 +40,9 @@ int	sp_shadows(t_vec3 point, t_vec3 vec_light, t_world *world)
 
 	set_ray_from_light(&ray, point, vec_light);
 	len_light = sqrt(vec_dot(vec_light, vec_light));
-	if (hit_obj(&ray, world, __DBL_EPSILON__, INFINITY, 1) > -1)
+	if (hit_obj(&ray, world, 1) > -1)
 	{
-		light_hit = vec_scalar(ray.direction, ray.hit.root);
+		light_hit = vec_scalar(ray.dir, ray.hit.root);
 		light_hit = vec_add(ray.origin, light_hit);
 		light_hit = vec_substract(light_hit, world->light.position);
 		len_light_to_hit = sqrt(vec_dot(light_hit, light_hit));

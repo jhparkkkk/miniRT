@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_caps.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 13:23:51 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/26 15:37:47 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/26 17:07:00 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static t_object	*get_btm_cap(t_object *cy, t_object *cap)
 {
 	cap->type = CIRC_PLANE;
 	cap->center = cy->center;
-	cap->direction = vec_scalar(cy->direction, 1.0);
-	cap->direction = vec_normalize(cap->direction);
+	cap->dir = vec_scalar(cy->dir, 1.0);
+	cap->dir = vec_normalize(cap->dir);
 	cap->color = cy->color;
 	cap->surface = cy->surface;
 	cap->radius = cy->radius;
@@ -29,9 +29,9 @@ static t_object	*get_btm_cap(t_object *cy, t_object *cap)
 static t_object	*get_top_cap(t_object *cy, t_object *cap)
 {
 	cap->type = CIRC_PLANE;
-	cap->direction = vec_scalar(cy->direction, -1.0);
-	cap->direction = vec_normalize(cap->direction);
-	cap->center = vec_add(cy->center, vec_scalar(cy->direction, cy->height));
+	cap->dir = vec_scalar(cy->dir, -1.0);
+	cap->dir = vec_normalize(cap->dir);
+	cap->center = vec_add(cy->center, vec_scalar(cy->dir, cy->height));
 	cap->color = cy->color;
 	cap->surface = cy->surface;
 	cap->radius = cy->radius;
