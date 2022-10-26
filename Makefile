@@ -43,6 +43,7 @@ SRCS     	+=	main.c \
 					check_valid_color_range.c \
 					get_surface.c \
 					get_specular_exponent.c \
+					check_elements_nb.c \
 				} \
 				${addprefix utils/, \
 					jump_spaces.c \

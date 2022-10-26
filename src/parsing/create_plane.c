@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 17:39:18 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/18 15:34:33 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/26 14:16:08 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@ void	create_plane(char *data, t_object *plane)
 	int			i;
 
 	i = 0;
-
+	if (!check_elements_nb(3, data))
+	{
+		ft_putstr_fd("The plane doesn't have the right number of elements\n", 2);
+		ft_memory(0, 0);
+	}
 	plane->type = PLANE;
 	plane->center = parse_position(data + i, &i);
 	plane->direction = parse_direction(data + i, &i);

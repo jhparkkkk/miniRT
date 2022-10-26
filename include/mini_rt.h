@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/26 13:25:23 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/26 14:08:20 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,7 @@ void			create_cylinder(char *data, t_object *cylinder);
 void			get_caps(t_object **objects, t_object *cy, int *idx);
 int				get_surface(char *line, int *idx);
 double			get_specular_exponent(char *line, int *idx);
+int				check_elements_nb(int expected, char *data);
 
 
 t_vec3			parse_position(char *line, int *idx);

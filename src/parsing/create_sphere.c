@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 14:55:39 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/17 17:54:01 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/26 14:10:13 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,11 @@ void	create_sphere(char *data, t_object *sphere)
 	int			i;
 
 	i = 0;
-
+	if (!check_elements_nb(3, data))
+	{
+		ft_putstr_fd("The sphere doesn't have the right number of elements\n", 2);
+		ft_memory(0, 0);
+	}
 	sphere->type = SPHERE;
 	sphere->center = parse_position(data + i, &i);
 	sphere->radius = get_radius(data + i, &i);

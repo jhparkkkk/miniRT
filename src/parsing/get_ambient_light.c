@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:46:10 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/26 13:37:27 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/26 14:09:20 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ static t_ambient_light	get_ambient_light_specs(char *line)
 
 	i = 0;
 	jump_spaces(line, &i);
+	if (!check_elements_nb(3, line))
+	{
+		ft_putstr_fd("The ambient light doesn't have the right number of elements\n", 2);
+		ft_memory(0, 0);
+	}
 	i++;
 	ambient_light.intensity = get_intensity(line + i, &i);
 	ambient_light.color = parse_position(line + i, &i);

@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:19:43 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/26 13:45:42 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/26 14:08:58 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@ static int	get_param(t_light *light, char *line)
 	double	ret;
 	int		i;
 
-	i = 0;
-	if (is_space(line[0]))
+	if (!check_elements_nb(4, line))
 	{
-		jump_spaces(line, &i);
-		jump_data(line, &i);
+		ft_putstr_fd("The light doesn't have the right number of elements\n", 2);
+		ft_memory(0, 0);
 	}
+	i = 0;
+	jump_spaces(line, &i);
+	i++;
 	light->position = parse_position(line + i, &i);
 	jump_spaces(line, &i);
 	ret = ft_atof(line + i);

@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:16:19 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/26 13:35:58 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/26 14:08:53 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ static t_cam	get_camera_specs(char *line)
 	int		i;
 	t_cam	cam;
 
+	if (!check_elements_nb(4, line))
+	{
+		ft_putstr_fd("The camera doesn't have the right number of elements\n", 2);
+		ft_memory(0, 0);
+	}
 	i = 0;
 	jump_spaces(line, &i);
 	i++;

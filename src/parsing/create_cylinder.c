@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 17:53:12 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/19 13:58:57 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/26 14:14:23 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ void	create_cylinder(char *data, t_object *cylinder)
 	int	i;
 
 	i = 0;
+	if (!check_elements_nb(5, data))
+	{
+		ft_putstr_fd("The cylinder doesn't have the right number of elements\n", 2);
+		ft_memory(0, 0);
+	}
 	cylinder->type = CYLINDER;
 	cylinder->center = parse_position(data + i, &i);
 	cylinder->direction = parse_direction(data + i, &i);
