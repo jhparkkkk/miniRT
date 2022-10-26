@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/26 17:05:00 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/26 17:29:28 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 # define MAT 11
 # define SHINY 12
 # define ESC 65307
-# define K_AMBIENT 0.8
-# define K_DIFFUSE 40
+# define K_AMBIENT 0.4
+# define K_DIFFUSE 20
 
 
 /* Structures */
@@ -83,8 +83,7 @@ typedef struct s_hit_point
     double	 	 a;
     double		 b;
     double		 c;
-	t_vec3		normal_in;
-	t_vec3		normal_out;
+	t_vec3		normal;
 	t_vec3		vec_light;
 	t_vec3		reflect;
 	t_vec3		view;
@@ -217,7 +216,7 @@ t_hit_point		hit_cap(t_ray *ray, t_object *cap, double shadow);
 void    print_matrix(double mat[4][4]);
 
 /* ===== Shadows ===== */
-int	sp_shadows(t_vec3 point, t_vec3 light, t_world *world);
+int	sp_shadows(t_vec3 point, t_vec3 light, t_world *world, t_light);
 
 
 #endif 
