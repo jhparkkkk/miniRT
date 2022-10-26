@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 15:14:06 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/17 23:58:30 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/26 15:31:41 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,11 @@ static t_vec3	extract_direction(char *data)
 	return (direction);
 }
 
-/* Takes a line of the scene instructions beginning at the direction
-instruction. Checks if the direction contains 2 commas for x, y, z.
-Returns the vec3 direction or exit if something was wrong*/
+/*
+   Takes a line of the scene instructions beginning at the direction
+   instruction. Checks if the direction contains 2 commas for x, y, z.
+   Returns the vec3 direction or exit if something was wrong
+*/
 t_vec3	parse_direction(char *line, int *idx)
 {
 	int	i;
@@ -62,7 +64,6 @@ t_vec3	parse_direction(char *line, int *idx)
 
 	j = 0;
 	nb_comma = 0;
-
 	jump_spaces(line, &j);
 	i = j;
 	while (line[i] && !(line[i] == 32 || (line[i] >= 9 && line[i] <= 13)))

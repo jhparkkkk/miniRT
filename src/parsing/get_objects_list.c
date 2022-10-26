@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   get_objects_list.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 13:35:03 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/23 14:36:56 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/26 15:17:42 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "mini_rt.h"
+#include "mini_rt.h"
 
 static t_object	*get_object(char *line)
 {
-	int	i;
-	int	j;
-	t_object *new_object;
+	int			i;
+	int			j;
+	t_object	*new_object;
 
 	i = 0;
 	j = 0;
@@ -25,7 +25,7 @@ static t_object	*get_object(char *line)
 	if (is_space(line[j]))
 		jump_spaces(line, &j);
 	while (line[j + i] && !(line[j + i] == 32 || (line[j + i] >= 9
-			&& line[j + i] <= 13)))
+				&& line[j + i] <= 13)))
 				i++;
 	if (!ft_strncmp(line + j, "sp", i))
 		create_sphere(line + j + i, new_object);
@@ -65,7 +65,7 @@ static int	count_objects(char **scene, t_world *world)
 	return (nb);
 }
 
-t_object **get_objects_list(char **scene, t_world *world)
+t_object	**get_objects_list(char **scene, t_world *world)
 {
 	int			i;
 	int			j;
@@ -75,8 +75,6 @@ t_object **get_objects_list(char **scene, t_world *world)
 	i = -1;
 	j = 0;
 	idx = 0;
-	objects = NULL;
-
 	objects = ft_memory(sizeof(t_object *), count_objects(scene, world) + 1);
 	while (scene[++i])
 	{

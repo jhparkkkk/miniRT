@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_cylinder.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 17:53:12 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/26 14:14:23 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/26 15:34:04 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ static double	get_double(char *data, int *idx)
 	return (ret);
 }
 
+/*
+	Gets all parameters needed to create cylinder in the world space
+*/
 void	create_cylinder(char *data, t_object *cylinder)
 {
 	int	i;
@@ -38,7 +41,7 @@ void	create_cylinder(char *data, t_object *cylinder)
 	i = 0;
 	if (!check_elements_nb(5, data))
 	{
-		ft_putstr_fd("The cylinder doesn't have the right number of elements\n", 2);
+		ft_putstr_fd("Cylinder: invalid number of elements\n", 2);
 		ft_memory(0, 0);
 	}
 	cylinder->type = CYLINDER;
@@ -56,5 +59,4 @@ void	create_cylinder(char *data, t_object *cylinder)
 	cylinder->surface = get_surface(data + i, &i);
 	cylinder->intersect = hit_cy;
 	cylinder->print_object = &print_cy;
-
 }

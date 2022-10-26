@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   create_sphere.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 14:55:39 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/26 14:10:13 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/26 15:33:42 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
+
+/* sous fonction pour la surface si on ajoute la specular
+   Attention il faudra modifier le checker d'arguments
+*/
+static void	get_sphere_surface(t_object *sphere, char *data, int i)
+{
+	sphere->surface = get_surface(data + i, &i);
+	if (sphere->surface == SHINY)
+	{
+		sphere->specular_exponent = get_specular_exponent(data + i, &i);
+		sphere->k_spec = 10.0;
+	}
+	else
+	{
+		sphere->specular_exponent = 0.1;
+		sphere->k_spec = 0.0;
+	}	
+}
 
 static double	get_radius(char *data, int *idx)
 {
@@ -31,14 +49,17 @@ static double	get_radius(char *data, int *idx)
 	return (ret / 2);
 }
 
+/*
+	Gets all parameters needed to create sphere in the world space
+*/
 void	create_sphere(char *data, t_object *sphere)
 {
-	int			i;
+	int	i;
 
 	i = 0;
 	if (!check_elements_nb(3, data))
 	{
-		ft_putstr_fd("The sphere doesn't have the right number of elements\n", 2);
+		ft_putstr_fd("Sphere: inavlid number of elements\n", 2);
 		ft_memory(0, 0);
 	}
 	sphere->type = SPHERE;
@@ -52,16 +73,5 @@ void	create_sphere(char *data, t_object *sphere)
 	}
 	sphere->intersect = hit_sp;
 	sphere->print_object = &print_sp;
-	sphere->surface = get_surface(data + i, &i);
-	if (sphere->surface == SHINY)
-	{
-		sphere->specular_exponent = get_specular_exponent(data + i, &i);
-		sphere->k_spec = 10.0;
-	}
-	else
-	{
-		sphere->specular_exponent = 0.1; // tweak ca en moins eleve pour voir
-		sphere->k_spec = 0.0;
-	}
-		
+	get_sphere_surface(sphere, data, i);
 }

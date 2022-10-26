@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/26 14:08:20 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/26 15:23:56 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ typedef struct s_cam
 	t_vec3	position;
 	t_vec3	direction;
 	double	hfov;
-	double	vfov;
 	double	**lookat;
 	double	**mat_identity;
 	double	**mat_projection;
@@ -98,7 +97,6 @@ typedef struct s_ray
 {
 	t_vec3		origin;
 	t_vec3		direction;
-	// double		root;
 	t_hit_point hit;
 } t_ray;
 
@@ -123,12 +121,6 @@ typedef struct s_view
 	t_vec3	color;
 }			t_view;
 
-typedef struct s_viewport
-{
-	t_vec3	lower_left_corner;
-	t_vec3	horizontal;
-	t_vec3	vertical;
-}			t_viewport;
 
 typedef struct s_mlx
 {
@@ -211,7 +203,6 @@ void    		draw_world(t_world *world, t_mlx *mlx);
 double			compute_lighting(t_ray *ray, t_object *sp, t_world *world);
 int				compute_color(t_ray *ray, t_object *object, t_world *world);
 t_ray			set_ray(t_cam cam, int x, int y, double lookat[4][4]);
-t_viewport		get_viewport(t_cam cam);
 void			mat_lookat(double mat[4][4], t_vec3 from, t_vec3 to);
 
 /* ===== Intersection ===== */

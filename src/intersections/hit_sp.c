@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_sp.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:48:49 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/25 16:22:32 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/26 14:59:33 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_hit_point hit_sp(t_ray *ray, t_object *sp, double shadow)
     discr = hit.b * hit.b - 4.0 * hit.a * hit.c;
     if (discr < __DBL_EPSILON__)
 	{
-        // printf("plop\n");
 		hit.status = 0;
         return (hit);
 	}

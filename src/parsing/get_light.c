@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_light.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:19:43 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/26 14:08:58 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/26 15:12:31 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
-
 
 static int	get_param(t_light *light, char *line)
 {
@@ -37,36 +36,36 @@ static int	get_param(t_light *light, char *line)
 	light->intensity = ret;
 	jump_data(line, &i);
 	light->color = parse_position(line + i, &i);
-	return 0;
+	return (0);
 }
 
 /*	checks if light parameter exists and is valid in .rt file
 	else prints error and exits
 */
-int get_light(t_light *light, char **scene)
+int	get_light(t_light *light, char **scene)
 {
-	int i;
-	int j;
-	int nb;
-	
+	int	i;
+	int	j;
+	int	nb;
+
 	nb = 0;
 	i = -1;
-    while (scene[++i])
+	while (scene[++i])
 	{
 		j = 0;
 		jump_spaces(scene[i], &j);
 		if (scene[i][j] == 'L'
-			&& ((scene[i][j + 1] >= 9 && scene[i][j + 1] <= 13) || scene[i][j + 1] == 32))
+			&& ((scene[i][j + 1] >= 9 && scene[i][j + 1] <= 13)
+			|| scene[i][j + 1] == 32))
 		{
 			nb++;
 			get_param(light, scene[i]);
 		}
 	}
-	if (nb < 1)
+	if (nb != 1)
 	{
 		ft_putstr_fd("The scene must contain one light\n", 2);
 		ft_memory(0, 0);
 	}
 	return (EXIT_FAILURE);
-    
 }

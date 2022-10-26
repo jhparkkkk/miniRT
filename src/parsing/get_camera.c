@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_camera.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:16:19 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/26 14:08:53 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/26 15:25:23 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
-
-static double	get_vfov(double hfov)
-{
-	
-	double	vfov;
-	
-	if (hfov == 180)
-		return (180.0);
-	hfov = degrees_to_radians(hfov);
-	vfov = 2.0 * atan((0.5 * SIZEY) / (0.5 * SIZEX / tan(hfov / 2.0)));
-	return (vfov * (180/ M_PI));
-}
-
 
 static double	get_hfov(char *line)
 {
@@ -48,7 +35,7 @@ static t_cam	get_camera_specs(char *line)
 
 	if (!check_elements_nb(4, line))
 	{
-		ft_putstr_fd("The camera doesn't have the right number of elements\n", 2);
+		ft_putstr_fd("Camera: invalid number of elements\n", 2);
 		ft_memory(0, 0);
 	}
 	i = 0;
@@ -57,9 +44,6 @@ static t_cam	get_camera_specs(char *line)
 	cam.position = parse_position(line + i, &i);
 	cam.direction = vec_normalize(parse_direction(line + i, &i));
 	cam.hfov = get_hfov(line + i);
-	cam.vfov = get_vfov(cam.hfov);
-	printf("vfov : %f\n", cam.vfov);
-
 	return (cam);
 }
 
@@ -80,7 +64,8 @@ t_cam	get_camera(char **scene)
 	{
 		jump_spaces(scene[i], &j);
 		if (scene[i][j] && scene[i][j] == 'C'
-			&& ((scene[i][j + 1] >= 9 && scene[i][j + 1] <= 13) || scene[i][j + 1] == 32))
+			&& ((scene[i][j + 1] >= 9 && scene[i][j + 1] <= 13)
+			|| scene[i][j + 1] == 32))
 		{
 			nb++;
 			cam = get_camera_specs(scene[i]);

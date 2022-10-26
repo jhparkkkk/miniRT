@@ -6,14 +6,15 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 13:16:54 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/26 14:58:20 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/26 15:11:36 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
 /* transforms direction of each ray generated from camera. vec direction depends
-   on projection + rortation + translation opertion
+   on projection + rortation + translation opertion.
+   Returns calculated ray from the camera to each pixel of the screen 
 */
 t_ray	set_ray(t_cam cam, int x, int y, double mat[4][4])
 {

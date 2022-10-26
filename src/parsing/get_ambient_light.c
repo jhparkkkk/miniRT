@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_ambient_light.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:46:10 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/26 14:09:20 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/26 15:10:40 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ static double	get_intensity(char *line, int *idx)
 
 static t_ambient_light	get_ambient_light_specs(char *line)
 {
-	int		i;
+	int				i;
 	t_ambient_light	ambient_light;
 
 	i = 0;
 	jump_spaces(line, &i);
 	if (!check_elements_nb(3, line))
 	{
-		ft_putstr_fd("The ambient light doesn't have the right number of elements\n", 2);
+		ft_putstr_fd("Ambient light: invalid number of elements\n", 2);
 		ft_memory(0, 0);
 	}
 	i++;
@@ -53,6 +53,9 @@ static t_ambient_light	get_ambient_light_specs(char *line)
 	return (ambient_light);
 }
 
+/*	checks if ambient light parameter exists and is valid in .rt file
+	else prints error and exits
+*/
 t_ambient_light	get_ambient_light(char **scene)
 {
 	int				i;
@@ -67,7 +70,8 @@ t_ambient_light	get_ambient_light(char **scene)
 	{
 		jump_spaces(scene[i], &j);
 		if (scene[i][j] && scene[i][j] == 'A'
-			&& ((scene[i][j + 1] >= 9 && scene[i][j + 1] <= 13) || scene[i][j + 1] == 32))
+			&& ((scene[i][j + 1] >= 9 && scene[i][j + 1] <= 13)
+			|| scene[i][j + 1] == 32))
 		{
 			nb++;
 			ambient_light = get_ambient_light_specs(scene[i]);
