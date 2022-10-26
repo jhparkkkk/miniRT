@@ -36,6 +36,7 @@ SRCS     	+=	main.c \
 					create_sphere.c \
 					create_plane.c \
 					create_cylinder.c \
+					get_caps.c \
 					parse_position.c \
 					parse_direction.c \
 					check_double.c \
@@ -64,17 +65,20 @@ SRCS     	+=	main.c \
 					print_sp.c \
 					print_pl.c \
 					print_cy.c \
+					print_cap.c \
 					print_matrix.c \
 				} \
 				${addprefix mlx/, \
 					init_mlx.c \
 					put_pix.c \
+					event_mouse.c \
 				} \
 				${addprefix intersections/, \
 					hit_obj.c \
 					hit_sp.c \
 					hit_pl.c \
 					hit_cy.c \
+					hit_cap.c \
 				} \
 				${addprefix lights/, \
 					compute_lighting.c \

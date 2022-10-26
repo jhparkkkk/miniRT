@@ -6,20 +6,20 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 16:45:58 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/25 16:40:03 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/25 19:36:08 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-double   vec_dot(t_vec3 v1, t_vec3 v2)
+double	vec_dot(t_vec3 v1, t_vec3 v2)
 {
-    double   x;
-    double   y;
-    double   z;
+	double	x;
+	double	y;
+	double	z;
 
-    x = v1.x * v2.x;
-    y = v1.y * v2.y;
-    z = v1.z * v2.z;
-    return (x + y + z);
+	x = v1.x * v2.x;
+	y = v1.y * v2.y;
+	z = v1.z * v2.z;
+	return (x + y + z);
 }

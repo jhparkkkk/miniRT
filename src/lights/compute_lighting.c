@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 16:39:13 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/20 17:04:39 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/26 13:21:57 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,11 @@ double	compute_lighting(t_ray *ray, t_object *obj, t_world *world)
 	
 	intensity = 0.0;
 	hit.point = vec_add(ray->origin, vec_scalar(ray->direction, ray->hit.root));
-	if (obj->type == PLANE)
+	if (obj->type == PLANE || obj->type == CIRC_PLANE)
 	{
 		hit.normal = obj->direction;
+		if (obj->type == CIRC_PLANE)
+			hit.normal = vec_scalar(hit.normal, -1.0);
 		// k_type = 10.0;
 	}
 	else if (obj->type == SPHERE)
@@ -42,10 +44,17 @@ double	compute_lighting(t_ray *ray, t_object *obj, t_world *world)
 		hit.normal = vec_substract(obj->center, hit.point);
 		// k_type = 1.0;
 	}
+	else if (obj->type == CYLINDER)
+	{
+		t_vec3 a = vec_substract(hit.point, obj->center);
+		t_vec3 a1 = vec_scalar(obj->direction, vec_dot(a, obj->direction));
+		hit.normal = vec_scalar(vec_substract(a, a1), -1.0);
+	}
 	hit.vec_light = vec_substract(hit.point, world->light.position);
 	hit.n_dot_l = sqrt(vec_dot(hit.normal, hit.vec_light));
-	//On ne normalise pas la normal car sinon ca veut rien de faire ndotl qui est la longueur
+	//On ne normalise pas la normal car sinon ca veut rien dire de faire ndotl qui est la longueur
 	if (hit.n_dot_l > __DBL_EPSILON__ && sp_shadows(hit.point, hit.vec_light, world))
+	// if (hit.n_dot_l > __DBL_EPSILON__)
 	{
 		intensity += world->light.intensity * (hit.n_dot_l / (vec_len(hit.normal) * vec_len(hit.vec_light)));
 		// intensity /= k_type;

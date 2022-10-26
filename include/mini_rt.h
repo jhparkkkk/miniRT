@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/20 16:44:20 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/25 19:59:55 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@
 # define SPHERE 1
 # define PLANE 2
 # define CYLINDER 3
+# define CIRC_PLANE 4
 # define MAT 11
 # define SHINY 12
 # define ESC 65307
-# define K_AMBIENT 0.8
+# define K_AMBIENT 0.3
 # define K_DIFFUSE 20
 
 
@@ -128,15 +129,6 @@ typedef struct s_viewport
 	t_vec3	vertical;
 }			t_viewport;
 
-typedef struct s_world 
-{
-	t_cam			cam;
-	t_light			light;
-	t_ambient_light ambient_light;
-	t_object		**objects;
-	int				nb_obj;
-} t_world;
-
 typedef struct s_mlx
 {
 	void	*ptr;
@@ -148,6 +140,18 @@ typedef struct s_mlx
 	int		end;
 } t_mlx;
 
+typedef struct s_world 
+{
+	t_cam			cam;
+	t_light			light;
+	t_ambient_light ambient_light;
+	t_object		**objects;
+	int				nb_obj;
+	t_mlx			*mlx;
+} t_world;
+
+
+
 /* Parsing */
 int				check_filename(char *fd_name);
 char			**get_scene(int fd, char *filename);
@@ -157,6 +161,7 @@ t_ambient_light	get_ambient_light(char **scene);
 void			create_sphere(char *data, t_object *sphere);
 void			create_plane(char *data, t_object *plane);
 void			create_cylinder(char *data, t_object *cylinder);
+void			get_caps(t_object **objects, t_object *cy, int *idx);
 int				get_surface(char *line, int *idx);
 double			get_specular_exponent(char *line, int *idx);
 
@@ -170,6 +175,8 @@ t_object 		**get_objects_list(char **scene, t_world *world);
 /* MLX */
 void			init_mlx(t_mlx *mlx);
 void			put_pix(t_mlx *mlx, int x, int y, int color);
+int				press_mouse(t_world *world);
+
 
 /* utils */
 int				check_valid_color_range(t_vec3 color);
@@ -193,6 +200,7 @@ t_vec3			mat_multiply_vec(double mat[4][4], t_vec3 vec);
 
 void			print_sp(t_object sp);
 void			print_pl(t_object pl);
+void			print_cap(t_object cap);
 void			print_cy(t_object cy);
 double			degrees_to_radians(double degrees);
 
@@ -210,6 +218,7 @@ int				hit_obj(t_ray *ray, t_world *world, double min, double max, int	shadow);
 t_hit_point		hit_sp(t_ray *ray, t_object *sp);
 t_hit_point		hit_pl(t_ray *ray, t_object *pl);
 t_hit_point		hit_cy(t_ray *ray, t_object *cy);
+t_hit_point		hit_cap(t_ray *ray, t_object *cap);
 
 /* debug printing */
 void    print_matrix(double mat[4][4]);

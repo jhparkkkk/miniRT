@@ -6,18 +6,18 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 16:32:03 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/25 17:23:54 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/25 19:43:51 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-double   vec_len(t_vec3 v)
+double	vec_len(t_vec3 v)
 {
-    t_vec3 res;
-    
-    res.x = v.x * v.x;
-    res.y = v.y * v.y;
-    res.z = v.z * v.z;
-    return (sqrt(res.x + res.y + res.z));
+	t_vec3	res;
+
+	res.x = v.x * v.x;
+	res.y = v.y * v.y;
+	res.z = v.z * v.z;
+	return (sqrt(res.x + res.y + res.z));
 }

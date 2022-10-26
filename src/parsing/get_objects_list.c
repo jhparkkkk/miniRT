@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 13:35:03 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/04 14:23:39 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/23 14:36:56 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,11 @@ static int	count_objects(char **scene, t_world *world)
 		jump_spaces(scene[i], &j);
 		if (scene[i][j] && scene[i][j] != 'A' && scene[i][j] != 'C'
 			&& scene[i][j] != 'L')
+		{
 			nb++;
+			if (scene[i][j] == 'c')
+				nb += 2;
+		}
 	}
 	world->nb_obj = nb;
 	return (nb);
@@ -83,6 +87,8 @@ t_object **get_objects_list(char **scene, t_world *world)
 		{
 			objects[idx] = get_object(scene[i]);
 			idx++;
+			if (scene[i][j] == 'c')
+				get_caps(objects, objects[idx - 1], &idx);
 		}
 	}
 	objects[idx] = 0;
