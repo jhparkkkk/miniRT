@@ -6,13 +6,13 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:25:59 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/23 18:05:56 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/25 16:21:46 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-t_hit_point	hit_cy(t_ray *ray, t_object *cy)
+t_hit_point	hit_cy(t_ray *ray, t_object *cy, double shadow)
 {
 	t_hit_point hit;
 	double   	discr;
@@ -27,7 +27,7 @@ t_hit_point	hit_cy(t_ray *ray, t_object *cy)
 	hit.b = 2.0 * (hit.b - tmp * vec_dot(hit.oc, cy->direction));
     hit.c = vec_dot(hit.oc, hit.oc) - (vec_dot(hit.oc, cy->direction) * vec_dot(hit.oc, cy->direction)) - cy->radius * cy->radius;
     discr = hit.b * hit.b - 4.0 * hit.a * hit.c;
-	 if (discr < __DBL_EPSILON__)
+	if (discr < __DBL_EPSILON__)
 	{
 		hit.status = 0;
         return (hit);
@@ -35,10 +35,20 @@ t_hit_point	hit_cy(t_ray *ray, t_object *cy)
 	hit.status = 1;
 	t1 = (- hit.b - sqrt(discr)) / (2.0 * hit.a);
 	t2 = (- hit.b + sqrt(discr)) / (2.0 * hit.a);
-	if (t1 < t2 && t1 >= __DBL_EPSILON__)
-		hit.root = t1;
+	if (!shadow)
+	{
+		if (t1 < t2 && t1 > __DBL_EPSILON__)
+			hit.root = t1;
+		else
+			hit.root = t2;
+	}
 	else
-		hit.root = t2;
+	{
+		if (t1 < t2)
+			hit.root = t1;
+		else
+			hit.root = t2;
+	}
 	//Check if point in cylinder => check the caps
 	hit.point = vec_add(ray->origin, vec_scalar(ray->direction, hit.root));
 	// if (sqrt(vec_dot(vec_substract(hit.point, cy->center), vec_substract(hit.point, cy->center)) > cy->height))

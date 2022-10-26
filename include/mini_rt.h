@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/25 19:59:55 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/26 13:25:23 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 # define MAT 11
 # define SHINY 12
 # define ESC 65307
-# define K_AMBIENT 0.3
-# define K_DIFFUSE 20
+# define K_AMBIENT 0.8
+# define K_DIFFUSE 40
 
 
 /* Structures */
@@ -85,7 +85,8 @@ typedef struct s_hit_point
     double	 	 a;
     double		 b;
     double		 c;
-	t_vec3		normal;
+	t_vec3		normal_in;
+	t_vec3		normal_out;
 	t_vec3		vec_light;
 	t_vec3		reflect;
 	t_vec3		view;
@@ -109,7 +110,7 @@ typedef struct s_object
 	t_vec3	direction;
 	double	radius;
 	double	height;
-	t_hit_point		(*intersect) (t_ray *ray, t_object *obj);
+	t_hit_point		(*intersect) (t_ray *ray, t_object *obj, double shadow);
 	void	(*print_object) (t_object obj);
 	int		surface;
 	double	specular_exponent;
@@ -215,10 +216,10 @@ void			mat_lookat(double mat[4][4], t_vec3 from, t_vec3 to);
 /* ===== Intersection ===== */
 
 int				hit_obj(t_ray *ray, t_world *world, double min, double max, int	shadow);
-t_hit_point		hit_sp(t_ray *ray, t_object *sp);
-t_hit_point		hit_pl(t_ray *ray, t_object *pl);
-t_hit_point		hit_cy(t_ray *ray, t_object *cy);
-t_hit_point		hit_cap(t_ray *ray, t_object *cap);
+t_hit_point		hit_sp(t_ray *ray, t_object *sp, double shadow);
+t_hit_point		hit_pl(t_ray *ray, t_object *pl, double shadow);
+t_hit_point		hit_cy(t_ray *ray, t_object *cy, double shadow);
+t_hit_point		hit_cap(t_ray *ray, t_object *cap, double shadow);
 
 /* debug printing */
 void    print_matrix(double mat[4][4]);

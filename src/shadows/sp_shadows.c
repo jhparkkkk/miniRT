@@ -3,23 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   sp_shadows.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:16:25 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/25 16:17:09 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/26 13:26:04 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
+#define BIAS 1e-50
 
 // #define BIAS 1e-80
 
 static void	set_ray_from_light(t_ray *ray, t_vec3 point, t_vec3 light)
 {
 	ray->origin = point;
-	ray->origin = vec_scalar(point, __DBL_EPSILON__);
+	// ray->origin = vec_scalar(point, __DBL_EPSILON__);
 	ray->direction = vec_scalar(light, -1.0);
 	ray->direction = vec_normalize(ray->direction);
+	ray->hit.root = 0.0;
+	ray->hit.a = 0.0;
+	ray->hit.b = 0.0;
+	ray->hit.c = 0.0;
+	ray->hit.n_dot_l = 0.0;
+	ray->hit.r_dot_v = 0.0;
 }
 
 /*If the ray sent from the point to the light touches an object, returns 0. Else
@@ -38,7 +45,6 @@ int	sp_shadows(t_vec3 point, t_vec3 vec_light, t_world *world)
 		light_hit = vec_scalar(ray.direction, ray.hit.root);
 		light_hit = vec_add(ray.origin, light_hit);
 		light_hit = vec_substract(light_hit, world->light.position);
-		
 		len_light_to_hit = sqrt(vec_dot(light_hit, light_hit));
 		if (len_light_to_hit < len_light && vec_dot(light_hit, vec_light) > __DBL_EPSILON__)
 			return (0);

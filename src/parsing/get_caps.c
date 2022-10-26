@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 13:23:51 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/23 15:03:47 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/26 11:44:35 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static t_object	*get_btm_cap(t_object *cy, t_object *cap)
 	cap->center = cy->center;
 	cap->direction = vec_scalar(cy->direction, 1.0);
 	cap->direction = vec_normalize(cap->direction);
-	cap->color = vec_init(255.0,0.0,0.0);
-	// cap->color = cy->color;
+	// cap->color = vec_init(255.0,0.0,0.0);
+	cap->color = cy->color;
 	cap->surface = cy->surface;
 	cap->radius = cy->radius;
 	cap->intersect = hit_cap;
@@ -33,8 +33,8 @@ static t_object	*get_top_cap(t_object *cy, t_object *cap)
 	cap->direction = vec_scalar(cy->direction, -1.0);
 	cap->direction = vec_normalize(cap->direction);
 	cap->center = vec_add(cy->center, vec_scalar(cy->direction, cy->height));
-	cap->color = vec_init(0.0,0.0,255.0);
-	// cap->color = cy->color;
+	// cap->color = vec_init(0.0,0.0,255.0);
+	cap->color = cy->color;
 	cap->surface = cy->surface;
 	cap->radius = cy->radius;
 	cap->intersect = hit_cap;
