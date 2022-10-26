@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:48:38 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/20 15:57:44 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/26 16:57:06 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,13 @@ int	compute_color(t_ray *ray, t_object *object, t_world *world)
 	t_vec3	color;
 	t_vec3	light_global;
 	t_vec3	object_shade;
-	
-	intensity = compute_lighting(ray, object, world);
+	int		i;
+
+	intensity = 0.0;
+	while (world->lights[i])
+	{
+		intensity += compute_lighting(ray, object, world, world->lights[i]);
+	}
 	light_global = global_light(intensity, world->light, world->ambient_light, object);
 	object_shade = get_object_shade(object->color, intensity, world->ambient_light.intensity, object);
 	color = vec_multiply(object_shade, light_global);

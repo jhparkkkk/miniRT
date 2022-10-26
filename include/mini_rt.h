@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/26 15:23:56 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/26 16:44:05 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ typedef struct s_cam
 	double	**mat_projection;
 	t_vec3	right;
 	t_vec3	up;
-	t_vec3	dir;
-} t_cam;
+}			t_cam;
 
 typedef struct s_light
 {
@@ -136,10 +135,11 @@ typedef struct s_mlx
 typedef struct s_world 
 {
 	t_cam			cam;
-	t_light			light;
+	t_light			**lights;
 	t_ambient_light ambient_light;
 	t_object		**objects;
 	int				nb_obj;
+	int				nb_light;
 	t_mlx			*mlx;
 } t_world;
 
@@ -148,8 +148,8 @@ typedef struct s_world
 /* Parsing */
 int				check_filename(char *fd_name);
 char			**get_scene(int fd, char *filename);
+t_light			**get_lights_list(char **scene, t_world *world);
 t_cam			get_camera(char **scene);
-int				get_light(t_light *light, char **scene);
 t_ambient_light	get_ambient_light(char **scene);
 void			create_sphere(char *data, t_object *sphere);
 void			create_plane(char *data, t_object *plane);
