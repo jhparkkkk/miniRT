@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_camera.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:16:19 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/17 23:58:43 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/26 13:35:58 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ t_cam	get_camera(char **scene)
 	while (scene[++i])
 	{
 		jump_spaces(scene[i], &j);
-		if (scene[i][j] && scene[i][j] == 'C')
+		if (scene[i][j] && scene[i][j] == 'C'
+			&& ((scene[i][j + 1] >= 9 && scene[i][j + 1] <= 13) || scene[i][j + 1] == 32))
 		{
 			nb++;
 			cam = get_camera_specs(scene[i]);

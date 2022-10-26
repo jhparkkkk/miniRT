@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   get_light.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:19:43 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/27 16:17:36 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/26 13:45:42 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
 
-static int	get_param(t_light *light, char *line, int i)
+static int	get_param(t_light *light, char *line)
 {
 	double	ret;
-	
+	int		i;
+
+	i = 0;
 	if (is_space(line[0]))
 	{
 		jump_spaces(line, &i);
@@ -52,10 +54,10 @@ int get_light(t_light *light, char **scene)
 		j = 0;
 		jump_spaces(scene[i], &j);
 		if (scene[i][j] == 'L'
-			&& scene[i][j + 1] >= 9 && scene[i][j + 1] <= 13)
+			&& ((scene[i][j + 1] >= 9 && scene[i][j + 1] <= 13) || scene[i][j + 1] == 32))
 		{
 			nb++;
-			get_param(light, scene[i], i);
+			get_param(light, scene[i]);
 		}
 	}
 	if (nb < 1)

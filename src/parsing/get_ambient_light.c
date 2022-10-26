@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:46:10 by jeepark           #+#    #+#             */
-/*   Updated: 2022/09/26 14:46:55 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:37:27 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,14 @@ t_ambient_light	get_ambient_light(char **scene)
 	while (scene[++i])
 	{
 		jump_spaces(scene[i], &j);
-		if (scene[i][j] && scene[i][j] == 'A')
+		if (scene[i][j] && scene[i][j] == 'A'
+			&& ((scene[i][j + 1] >= 9 && scene[i][j + 1] <= 13) || scene[i][j + 1] == 32))
 		{
 			nb++;
 			ambient_light = get_ambient_light_specs(scene[i]);
 		}
 	}	
-	if (nb > 1)
+	if (nb != 1)
 	{
 		ft_putstr_fd("The scene can contain only one ambient light\n", 2);
 		ft_memory(0, 0);
