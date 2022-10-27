@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_objects_list.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 13:35:03 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/26 15:17:42 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/27 18:45:15 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_object	*get_object(char *line)
 	else
 	{
 		ft_putstr_fd("There is an unknown object in the map\n", 2);
-		ft_memory(0, 0);
+		ft_memory(-1, -1);
 	}
 	return (new_object);
 }

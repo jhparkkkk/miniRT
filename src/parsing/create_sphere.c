@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_sphere.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 14:55:39 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/26 15:33:42 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/27 18:44:18 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static double	get_radius(char *data, int *idx)
 	if (check_double(data + j) || ret <= 0)
 	{
 		ft_putstr_fd("Something is wrong with the sphere\n", 2);
-		ft_memory(0, 0);
+		ft_memory(-1, -1);
 	}
 	while (data[j] && !(data[j] == 32 || (data[j] >= 9 && data[j] <= 13)))
 		j++;
@@ -60,7 +60,7 @@ void	create_sphere(char *data, t_object *sphere)
 	if (!check_elements_nb(3, data))
 	{
 		ft_putstr_fd("Sphere: inavlid number of elements\n", 2);
-		ft_memory(0, 0);
+		ft_memory(-1, -1);
 	}
 	sphere->type = SPHERE;
 	sphere->center = parse_position(data + i, &i);
@@ -69,7 +69,7 @@ void	create_sphere(char *data, t_object *sphere)
 	if (check_valid_color_range(sphere->color))
 	{
 		ft_putstr_fd("Something is wrong with the sphere color\n", 2);
-		ft_memory(0, 0);
+		ft_memory(-1, -1);
 	}
 	sphere->intersect = hit_sp;
 	sphere->print_object = &print_sp;

@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 17:53:12 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/26 17:06:21 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/27 18:44:03 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static double	get_double(char *data, int *idx)
 	if (check_double(data + j) || ret <= 0)
 	{
 		ft_putstr_fd("Something is wrong with the cylinder\n", 2);
-		ft_memory(0, 0);
+		ft_memory(-1, -1);
 	}
 	while (data[j] && !(data[j] == 32 || (data[j] >= 9 && data[j] <= 13)))
 		j++;
@@ -42,7 +42,7 @@ void	create_cylinder(char *data, t_object *cylinder)
 	if (!check_elements_nb(5, data))
 	{
 		ft_putstr_fd("Cylinder: invalid number of elements\n", 2);
-		ft_memory(0, 0);
+		ft_memory(-1, -1);
 	}
 	cylinder->type = CYLINDER;
 	cylinder->center = parse_position(data + i, &i);
@@ -54,7 +54,7 @@ void	create_cylinder(char *data, t_object *cylinder)
 	if (check_valid_color_range(cylinder->color))
 	{
 		ft_putstr_fd("Something is wrong with the cylinder color\n", 2);
-		ft_memory(0, 0);
+		ft_memory(-1, -1);
 	}
 	cylinder->surface = get_surface(data + i, &i);
 	cylinder->intersect = hit_cy;

@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 15:31:59 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/27 13:24:30 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/27 18:42:57 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 	{
 		ft_putstr_fd("Too few argument\n", 2);
-		ft_memory(0, 0);
+		ft_memory(-1, -1);
 	}
 	fd = check_filename(av[1]);
 	if (fd == EXIT_FAILURE)

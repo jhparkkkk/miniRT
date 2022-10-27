@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 18:17:44 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/12 18:53:04 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/27 18:42:42 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ char	*ft_strdup(const char *s1)
 
 	i = 0;
 	s2 = ft_memory(sizeof(const char), ft_strlen(s1) + 1);
-	// s2 = malloc((ft_strlen(s1) + 1) * sizeof(const char));
 	if (!s2)
 		return (NULL);
 	while (s1[i])

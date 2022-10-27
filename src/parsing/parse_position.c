@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_position.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:57:20 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/26 13:51:25 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/27 18:45:15 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static double	get_coordinates(char *data)
 	if (!data || check_double(data))
 	{
 		ft_putstr_fd("Something is wrong with coordinates\n", 2);
-		ft_memory(0, 0);
+		ft_memory(-1, -1);
 	}
 	return (ft_atof(data));
 }
@@ -67,7 +67,7 @@ t_vec3	parse_position(char *line, int *idx)
 	if (nb_comma != 2)
 	{
 		ft_putstr_fd("Something is wrong with coordinates\n", 2);
-		ft_memory(0, 0);
+		ft_memory(-1, -1);
 	}
 	(*idx) += i;
 	return (extract_position(ft_substr(line, j, i)));
