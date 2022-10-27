@@ -11,13 +11,14 @@
 /* ************************************************************************** */
 
 #include "mini_rt.h"
-#define BIAS 1e-50
+// #define BIAS 1e-50
 
-// #define BIAS 1e-80
+#define BIAS 1e-80
 
 static void	set_ray_from_light(t_ray *ray, t_vec3 point, t_vec3 light)
 {
-	ray->origin = point;
+	// ray->origin = point;
+	ray->origin = vec_add(point, vec_scalar(point, BIAS));
 	ray->dir = vec_scalar(light, -1.0);
 	ray->dir = vec_normalize(ray->dir);
 	ray->hit.root = 0.0;
