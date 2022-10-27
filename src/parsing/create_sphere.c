@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 14:55:39 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/26 15:33:42 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/27 15:05:37 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	create_sphere(char *data, t_object *sphere)
 	int	i;
 
 	i = 0;
-	if (!check_elements_nb(3, data))
+	if (!check_elements_nb(5, data))
 	{
 		ft_putstr_fd("Sphere: inavlid number of elements\n", 2);
 		ft_memory(0, 0);

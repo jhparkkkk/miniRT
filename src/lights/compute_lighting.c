@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   compute_lighting.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 16:39:13 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/26 17:53:01 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/27 15:05:46 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
-/*
-// static void	specular_lighting(t_hit_point *hit, t_ray *ray)
-// {
-// 	hit->reflect = vec_scalar(hit->normal, 2.0);
-// 	hit->reflect = vec_scalar(hit->reflect, vec_dot(hit->normal, vec_scalar(hit->vec_light, 1.0)));
-// 	hit->reflect = vec_substract(hit->reflect, hit->vec_light);
-// 	hit->view = vec_scalar(ray->dir, -1.0);
-// 	hit->rdotv = sqrt(vec_dot(hit->reflect, hit->view));
-// }
-*/
+
+static void	specular_lighting(t_hit_point *hit, t_ray *ray)
+{
+	hit->reflect = vec_scalar(hit->normal, 2.0);
+	hit->reflect = vec_scalar(hit->reflect, vec_dot(hit->normal, vec_scalar(hit->vec_light, 1.0)));
+	hit->reflect = vec_substract(hit->reflect, hit->vec_light);
+	hit->view = vec_scalar(ray->dir, -1.0);
+	hit->rdotv = sqrt(vec_dot(hit->reflect, hit->view));
+}
+
 
 static t_vec3	get_cy_normal(t_vec3 point, t_object *obj)
 {
@@ -56,15 +56,15 @@ double	compute_lighting(t_ray *ray, t_object *obj, t_world *world, t_light light
 		intens += (hit.ndotl / (vec_len(hit.normal) * vec_len(hit.vec_light)));
 		intens *= light.intens;
 		/* SPEC LIGHTNING */
-		// if (obj->specular_exponent != -1.0)
-		// {
-		// 	specular_lighting(&hit, ray);
-		// 	if (hit.rdotv > __DBL_EPSILON__) // si M_E bug et il faut remettre 0.0 puis M_E
-		// 	{	
-		// 		intens += world->light.intens * (obj->k_spec * pow(hit.rdotv / (vec_len(hit.reflect) * vec_len(hit.view)), obj->specular_exponent * 500000.0));
-		// 	}
-		// 		// obj->specular_exponent = world->light.intens * pow(hit.rdotv, obj->specular_exponent);
-		// }
+		if (obj->specular_exponent != -1.0)
+		{
+			specular_lighting(&hit, ray);
+			if (hit.rdotv > __DBL_EPSILON__) // si M_E bug et il faut remettre 0.0 puis M_E
+			{	
+				intens += light.intens * (obj->k_spec * pow(hit.rdotv / (vec_len(hit.reflect) * vec_len(hit.view)), obj->specular_exponent * 500000.0));
+			}
+				// obj->specular_exponent = world->light.intens * pow(hit.rdotv, obj->specular_exponent);
+		}
 	}
 	return (intens);
 }
