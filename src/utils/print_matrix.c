@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_matrix.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 11:48:30 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/13 11:48:43 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/27 13:19:07 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 /* debug printer */
 
-void    print_matrix(double mat[4][4])
+void	print_matrix(double mat[4][4])
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = 0;
-    while(i < 4)
-    {
-        j = 0;
-        while(j < 4)
-        {
-            printf("%f  ", mat[i][j]);
-            j++;
-        }
-        printf("\n");
-        i++;
-    }
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			printf("%f  ", mat[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
 }

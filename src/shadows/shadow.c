@@ -18,7 +18,6 @@
 static void	set_ray_from_light(t_ray *ray, t_vec3 point, t_vec3 light)
 {
 	ray->origin = point;
-	// ray->origin = vec_scalar(point, __DBL_EPSILON__);
 	ray->dir = vec_scalar(light, -1.0);
 	ray->dir = vec_normalize(ray->dir);
 	ray->hit.root = 0.0;
@@ -46,7 +45,8 @@ int	shadow(t_vec3 point, t_vec3 vec_light, t_world *world, t_light light)
 		light_hit = vec_add(ray.origin, light_hit);
 		light_hit = vec_substract(light_hit, light.position);
 		len_light_to_hit = sqrt(vec_dot(light_hit, light_hit));
-		if (len_light_to_hit < len_light && vec_dot(light_hit, vec_light) > __DBL_EPSILON__)
+		if (len_light_to_hit < len_light
+			&& vec_dot(light_hit, vec_light) > __DBL_EPSILON__)
 			return (0);
 	}
 	return (1);

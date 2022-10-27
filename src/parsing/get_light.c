@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:19:43 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/26 17:49:48 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/27 13:16:26 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static t_light	*get_param(char *line)
 	{
 		ft_putstr_fd("Something is wrong with the light intensity\n", 2);
 		ft_memory(0, 0);
-		exit(EXIT_FAILURE);
 	}
 	light->intens = ret;
 	jump_data(line, &i);
@@ -68,10 +67,10 @@ static int	count_lights(char **scene, t_world *world)
 */
 t_light	**get_lights_list(char **scene, t_world *world)
 {
-	int	i;
-	int	j;
-	int	nb;
-	t_light **lights;
+	int			i;
+	int			j;
+	int			nb;
+	t_light		**lights;
 
 	nb = 0;
 	i = -1;
@@ -83,16 +82,12 @@ t_light	**get_lights_list(char **scene, t_world *world)
 		if (scene[i][j] == 'L'
 			&& ((scene[i][j + 1] >= 9 && scene[i][j + 1] <= 13)
 			|| scene[i][j + 1] == 32))
-		{
-			lights[nb] = get_param(scene[i]);
-			nb++;
-		}
+			lights[nb++] = get_param(scene[i]);
 	}
 	if (nb < 1)
 	{
 		ft_putstr_fd("The scene must contain at least one light\n", 2);
 		ft_memory(0, 0);
-		exit(EXIT_FAILURE);
 	}
 	return (lights);
 }

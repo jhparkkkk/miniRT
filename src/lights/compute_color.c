@@ -6,13 +6,13 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:48:38 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/26 17:56:06 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/26 18:00:29 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-static t_vec3	global_light(double intens, t_light light,
+static t_vec3	g_light(double intens, t_light light,
 	t_amb_light amb_light, t_object *object)
 {
 	t_vec3	diffuse;
@@ -21,7 +21,7 @@ static t_vec3	global_light(double intens, t_light light,
 
 	diffuse = vec_scalar(light.color, intens * K_DIFFUSE);
 	ambient = vec_scalar(amb_light.color, amb_light.intens * K_AMBIENT);
-	specular = vec_scalar(light.color, intens * (object->k_spec / 100)); //A check
+	specular = vec_scalar(light.color, intens * (object->k_spec / 100));
 	return (vec_add(specular, vec_add(diffuse, ambient)));
 }
 
@@ -54,21 +54,20 @@ int	compute_color(t_ray *ray, t_object *obj, t_world *world)
 {
 	double	intens;
 	t_vec3	color;
-	t_vec3	light_global;
-	t_vec3	obj_shade;
+	t_vec3	global;
+	t_vec3	ob_shade;
 	int		i;
 
 	intens = 0.0;
 	i = 0;
-	color = vec_init(0,0,0);
+	color = vec_init(0, 0, 0);
 	while (i < world->nb_light)
 	{
 		intens = compute_lighting(ray, obj, world, *(world)->lights[i]);
-		light_global = global_light(intens, *(world)->lights[i], world->amb_light, obj);
-		obj_shade = get_shade(obj->color, intens, world->amb_light.intens, obj);
-		color = vec_add(color, vec_multiply(obj_shade, light_global));
+		global = g_light(intens, *(world)->lights[i], world->amb_light, obj);
+		ob_shade = get_shade(obj->color, intens, world->amb_light.intens, obj);
+		color = vec_add(color, vec_multiply(ob_shade, global));
 		i++;
 	}
-	
 	return (get_hex_color(color));
 }

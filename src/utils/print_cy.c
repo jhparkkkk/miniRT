@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 13:59:14 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/26 16:36:06 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/27 13:17:40 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	print_cy(t_object cy)
 {
 	printf("\ncylinder center : %f, y : %f, z : %f\n", cy.center.x,
-	cy.center.y, cy.center.z);
+		cy.center.y, cy.center.z);
 	printf("\ncylinder direction : %f, y : %f, z : %f\n", cy.dir.x,
-	cy.dir.y, cy.dir.z);
+		cy.dir.y, cy.dir.z);
 	printf("cylinder radius %f\n", cy.radius);
 	printf("cylinder hight %f\n", cy.height);
 	printf("cylinder color : %f, y : %f, z : %f\n", cy.color.x,
-	cy.color.y, cy.color.z);
+		cy.color.y, cy.color.z);
 	if (cy.surface == SHINY)
 		printf("sphere type : SHINY\n");
 	else

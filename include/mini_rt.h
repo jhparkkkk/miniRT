@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/26 17:52:06 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/26 18:24:19 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define SHINY 12
 # define ESC 65307
 # define K_AMBIENT 0.4
-# define K_DIFFUSE 20
+# define K_DIFFUSE 20.0
 
 
 /* Structures */
