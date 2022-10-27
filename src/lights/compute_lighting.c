@@ -6,7 +6,7 @@
 /*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 16:39:13 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/27 15:05:46 by jeepark          ###   ########.fr       */
+/*   Updated: 2022/10/27 15:18:46 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_vec3	get_cy_normal(t_vec3 point, t_object *obj)
 
 /* Calculates the intens of light at the impact of *ray on the *sphere.
 Returns the intens. */
-double	compute_lighting(t_ray *ray, t_object *obj, t_world *world, t_light light)
+t_hit_point	compute_lighting(t_ray *ray, t_object *obj, t_world *world, t_light light)
 {
 	t_hit_point	hit;
 	double		intens;
@@ -53,18 +53,18 @@ double	compute_lighting(t_ray *ray, t_object *obj, t_world *world, t_light light
 	hit.ndotl = sqrt(vec_dot(hit.normal, hit.vec_light));
 	if (hit.ndotl > __DBL_EPSILON__ && shadow(hit.point, hit.vec_light, world, light))
 	{
-		intens += (hit.ndotl / (vec_len(hit.normal) * vec_len(hit.vec_light)));
-		intens *= light.intens;
+		hit.intensity += (hit.ndotl / (vec_len(hit.normal) * vec_len(hit.vec_light)));
+		hit.intensity *= light.intens;
 		/* SPEC LIGHTNING */
 		if (obj->specular_exponent != -1.0)
 		{
 			specular_lighting(&hit, ray);
 			if (hit.rdotv > __DBL_EPSILON__) // si M_E bug et il faut remettre 0.0 puis M_E
 			{	
-				intens += light.intens * (obj->k_spec * pow(hit.rdotv / (vec_len(hit.reflect) * vec_len(hit.view)), obj->specular_exponent * 500000.0));
+				hit.specular += light.intens * (obj->k_spec * pow(hit.rdotv / (vec_len(hit.reflect) * vec_len(hit.view)), hit.rdotv / (vec_len(hit.reflect) * vec_len(hit.view)));
 			}
 				// obj->specular_exponent = world->light.intens * pow(hit.rdotv, obj->specular_exponent);
 		}
 	}
-	return (intens);
+	return (hit);
 }

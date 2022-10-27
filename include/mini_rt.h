@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/26 17:52:06 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/27 15:08:32 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,9 @@ typedef struct s_hit_point
 	t_vec3		view;
 	double		ndotl;
 	double		rdotv;
+	double		intensity;
+	double		specular;
+
 } t_hit_point;
 
 typedef struct s_ray
@@ -199,7 +202,7 @@ double			degrees_to_radians(double degrees);
 
 /* Mini Raytracing */
 void    		draw_world(t_world *world, t_mlx *mlx);
-double			compute_lighting(t_ray *ray, t_object *sp, t_world *world, t_light light);
+t_hit_point		compute_lighting(t_ray *ray, t_object *sp, t_world *world, t_light light);
 int				compute_color(t_ray *ray, t_object *object, t_world *world);
 t_ray			set_ray(t_cam cam, int x, int y, double lookat[4][4]);
 void			mat_lookat(double mat[4][4], t_vec3 from, t_vec3 to);
