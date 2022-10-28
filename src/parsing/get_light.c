@@ -6,11 +6,17 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:19:43 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/28 16:37:16 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/28 17:33:49 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
+
+static void	print_error(char *line)
+{
+	ft_putstr_fd(line, 2);
+	ft_memory(-1, -1);
+}
 
 static t_light	*get_param(char *line)
 {
@@ -19,10 +25,7 @@ static t_light	*get_param(char *line)
 	t_light	*light;
 
 	if (!check_elements_nb(4, line))
-	{
-		ft_putstr_fd("The light doesn't have the right number of elements\n", 2);
-		ft_memory(-1, -1);
-	}
+		print_error("The light doesn't have the right number of elements\n");
 	i = 0;
 	light = ft_memory(sizeof(t_light), 1);
 	jump_spaces(line, &i);
@@ -31,18 +34,12 @@ static t_light	*get_param(char *line)
 	jump_spaces(line, &i);
 	ret = ft_atof(line + i);
 	if (check_double(line + i) || ret < 0 || ret > 1.0)
-	{
-		ft_putstr_fd("Something is wrong with the light intensity\n", 2);
-		ft_memory(-1, -1);
-	}
+		print_error("Something is wrong with the light intensity\n");
 	light->intens = ret;
 	jump_data(line, &i);
 	light->color = parse_position(line + i, &i);
 	if (check_valid_color_range(light->color))
-	{
-		ft_putstr_fd("Something is wrong with the light color\n", 2);
-		ft_memory(-1, -1);
-	}
+		print_error("Something is wrong with the light color\n");
 	return (light);
 }
 
