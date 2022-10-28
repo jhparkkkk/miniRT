@@ -76,6 +76,7 @@ SRCS     	+=	main.c \
 					init_mlx.c \
 					put_pix.c \
 					event_mouse.c \
+					event_key.c \
 				} \
 				${addprefix intersections/, \
 					hit_obj.c \

@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 10:59:39 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/27 18:43:16 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/28 15:02:09 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,4 @@ void	init_mlx(t_mlx *mlx)
 	}
 	mlx->img = mlx_new_image(mlx->ptr, SIZEX, SIZEY);
 	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bpp, &mlx->len, &mlx->end);
-	// mlx_hook(mlx.win, 2, 1L << 0, press_key, &map);
-	// mlx_hook(mlx.win, 17, 1L << 17, press_mouse, &map);
-	// mlx_loop(mlx->ptr);
-	// mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
 }

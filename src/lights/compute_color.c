@@ -6,14 +6,14 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:48:38 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/28 14:40:08 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:56:46 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
 static t_vec3	g_light(double intens, t_light light,
-	t_amb_light amb_light, t_object *object)
+	t_amb_light amb_light)
 {
 	t_vec3	diffuse;
 	t_vec3	ambient;
@@ -24,14 +24,13 @@ static t_vec3	g_light(double intens, t_light light,
 }
 
 static t_vec3	get_shade(t_vec3 color, double light_intens,
-	double ambient_intens, t_object *object)
+	double ambient_intens)
 {
 	t_vec3	ambient_to_obj;
 	t_vec3	light_to_obj;
 
 	ambient_to_obj = vec_scalar(color, ambient_intens * K_AMBIENT);
-	light_to_obj = vec_scalar(color, light_intens * K_DIFFUSE
-			+ light_intens * (object->k_spec / 50));
+	light_to_obj = vec_scalar(color, light_intens * K_DIFFUSE);
 	return (vec_add(ambient_to_obj, light_to_obj));
 }
 
@@ -61,8 +60,8 @@ int	compute_color(t_ray *ray, t_object *obj, t_world *world)
 	while (i < world->nb_light)
 	{
 		intens = compute_lighting(ray, obj, world, *(world)->lights[i]);
-		global = g_light(intens, *(world)->lights[i], world->amb_light, obj);
-		ob_shade = get_shade(obj->color, intens, world->amb_light.intens, obj);
+		global = g_light(intens, *(world)->lights[i], world->amb_light);
+		ob_shade = get_shade(obj->color, intens, world->amb_light.intens);
 		color = vec_add(color, vec_multiply(ob_shade, global));
 		i++;
 	}

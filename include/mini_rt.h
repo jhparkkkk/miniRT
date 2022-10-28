@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 17:28:26 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/28 14:33:26 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:56:00 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ t_object		**get_objects_list(char **scene, t_world *world);
 /* MLX */
 void			init_mlx(t_mlx *mlx);
 void			put_pix(t_mlx *mlx, int x, int y, int color);
+int				press_key(int keycode, t_world *world);
 int				press_mouse(t_world *world);
 
 /* utils */
