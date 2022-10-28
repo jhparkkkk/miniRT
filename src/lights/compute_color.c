@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:48:38 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/26 18:00:29 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:40:08 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,10 @@ static t_vec3	g_light(double intens, t_light light,
 {
 	t_vec3	diffuse;
 	t_vec3	ambient;
-	t_vec3	specular;
 
 	diffuse = vec_scalar(light.color, intens * K_DIFFUSE);
 	ambient = vec_scalar(amb_light.color, amb_light.intens * K_AMBIENT);
-	specular = vec_scalar(light.color, intens * (object->k_spec / 100));
-	return (vec_add(specular, vec_add(diffuse, ambient)));
+	return (vec_add(diffuse, ambient));
 }
 
 static t_vec3	get_shade(t_vec3 color, double light_intens,
@@ -34,7 +32,6 @@ static t_vec3	get_shade(t_vec3 color, double light_intens,
 	ambient_to_obj = vec_scalar(color, ambient_intens * K_AMBIENT);
 	light_to_obj = vec_scalar(color, light_intens * K_DIFFUSE
 			+ light_intens * (object->k_spec / 50));
-	// light_to_obj = vec_add(light_to_obj, vec_scalar(color, object->specular_exponent * K_SPEC));
 	return (vec_add(ambient_to_obj, light_to_obj));
 }
 

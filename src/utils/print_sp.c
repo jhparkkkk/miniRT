@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 11:26:02 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/27 13:19:40 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:40:57 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,5 @@ void	print_sp(t_object sp)
 		printf("sphere type : SHINY\n");
 	else
 		printf("sphere type : MAT\n");
-	printf("sphere specular exponent : %f\n", sp.specular_exponent);
-	printf("sphere k_spec : %f\n", sp.k_spec);
 	printf("\n");
 }
