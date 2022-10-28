@@ -6,21 +6,21 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 16:57:55 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/27 18:42:24 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/28 13:34:39 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/* Malloc and put it in a garbage collector. Returns the ptr of the new allocated
-element. if size == 0 and len == 0, free all the elements of the garbage
-collector with exit_success, if size == -1 and len == -1, exit with 
+/* Malloc and put it in a garbage collector. Returns the ptr of the new
+allocated element. if size == 0 and len == 0, free all the elements of the 
+garbage collector with exit_success, if size == -1 and len == -1, exit with 
 exit_success */
 void	*ft_memory(int size, int len)
 {
-	static t_list	**bin =  NULL;
+	static t_list	**bin = NULL;
 	void			*content;
-	
+
 	if (!bin)
 	{
 		bin = ft_calloc(1, sizeof(t_list *));

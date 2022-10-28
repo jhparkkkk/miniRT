@@ -6,14 +6,14 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:09:27 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/04 14:28:40 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/28 13:34:48 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-static int len_clean_space(char *s)
+static int	len_clean_space(char *s)
 {
 	int	i;
 
