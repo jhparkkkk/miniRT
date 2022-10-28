@@ -1,6 +1,9 @@
 
 NAME	= miniRT
 
+BONUS	= miniRT_bonus
+
+
 CC            := cc
 CFLAGS        := -Wall -Wextra -Werror -c -g3
 
@@ -91,11 +94,19 @@ SRCS     	+=	main.c \
 				} \
 				${addprefix shadows/, \
 					shadow.c \
-				} 
+				}
+
+SRCS_BONUS	  := SRCS
 					
 				
 SRCS          := $(SRCS:%=$(SRCS_PATH)/%)
+SRCS_BONUS          := $(SRCS:%=$(SRCS_PATH)/%)
+
 OBJS          := $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
+
+OBJS_BONUS          := $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
+
+
 
 
 RM            := rm -f
@@ -104,7 +115,13 @@ $(NAME): $(OBJS) $(LIBFT_PATH)$(LIBFT_A) $(MLX_PATH)$(MLX_A)
 	$(CC) $(OBJS) $(LFLAGS) $(OUTPUT_OPTION) 
 	echo "CREATED $(NAME)"
 
-all:        $(NAME)
+$(BONUS): $(OBJS) $(LIBFT_PATH)$(LIBFT_A) $(MLX_PATH)$(MLX_A)
+	$(CC) $(OBJS) $(LFLAGS) $(OUTPUT_OPTION) 
+	echo "CREATED $(NAME)"
+
+all:          $(NAME)
+bonus:        $(BONUS)
+
 
 $(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c 
 	@ mkdir -p $(@D)
@@ -119,12 +136,12 @@ $(MLX_PATH)$(MLX_A):
 
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(OBJS_BONUS)
 	$(MAKE) -C $(LIBFT_PATH) clean
 	$(MAKE) -C $(MLX_PATH) clean
 
 fclean: clean
-	$(RM) $(NAME) $(LIBFT_PATH)$(LIBFT_A) $(MLX_PATH)$(MLX_A)
+	$(RM) $(NAME) $(BONUS) $(LIBFT_PATH)$(LIBFT_A) $(MLX_PATH)$(MLX_A)
 
 re: fclean all
 
@@ -132,4 +149,4 @@ re: fclean all
 # 	make --dry-run --always-make --no-print-directory | grep -v "echo \| mkdir"
 
 # .SILENT:
-.PHONY:    all clean fclean re check_libft check_libmlx
+.PHONY:    all clean fclean re check_libft check_libmlx bonus
