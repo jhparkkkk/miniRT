@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:19:43 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/27 18:45:15 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/28 16:37:16 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ static t_light	*get_param(char *line)
 	light->intens = ret;
 	jump_data(line, &i);
 	light->color = parse_position(line + i, &i);
+	if (check_valid_color_range(light->color))
+	{
+		ft_putstr_fd("Something is wrong with the light color\n", 2);
+		ft_memory(-1, -1);
+	}
 	return (light);
 }
 
