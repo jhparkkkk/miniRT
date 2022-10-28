@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 13:23:51 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/26 17:07:00 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:20:14 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static t_object	*get_top_cap(t_object *cy, t_object *cap)
 	cap->color = cy->color;
 	cap->surface = cy->surface;
 	cap->radius = cy->radius;
-	cap->intersect = hit_cap;
+	cap->intersect = &hit_cap;
 	cap->print_object = &print_cap;
 	return (cap);
 }

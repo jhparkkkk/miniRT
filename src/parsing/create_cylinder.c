@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 17:53:12 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/27 18:44:03 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:20:02 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ void	create_cylinder(char *data, t_object *cylinder)
 		ft_memory(-1, -1);
 	}
 	cylinder->surface = get_surface(data + i, &i);
-	cylinder->intersect = hit_cy;
+	cylinder->intersect = &hit_cy;
 	cylinder->print_object = &print_cy;
 }

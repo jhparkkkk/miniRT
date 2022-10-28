@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 17:39:18 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/27 18:44:10 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:19:55 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ void	create_plane(char *data, t_object *plane)
 		ft_memory(-1, -1);
 	}
 	plane->surface = get_surface(data + i, &i);
-	plane->intersect = hit_pl;
+	plane->intersect = &hit_pl;
 	plane->print_object = &print_pl;
 }

@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 14:55:39 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/27 18:44:18 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:19:43 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	create_sphere(char *data, t_object *sphere)
 		ft_putstr_fd("Something is wrong with the sphere color\n", 2);
 		ft_memory(-1, -1);
 	}
-	sphere->intersect = hit_sp;
+	sphere->intersect = &hit_sp;
 	sphere->print_object = &print_sp;
 	get_sphere_surface(sphere, data, i);
 }
