@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:46:10 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/27 13:17:18 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/27 18:44:31 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static double	get_intens(char *line, int *idx)
 	if (check_double(line + j) || ret < 0 || ret > 1.0)
 	{
 		ft_putstr_fd("Something is wrong with the ambient light intens\n", 2);
-		ft_memory(0, 0);
+		ft_memory(-1, -1);
 	}
 	jump_data(line, &j);
 	(*idx) += j;
@@ -40,7 +40,7 @@ static t_amb_light	get_amb_light_specs(char *line)
 	if (!check_elements_nb(3, line))
 	{
 		ft_putstr_fd("Ambient light: invalid number of elements\n", 2);
-		ft_memory(0, 0);
+		ft_memory(-1, -1);
 	}
 	i++;
 	amb_light.intens = get_intens(line + i, &i);
@@ -48,7 +48,7 @@ static t_amb_light	get_amb_light_specs(char *line)
 	if (check_valid_color_range(amb_light.color))
 	{
 		ft_putstr_fd("Something is wrong with the ambient light color\n", 2);
-		ft_memory(0, 0);
+		ft_memory(-1, -1);
 	}
 	return (amb_light);
 }
@@ -80,7 +80,7 @@ t_amb_light	get_amb_light(char **scene)
 	if (nb != 1)
 	{
 		ft_putstr_fd("The scene can contain only one ambient light\n", 2);
-		ft_memory(0, 0);
+		ft_memory(-1, -1);
 	}
 	return (amb_light);
 }

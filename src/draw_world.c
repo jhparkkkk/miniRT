@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:38:39 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/27 13:26:27 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:55:33 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	draw_world(t_world *world, t_mlx *mlx)
 		}
 		y++;
 	}
-	printf("done\n");
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
 	mlx_hook(mlx->win, 17, 1L << 17, press_mouse, world);
+	mlx_hook(mlx->win, 2, 1L << 0, press_key, world);
 	mlx_loop(mlx->ptr);
 }

@@ -1,0 +1,6 @@
+180 ca marche pas en fov
+On peut mettre des couleurs > 255 et ca fait des trucs de ouf que pour les lights
+Une lumiere de couleur sur un cylindre peut avoir tendance a s'afficher en blanc
+Petites etoiles
+Si on met que le debut de lobjet dans le fichier, ca fonctionne quand meme (c au lieu de cy, s au lieu de sp, etc)
+Peut-etre mettre un message d'erreur quand les directions sont 0,0,0

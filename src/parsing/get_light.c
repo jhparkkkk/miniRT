@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:19:43 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/27 13:16:26 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/28 16:37:16 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static t_light	*get_param(char *line)
 	if (!check_elements_nb(4, line))
 	{
 		ft_putstr_fd("The light doesn't have the right number of elements\n", 2);
-		ft_memory(0, 0);
+		ft_memory(-1, -1);
 	}
 	i = 0;
 	light = ft_memory(sizeof(t_light), 1);
@@ -33,11 +33,16 @@ static t_light	*get_param(char *line)
 	if (check_double(line + i) || ret < 0 || ret > 1.0)
 	{
 		ft_putstr_fd("Something is wrong with the light intensity\n", 2);
-		ft_memory(0, 0);
+		ft_memory(-1, -1);
 	}
 	light->intens = ret;
 	jump_data(line, &i);
 	light->color = parse_position(line + i, &i);
+	if (check_valid_color_range(light->color))
+	{
+		ft_putstr_fd("Something is wrong with the light color\n", 2);
+		ft_memory(-1, -1);
+	}
 	return (light);
 }
 
@@ -87,7 +92,7 @@ t_light	**get_lights_list(char **scene, t_world *world)
 	if (nb < 1)
 	{
 		ft_putstr_fd("The scene must contain at least one light\n", 2);
-		ft_memory(0, 0);
+		ft_memory(-1, -1);
 	}
 	return (lights);
 }

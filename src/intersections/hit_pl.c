@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 13:35:18 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/26 16:36:05 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:27:50 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,23 @@ static t_vec3	get_normal(t_object *pl, t_vec3 dir)
 	return (normal_in);
 }
 
-t_hit_point	hit_pl(t_ray *ray, t_object *pl, double shadow)
+void	hit_pl(t_ray *ray, t_object *pl, double shadow, t_hit_point *hit)
 {
 	t_vec3		normal;
 	t_vec3		distance_from_origin;
 	double		denom;
-	t_hit_point	hit;
 
 	(void)shadow;
-	hit.status = 0;
+	hit->status = 0;
 	distance_from_origin = vec_substract(pl->center, ray->origin);
 	normal = get_normal(pl, ray->dir);
 	denom = vec_dot(normal, ray->dir);
 	if (denom > __DBL_EPSILON__)
 	{
-		hit.root = vec_dot(distance_from_origin, normal) / denom;
-		if (hit.root >= __DBL_EPSILON__)
+		hit->root = vec_dot(distance_from_origin, normal) / denom;
+		if (hit->root >= __DBL_EPSILON__)
 		{
-			hit.status = 1;
-			return (hit);
+			hit->status = 1;
 		}
 	}
-	return (hit);
 }

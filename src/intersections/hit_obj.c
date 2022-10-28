@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_obj.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeepark <jeepark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 11:10:13 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/26 16:57:02 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/28 15:08:04 by jeepark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ int	hit_obj(t_ray *ray, t_world *world, int shadow)
 	root_min = INFINITY;
 	while (world->objects[i])
 	{
-		ray->hit = world->objects[i]->intersect(ray, world->objects[i], shadow);
-		if (ray->hit.status && ((shadow && ray->hit.root > 1.0e-12)
+		world->objects[i]->intersect(ray, world->objects[i],
+			shadow, &ray->hit);
+		if (ray->hit.status && ((shadow && ray->hit.root > 1.0e-10)
 				|| (!shadow && ray->hit.root > __DBL_EPSILON__))
 			&& ray->hit.root < INFINITY)
 		{

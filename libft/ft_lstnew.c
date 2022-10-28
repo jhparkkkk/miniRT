@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 17:42:49 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/09/12 17:52:07 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/28 13:33:48 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,5 @@ t_list	*ft_lstnew(void *content)
 		return (NULL);
 	new_el->content = content;
 	new_el->next = NULL;
-
 	return (new_el);
 }

@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 13:59:14 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/27 13:19:26 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:41:09 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,5 @@ void	print_cap(t_object cap)
 	printf("cap radius %f\n", cap.radius);
 	printf("cap color : %f, y : %f, z : %f\n", cap.color.x,
 		cap.color.y, cap.color.z);
-	if (cap.surface == SHINY)
-		printf("cap type : SHINY\n");
-	else
-		printf("cap type : MAT\n");
 	printf("\n");
 }

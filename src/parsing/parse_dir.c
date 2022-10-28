@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 15:14:06 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/26 17:07:43 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/27 18:45:15 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ static double	get_coordinates(char *data)
 	if (!data)
 	{
 		ft_putstr_fd("Something is wrong with the direction\n", 2);
-		ft_memory(0, 0);
+		ft_memory(-1, -1);
 	}
 	ret = ft_atof(data);
 	if (check_double(data) || !(ret >= -1.0 && ret <= 1.0))
 	{
 		ft_putstr_fd("Something is wrong with the direction\n", 2);
-		ft_memory(0, 0);
+		ft_memory(-1, -1);
 	}
 	return (ret);
 }
@@ -74,9 +74,8 @@ t_vec3	parse_dir(char *line, int *idx)
 	}
 	if (nb_comma != 2)
 	{
-		printf("LINE %s\n", line);
 		ft_putstr_fd("Something is wrong with the direction\n", 2);
-		ft_memory(0, 0);
+		ft_memory(-1, -1);
 	}
 	(*idx) += i;
 	return (extract_dir(ft_substr(line, j, i)));

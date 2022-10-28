@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 13:34:12 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/26 16:43:31 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:32:36 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,30 +38,27 @@ static double	distance_center_to_point(t_hit_point hit, t_object *cap)
 	return (distance_center_to_point);
 }
 
-t_hit_point	hit_cap(t_ray *ray, t_object *cap, double shadow)
+void	hit_cap(t_ray *ray, t_object *cap, double shadow, t_hit_point *hit)
 {
 	t_vec3		normal;
 	t_vec3		distance_from_origin;
 	double		denom;
-	t_hit_point	hit;
 
 	(void)shadow;
-	hit.status = 0;
+	hit->status = 0;
 	distance_from_origin = vec_substract(cap->center, ray->origin);
 	normal = get_normal(cap, ray->dir);
 	denom = vec_dot(normal, ray->dir);
 	if (denom > __DBL_EPSILON__)
 	{
-		hit.root = vec_dot(distance_from_origin, normal) / denom;
-		if (hit.root >= __DBL_EPSILON__)
+		hit->root = vec_dot(distance_from_origin, normal) / denom;
+		if (hit->root >= __DBL_EPSILON__)
 		{
-			hit.point = vec_add(ray->origin, vec_scalar(ray->dir, hit.root));
-			if (distance_center_to_point(hit, cap) < cap->radius)
+			hit->point = vec_add(ray->origin, vec_scalar(ray->dir, hit->root));
+			if (distance_center_to_point(*hit, cap) < cap->radius)
 			{
-				hit.status = 1;
+				hit->status = 1;
 			}
-			return (hit);
 		}
 	}
-	return (hit);
 }
