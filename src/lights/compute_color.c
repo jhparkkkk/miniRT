@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:48:38 by cgosseli          #+#    #+#             */
-/*   Updated: 2022/10/28 16:47:04 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/28 17:05:14 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_vec3	vec_multiply(t_vec3 v1, t_vec3 v2)
 	res.z = (v1.z * v2.z) / 255;
 	return (res);
 }
+
 static t_vec3	g_light(double intens, t_light light,
 	t_amb_light amb_light)
 {
@@ -42,7 +43,6 @@ static t_vec3	get_shade(t_vec3 color, double light_intens,
 	light_to_obj = vec_scalar(color, light_intens * K_DIFFUSE);
 	return (vec_multiply(ambient_to_obj, light_to_obj));
 }
-
 
 /*Returns the pixel color regarding the lights and ambient light in *world at
 *the impact of the *ray and the *object */

@@ -6,7 +6,7 @@
 /*   By: cgosseli <cgosseli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 13:35:03 by jeepark           #+#    #+#             */
-/*   Updated: 2022/10/27 18:45:15 by cgosseli         ###   ########.fr       */
+/*   Updated: 2022/10/28 17:04:25 by cgosseli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ static t_object	*get_object(char *line)
 	while (line[j + i] && !(line[j + i] == 32 || (line[j + i] >= 9
 				&& line[j + i] <= 13)))
 				i++;
-	if (!ft_strncmp(line + j, "sp", i))
+	if (!ft_strncmp(line + j, "sp", 2) && !ft_strncmp(line + j, "sp", i))
 		create_sphere(line + j + i, new_object);
-	else if (!ft_strncmp(line + j, "pl", i))
+	else if (!ft_strncmp(line + j, "pl", 2) && !ft_strncmp(line + j, "pl", i))
 		create_plane(line + j + i, new_object);
-	else if (!ft_strncmp(line + j, "cy", i))
+	else if (!ft_strncmp(line + j, "cy", 2) && !ft_strncmp(line + j, "cy", i))
 		create_cylinder(line + j + i, new_object);
 	else
 	{
